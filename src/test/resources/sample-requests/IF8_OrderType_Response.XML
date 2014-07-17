@@ -1,0 +1,115 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+   <s:Body>
+      <POROrderTypeServiceFindResponse xmlns="http://schemas.microsoft.com/dynamics/2008/01/services">
+         <POROrderType xmlns="http://schemas.microsoft.com/dynamics/2008/01/documents/POROrderType">
+            <DocPurpose>Original</DocPurpose>
+            <SenderId>b068</SenderId>
+            <PurchPool class="entity">
+               <_DocumentHash>7c7357f3ef9bcb461be8bb0cf296f67c</_DocumentHash>
+               <Name>CONSIGNED CARDS (INDIRECT)</Name>
+               <PurchPoolId>CONSIGNED</PurchPoolId>
+               <RecId>5637144826</RecId>
+               <RecVersion>1</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>b2802eb89b46eb5c9d81d2cd638ae054</_DocumentHash>
+               <Name>CARD PRODUCTION BLACKHAWK</Name>
+               <PurchPoolId>CPB</PurchPoolId>
+               <RecId>5637145326</RecId>
+               <RecVersion>1</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>8a0bd36fe747ccd182c693754c64332b</_DocumentHash>
+               <Name>CARD PRODUCTION INTERNATIONAL</Name>
+               <PurchPoolId>CPI</PurchPoolId>
+               <RecId>5637145328</RecId>
+               <RecVersion>1</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>68136c539a3bb9b2d0ec84b41fc2ed0c</_DocumentHash>
+               <Name>CARD PRODUCTION SERVICES</Name>
+               <PurchPoolId>CPS</PurchPoolId>
+               <RecId>5637144583</RecId>
+               <RecVersion>170539723</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>4d0487c185ccf0ad37def850c12fe793</_DocumentHash>
+               <Name>FIXTURES</Name>
+               <PurchPoolId>FIXTURES</PurchPoolId>
+               <RecId>5637144832</RecId>
+               <RecVersion>1</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>dfa1f65733d0356bcb3740130919bbe7</_DocumentHash>
+               <Name>TELECOM HANDSETS</Name>
+               <PurchPoolId>HANDSETS</PurchPoolId>
+               <RecId>5637144586</RecId>
+               <RecVersion>447860353</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>9ead19a7b61963ed85658009729cf877</_DocumentHash>
+               <Name>TELECOM HOTPINS</Name>
+               <PurchPoolId>HOTPINS</PurchPoolId>
+               <RecId>5637144827</RecId>
+               <RecVersion>1</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>8196d75bf97ca6777a8043631a232429</_DocumentHash>
+               <Name>IT</Name>
+               <PurchPoolId>IT</PurchPoolId>
+               <RecId>5637144587</RecId>
+               <RecVersion>1</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>1f1a3215f0946342c06a3cb51c58b820</_DocumentHash>
+               <Name>MARKETING</Name>
+               <PurchPoolId>MARKETING</PurchPoolId>
+               <RecId>5637144830</RecId>
+               <RecVersion>1</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>82afff98f84a8e07edb16da3d7758c33</_DocumentHash>
+               <Name>MERCHANDISING</Name>
+               <PurchPoolId>MERCH</PurchPoolId>
+               <RecId>5637144829</RecId>
+               <RecVersion>1</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>39c083b9f290b84d97e224123037b101</_DocumentHash>
+               <Name>HANDSET PERMANENT PRICE REDUCTION</Name>
+               <PurchPoolId>PPRHANDSET</PurchPoolId>
+               <RecId>5637145827</RecId>
+               <RecVersion>210921962</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>1647a135c86575e56ba1cd9d507e7037</_DocumentHash>
+               <Name>HANDSET PRICE REDUCTIONS</Name>
+               <PurchPoolId>PRICE RED</PurchPoolId>
+               <RecId>5637145578</RecId>
+               <RecVersion>1</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>98257741eb640d5a3bb93b81f3ad04f0</_DocumentHash>
+               <Name>TELECOM BROCHURES &amp; SUPPLIES</Name>
+               <PurchPoolId>TELESUPPLY</PurchPoolId>
+               <RecId>5637145076</RecId>
+               <RecVersion>1</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>e83145d6e1a50af8e0bc3e3caef65d55</_DocumentHash>
+               <Name>TERMINALS</Name>
+               <PurchPoolId>TERMINALS</PurchPoolId>
+               <RecId>5637144828</RecId>
+               <RecVersion>1</RecVersion>
+            </PurchPool>
+            <PurchPool class="entity">
+               <_DocumentHash>12a0673075ae9517e7c9bd2137492ac4</_DocumentHash>
+               <Name>HANDSET TEMPORARY PRICE REDUCTION</Name>
+               <PurchPoolId>TPRHANDSET</PurchPoolId>
+               <RecId>5637145826</RecId>
+               <RecVersion>568657055</RecVersion>
+            </PurchPool>
+         </POROrderType>
+      </POROrderTypeServiceFindResponse>
+   </s:Body>
+</s:Envelope>

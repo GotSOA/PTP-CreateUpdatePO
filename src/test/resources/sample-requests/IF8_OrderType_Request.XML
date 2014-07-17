@@ -1,0 +1,15 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:quer="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:POROrderTypeServiceFindRequest>
+         <!--Optional:-->
+         <quer:QueryCriteria>
+            <quer:CriteriaElement>
+               <quer:DataSourceName>PurchPool</quer:DataSourceName>
+               <quer:FieldName>PurchPoolId</quer:FieldName>
+               <quer:Operator>NotEqual</quer:Operator>
+               <quer:Value1> </quer:Value1>            </quer:CriteriaElement>
+         </quer:QueryCriteria>
+      </ser:POROrderTypeServiceFindRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

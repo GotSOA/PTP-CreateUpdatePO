@@ -1,0 +1,16 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+   <s:Body>
+      <SnPORequestServiceCreateResponse xmlns="http://schemas.microsoft.com/dynamics/2008/01/services">
+         <EntityKeyList xmlns="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList">
+            <EntityKey xmlns="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey">
+               <KeyData>
+                  <KeyField>
+                     <Field>RecId</Field>
+                     <Value>5637144577</Value>
+                  </KeyField>
+               </KeyData>
+            </EntityKey>
+         </EntityKeyList>
+      </SnPORequestServiceCreateResponse>
+   </s:Body>
+</s:Envelope>

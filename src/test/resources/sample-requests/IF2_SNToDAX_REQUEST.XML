@@ -1,0 +1,45 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:snp="http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:SnPORequestServiceCreateRequest>
+         <!--Optional:-->
+         <snp:SnPORequest>
+            <!--Optional:-->
+            <snp:DocPurpose>Original</snp:DocPurpose>
+            <!--Optional:-->
+            <snp:SenderId></snp:SenderId>
+            <!--Zero or more repetitions:-->
+            <snp:bhnSNPORequest class="entity" >
+               <!--Optional:-->
+               <snp:_DocumentHash></snp:_DocumentHash>
+               <!--Optional:-->
+               <snp:Action>NEW</snp:Action>
+               <!--Optional:-->
+               <snp:AmountApproved>1000</snp:AmountApproved>
+               <!--Optional:-->
+               <snp:ApprovalDateTime localDateTime="2002-05-30T09:00:00" timezone="GMTMINUS1200INTERNATIONALDATELINEWEST">2002-05-30T09:30:10Z</snp:ApprovalDateTime>
+               <!--Optional:-->
+               <snp:ApprovalSource>TEST</snp:ApprovalSource>
+               <!--Optional:-->
+               <snp:ApproverName>John</snp:ApproverName>
+               <!--Optional:-->
+               <snp:ClosedOpen>Open</snp:ClosedOpen>
+               <!--Optional:-->
+               <snp:Currency>USD</snp:Currency>
+               <!--Optional:-->
+               <snp:PorId>1234</snp:PorId>
+               <!--Optional:-->
+               <snp:RecId>0</snp:RecId>
+               <!--Optional:-->
+               <snp:RecVersion>0</snp:RecVersion>
+               <!--Optional:-->
+               <snp:RequestorName>Jane</snp:RequestorName>
+               <!--Optional:-->
+               <snp:VendorId>V101380</snp:VendorId>
+               <!--Optional:-->
+               <snp:VendorName></snp:VendorName>
+            </snp:bhnSNPORequest>
+         </snp:SnPORequest>
+      </ser:SnPORequestServiceCreateRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
