@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/dynamics/2008/01/services">
+  <xs:import schemaLocation="porprojectdataservice_1.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+  <xs:import schemaLocation="porprojectdataservice_1_2.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/PORProjectData"/>
+  <xs:import schemaLocation="porprojectdataservice_1_2_3.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+  <xs:element name="PORProjectDataServiceFindRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q1:QueryCriteria" xmlns:q1="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PORProjectDataServiceFindResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q2:PORProjectData" xmlns:q2="http://schemas.microsoft.com/dynamics/2008/01/documents/PORProjectData"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PORProjectDataServiceReadRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q3:EntityKeyList" xmlns:q3="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PORProjectDataServiceReadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q4:PORProjectData" xmlns:q4="http://schemas.microsoft.com/dynamics/2008/01/documents/PORProjectData"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PORProjectDataServiceUpdateRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q5:EntityKeyList" xmlns:q5="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+        <xs:element minOccurs="0" ref="q6:PORProjectData" xmlns:q6="http://schemas.microsoft.com/dynamics/2008/01/documents/PORProjectData"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PORProjectDataServiceCreateRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q7:PORProjectData" xmlns:q7="http://schemas.microsoft.com/dynamics/2008/01/documents/PORProjectData"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PORProjectDataServiceCreateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q8:EntityKeyList" xmlns:q8="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PORProjectDataServiceDeleteRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q9:EntityKeyList" xmlns:q9="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="VendTableService" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:tns="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_VendTableService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:NegotiateAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http"/>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services/Imports">
+      <xsd:import schemaLocation="vendtableservice.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/services"/>
+      <xsd:import schemaLocation="vendtableservice_1_2_3_4_5.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+      <xsd:import schemaLocation="vendtableservice_1_2_3_4_5_6.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="vendtableservice_1.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+      <xsd:import schemaLocation="vendtableservice_1_2_3_4_5_6_7.xsd"/>
+      <xsd:import schemaLocation="vendtableservice_1_2.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      <xsd:import schemaLocation="vendtableservice_1_2_3.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey"/>
+      <xsd:import schemaLocation="vendtableservice_1_2_3_4.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/VendTable"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="VendTableServiceFindKeysRequest">
+    <wsdl:part name="parameters" element="tns:VendTableServiceFindKeysRequest"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableServiceFindKeysResponse">
+    <wsdl:part name="parameters" element="tns:VendTableServiceFindKeysResponse"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableService_findKeys_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q1:AifFault" xmlns:q1="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableServiceFindRequest">
+    <wsdl:part name="parameters" element="tns:VendTableServiceFindRequest"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableServiceFindResponse">
+    <wsdl:part name="parameters" element="tns:VendTableServiceFindResponse"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableService_find_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q2:AifFault" xmlns:q2="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableServiceReadRequest">
+    <wsdl:part name="parameters" element="tns:VendTableServiceReadRequest"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableServiceReadResponse">
+    <wsdl:part name="parameters" element="tns:VendTableServiceReadResponse"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableService_read_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q3:AifFault" xmlns:q3="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableServiceCreateRequest">
+    <wsdl:part name="parameters" element="tns:VendTableServiceCreateRequest"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableServiceCreateResponse">
+    <wsdl:part name="parameters" element="tns:VendTableServiceCreateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableService_create_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q4:AifFault" xmlns:q4="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableServiceUpdateRequest">
+    <wsdl:part name="parameters" element="tns:VendTableServiceUpdateRequest"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableService_update_OutputMessage"/>
+  <wsdl:message name="VendTableService_update_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q5:AifFault" xmlns:q5="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableServiceDeleteRequest">
+    <wsdl:part name="parameters" element="tns:VendTableServiceDeleteRequest"/>
+  </wsdl:message>
+  <wsdl:message name="VendTableService_delete_OutputMessage"/>
+  <wsdl:message name="VendTableService_delete_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q6:AifFault" xmlns:q6="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:portType name="VendTableService">
+    <wsdl:operation name="findKeys">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/findKeys" name="VendTableServiceFindKeysRequest" message="tns:VendTableServiceFindKeysRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/findKeysResponse" name="VendTableServiceFindKeysResponse" message="tns:VendTableServiceFindKeysResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/findKeysAifFaultFault" name="AifFaultFault" message="tns:VendTableService_findKeys_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="find">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/find" name="VendTableServiceFindRequest" message="tns:VendTableServiceFindRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/findResponse" name="VendTableServiceFindResponse" message="tns:VendTableServiceFindResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/findAifFaultFault" name="AifFaultFault" message="tns:VendTableService_find_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="read">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/read" name="VendTableServiceReadRequest" message="tns:VendTableServiceReadRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/readResponse" name="VendTableServiceReadResponse" message="tns:VendTableServiceReadResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/readAifFaultFault" name="AifFaultFault" message="tns:VendTableService_read_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/create" name="VendTableServiceCreateRequest" message="tns:VendTableServiceCreateRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/createResponse" name="VendTableServiceCreateResponse" message="tns:VendTableServiceCreateResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/createAifFaultFault" name="AifFaultFault" message="tns:VendTableService_create_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/update" name="VendTableServiceUpdateRequest" message="tns:VendTableServiceUpdateRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/updateResponse" message="tns:VendTableService_update_OutputMessage"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/updateAifFaultFault" name="AifFaultFault" message="tns:VendTableService_update_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/delete" name="VendTableServiceDeleteRequest" message="tns:VendTableServiceDeleteRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/deleteResponse" message="tns:VendTableService_delete_OutputMessage"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/deleteAifFaultFault" name="AifFaultFault" message="tns:VendTableService_delete_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_VendTableService" type="tns:VendTableService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_VendTableService_policy"/>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findKeys">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/findKeys" style="document"/>
+      <wsdl:input name="VendTableServiceFindKeysRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="VendTableServiceFindKeysResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="find">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/find" style="document"/>
+      <wsdl:input name="VendTableServiceFindRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="VendTableServiceFindResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="read">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/read" style="document"/>
+      <wsdl:input name="VendTableServiceReadRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="VendTableServiceReadResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/create" style="document"/>
+      <wsdl:input name="VendTableServiceCreateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="VendTableServiceCreateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/update" style="document"/>
+      <wsdl:input name="VendTableServiceUpdateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/VendTableService/delete" style="document"/>
+      <wsdl:input name="VendTableServiceDeleteRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VendTableService">
+    <wsdl:port name="BasicHttpBinding_VendTableService" binding="tns:BasicHttpBinding_VendTableService">
+      <soap:address location="http://vsclapdaxq04w.devqa.local/MicrosoftDynamicsAXAif50/vendtableservice.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

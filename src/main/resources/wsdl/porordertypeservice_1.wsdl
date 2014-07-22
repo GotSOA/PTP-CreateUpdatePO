@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="POROrderTypeService" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:tns="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_POROrderTypeService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:NegotiateAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http"/>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services/Imports">
+      <xsd:import schemaLocation="porordertypeservice.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/services"/>
+      <xsd:import schemaLocation="porordertypeservice_1_2_3_4_5.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+      <xsd:import schemaLocation="porordertypeservice_1_2_3_4_5_6.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="porordertypeservice_1.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      <xsd:import schemaLocation="porordertypeservice_1_2.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey"/>
+      <xsd:import schemaLocation="porordertypeservice_1_2_3_4_5_6_7.xsd"/>
+      <xsd:import schemaLocation="porordertypeservice_1_2_3.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/POROrderType"/>
+      <xsd:import schemaLocation="porordertypeservice_1_2_3_4.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="POROrderTypeServiceUpdateRequest">
+    <wsdl:part name="parameters" element="tns:POROrderTypeServiceUpdateRequest"/>
+  </wsdl:message>
+  <wsdl:message name="POROrderTypeService_update_OutputMessage"/>
+  <wsdl:message name="POROrderTypeService_update_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q1:AifFault" xmlns:q1="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="POROrderTypeServiceReadRequest">
+    <wsdl:part name="parameters" element="tns:POROrderTypeServiceReadRequest"/>
+  </wsdl:message>
+  <wsdl:message name="POROrderTypeServiceReadResponse">
+    <wsdl:part name="parameters" element="tns:POROrderTypeServiceReadResponse"/>
+  </wsdl:message>
+  <wsdl:message name="POROrderTypeService_read_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q2:AifFault" xmlns:q2="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="POROrderTypeServiceDeleteRequest">
+    <wsdl:part name="parameters" element="tns:POROrderTypeServiceDeleteRequest"/>
+  </wsdl:message>
+  <wsdl:message name="POROrderTypeService_delete_OutputMessage"/>
+  <wsdl:message name="POROrderTypeService_delete_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q3:AifFault" xmlns:q3="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="POROrderTypeServiceFindRequest">
+    <wsdl:part name="parameters" element="tns:POROrderTypeServiceFindRequest"/>
+  </wsdl:message>
+  <wsdl:message name="POROrderTypeServiceFindResponse">
+    <wsdl:part name="parameters" element="tns:POROrderTypeServiceFindResponse"/>
+  </wsdl:message>
+  <wsdl:message name="POROrderTypeService_find_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q4:AifFault" xmlns:q4="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="POROrderTypeServiceCreateRequest">
+    <wsdl:part name="parameters" element="tns:POROrderTypeServiceCreateRequest"/>
+  </wsdl:message>
+  <wsdl:message name="POROrderTypeServiceCreateResponse">
+    <wsdl:part name="parameters" element="tns:POROrderTypeServiceCreateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="POROrderTypeService_create_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q5:AifFault" xmlns:q5="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:portType name="POROrderTypeService">
+    <wsdl:operation name="update">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/update" name="POROrderTypeServiceUpdateRequest" message="tns:POROrderTypeServiceUpdateRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/updateResponse" message="tns:POROrderTypeService_update_OutputMessage"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/updateAifFaultFault" name="AifFaultFault" message="tns:POROrderTypeService_update_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="read">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/read" name="POROrderTypeServiceReadRequest" message="tns:POROrderTypeServiceReadRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/readResponse" name="POROrderTypeServiceReadResponse" message="tns:POROrderTypeServiceReadResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/readAifFaultFault" name="AifFaultFault" message="tns:POROrderTypeService_read_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/delete" name="POROrderTypeServiceDeleteRequest" message="tns:POROrderTypeServiceDeleteRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/deleteResponse" message="tns:POROrderTypeService_delete_OutputMessage"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/deleteAifFaultFault" name="AifFaultFault" message="tns:POROrderTypeService_delete_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="find">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/find" name="POROrderTypeServiceFindRequest" message="tns:POROrderTypeServiceFindRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/findResponse" name="POROrderTypeServiceFindResponse" message="tns:POROrderTypeServiceFindResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/findAifFaultFault" name="AifFaultFault" message="tns:POROrderTypeService_find_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/create" name="POROrderTypeServiceCreateRequest" message="tns:POROrderTypeServiceCreateRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/createResponse" name="POROrderTypeServiceCreateResponse" message="tns:POROrderTypeServiceCreateResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/createAifFaultFault" name="AifFaultFault" message="tns:POROrderTypeService_create_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_POROrderTypeService" type="tns:POROrderTypeService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_POROrderTypeService_policy"/>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/update" style="document"/>
+      <wsdl:input name="POROrderTypeServiceUpdateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="read">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/read" style="document"/>
+      <wsdl:input name="POROrderTypeServiceReadRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="POROrderTypeServiceReadResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/delete" style="document"/>
+      <wsdl:input name="POROrderTypeServiceDeleteRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="find">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/find" style="document"/>
+      <wsdl:input name="POROrderTypeServiceFindRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="POROrderTypeServiceFindResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/POROrderTypeService/create" style="document"/>
+      <wsdl:input name="POROrderTypeServiceCreateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="POROrderTypeServiceCreateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="POROrderTypeService">
+    <wsdl:port name="BasicHttpBinding_POROrderTypeService" binding="tns:BasicHttpBinding_POROrderTypeService">
+      <soap:address location="http://vsclapdaxq04w.devqa.local/MicrosoftDynamicsAXAif50/porordertypeservice.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

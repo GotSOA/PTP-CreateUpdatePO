@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="vendtableservice_1.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+  <xs:import schemaLocation="vendtableservice_1_2.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+  <xs:import schemaLocation="vendtableservice_1_2_3_4.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/VendTable"/>
+  <xs:element name="QueryCriteria" type="q1:QueryCriteria" xmlns:q1="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+  <xs:element name="EntityKeyList" type="q2:EntityKeyList" xmlns:q2="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+  <xs:element name="AxdVendTable" type="q3:AxdVendTable" xmlns:q3="http://schemas.microsoft.com/dynamics/2008/01/documents/VendTable"/>
+</xs:schema>

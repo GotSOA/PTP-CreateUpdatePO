@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="porprojectdataservice_1.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+  <xs:import schemaLocation="porprojectdataservice_1_2.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/PORProjectData"/>
+  <xs:import schemaLocation="porprojectdataservice_1_2_3.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+  <xs:element name="QueryCriteria" type="q1:QueryCriteria" xmlns:q1="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+  <xs:element name="AxdPORProjectData" type="q2:AxdPORProjectData" xmlns:q2="http://schemas.microsoft.com/dynamics/2008/01/documents/PORProjectData"/>
+  <xs:element name="EntityKeyList" type="q3:EntityKeyList" xmlns:q3="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+</xs:schema>

@@ -1,0 +1,1337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/documents/VendTable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/dynamics/2008/01/documents/VendTable">
+  <xs:element name="VendTable" type="AxdVendTable"/>
+  <xs:complexType name="AxdVendTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DocPurpose" nillable="true" type="AxdEnum_XMLDocPurpose"/>
+      <xs:element minOccurs="0" name="SenderId" nillable="true" type="AxdExtType_dataAreaId"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VendTable" type="AxdEntity_VendTable"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AxdEnum_XMLDocPurpose">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Product:Product</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Original"/>
+      <xs:enumeration value="Duplicate"/>
+      <xs:enumeration value="Proforma"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_dataAreaId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Company:ID for an area of data</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_AxdEntityAction">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">AxdEntityAction:AxdEntityAction</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="create"/>
+      <xs:enumeration value="update"/>
+      <xs:enumeration value="replace"/>
+      <xs:enumeration value="delete"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_VendTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_DocumentHash" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="AccountNum" nillable="true" type="AxdUnion_AxdExtType_VendAccount_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="AxdExtType_Addressing"/>
+      <xs:element minOccurs="0" name="BankAccount" nillable="true" type="AxdExtType_VendBankAccountId"/>
+      <xs:element minOccurs="0" name="BankCentralBankPurposeCode" nillable="true" type="AxdExtType_BankCentralBankPurposeCode"/>
+      <xs:element minOccurs="0" name="BankCentralBankPurposeText" nillable="true" type="AxdExtType_BankCentralBankPurposeText"/>
+      <xs:element minOccurs="0" name="BidOnly" nillable="true" type="AxdExtType_VendBidOnly"/>
+      <xs:element minOccurs="0" name="Blocked" nillable="true" type="AxdExtType_VendBlocked"/>
+      <xs:element minOccurs="0" name="CashDisc" nillable="true" type="AxdExtType_VendCashDiscCode"/>
+      <xs:element minOccurs="0" name="CellularPhone" nillable="true" type="AxdExtType_PhoneMobile"/>
+      <xs:element minOccurs="0" name="City" nillable="true" type="AxdExtType_AddressCity"/>
+      <xs:element minOccurs="0" name="ClearingPeriod" nillable="true" type="AxdExtType_VendClearingPeriod"/>
+      <xs:element minOccurs="0" name="CompanyChainId" nillable="true" type="AxdExtType_smmChainId"/>
+      <xs:element minOccurs="0" name="ContactPersonId" nillable="true" type="AxdExtType_ContactPersonId"/>
+      <xs:element minOccurs="0" name="CountryRegionId" nillable="true" type="AxdUnion_AxdExtType_AddressCountryRegionId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="County" nillable="true" type="AxdUnion_AxdExtType_AddressCountyId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="CreditMax" nillable="true" type="AxdExtType_VendCreditMaxMST"/>
+      <xs:element minOccurs="0" name="CreditRating" nillable="true" type="AxdExtType_VendCreditRating"/>
+      <xs:element minOccurs="1" name="Currency" type="AxdUnion_AxdExtType_VendCurrencyCode_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="CustAccount" nillable="true" type="AxdUnion_AxdExtType_CustAccount_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="DBA" nillable="true" type="AxdExtType_DBA"/>
+      <xs:element minOccurs="0" name="DestinationCodeId" nillable="true" type="AxdExtType_VendDestinationCodeId"/>
+      <xs:element minOccurs="0" name="Dimension" nillable="true" type="AxdArray_AxdExtType_Dimension"/>
+      <xs:element minOccurs="0" name="DlvMode" nillable="true" type="AxdUnion_AxdExtType_VendDlvModeId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="DlvTerm" nillable="true" type="AxdUnion_AxdExtType_VendDlvTermId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="AxdExtType_Email"/>
+      <xs:element minOccurs="0" name="EndDisc" nillable="true" type="AxdExtType_VendEndDiscCode"/>
+      <xs:element minOccurs="0" name="ForeignEntityIndicator" nillable="true" type="AxdExtType_Tax1099ForeignEntityIndicator"/>
+      <xs:element minOccurs="0" name="FreightZone" nillable="true" type="AxdExtType_VendFreightZoneId"/>
+      <xs:element minOccurs="0" name="InclTax" nillable="true" type="AxdExtType_InclTax"/>
+      <xs:element minOccurs="0" name="InventLocation" nillable="true" type="AxdExtType_InventLocationId"/>
+      <xs:element minOccurs="0" name="InventSiteId" nillable="true" type="AxdExtType_InventSiteId"/>
+      <xs:element minOccurs="0" name="InvoiceAccount" nillable="true" type="AxdUnion_AxdExtType_VendInvoiceAccount_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="ItemBuyerGroupId" nillable="true" type="AxdExtType_ItemBuyerGroupId"/>
+      <xs:element minOccurs="1" name="LanguageId" type="AxdExtType_VendLanguageId"/>
+      <xs:element minOccurs="0" name="LineDisc" nillable="true" type="AxdExtType_VendLineDiscCode"/>
+      <xs:element minOccurs="0" name="LineOfBusinessId" nillable="true" type="AxdExtType_VendLineOfBusinessId"/>
+      <xs:element minOccurs="0" name="LocallyOwned" nillable="true" type="AxdExtType_VendLocallyOwned"/>
+      <xs:element minOccurs="0" name="MainContactId" nillable="true" type="AxdExtType_smmBusRelAccResponsible"/>
+      <xs:element minOccurs="0" name="MarkupGroup" nillable="true" type="AxdExtType_VendMarkupGroupId"/>
+      <xs:element minOccurs="0" name="Memo" nillable="true" type="AxdExtType_smmBusRelMemo"/>
+      <xs:element minOccurs="0" name="MultiLineDisc" nillable="true" type="AxdExtType_VendMultiLineDiscCode"/>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="AxdExtType_VendName"/>
+      <xs:element minOccurs="0" name="NameAlias" nillable="true" type="AxdExtType_VendTableAlias"/>
+      <xs:element minOccurs="0" name="NameControl" nillable="true" type="AxdExtType_NameControl"/>
+      <xs:element minOccurs="0" name="numberSequenceGroup" nillable="true" type="AxdExtType_NumberSequenceGroupId"/>
+      <xs:element minOccurs="0" name="OffsetAccount" nillable="true" type="AxdExtType_LedgerJournalAC"/>
+      <xs:element minOccurs="0" name="OffsetAccountType" nillable="true" type="AxdEnum_LedgerJournalACType"/>
+      <xs:element minOccurs="0" name="OneTimeVendor" nillable="true" type="AxdExtType_OneTimeSupplier"/>
+      <xs:element minOccurs="0" name="Pager" nillable="true" type="AxdExtType_Pager"/>
+      <xs:element minOccurs="0" name="PartyId" nillable="true" type="AxdUnion_AxdExtType_DirPartyId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="1" name="PartyType" type="AxdEnum_DirPartyType"/>
+      <xs:element minOccurs="0" name="PaymDayId" nillable="true" type="AxdExtType_VendPaymDayId"/>
+      <xs:element minOccurs="0" name="PaymId" nillable="true" type="AxdExtType_VendPaymId"/>
+      <xs:element minOccurs="0" name="PaymMode" nillable="true" type="AxdExtType_VendPaymMode"/>
+      <xs:element minOccurs="0" name="PaymSched" nillable="true" type="AxdExtType_VendPaymSchedId"/>
+      <xs:element minOccurs="0" name="PaymSpec" nillable="true" type="AxdExtType_PaymSpec"/>
+      <xs:element minOccurs="0" name="PaymTermId" nillable="true" type="AxdExtType_VendPaymTermId"/>
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="AxdExtType_Phone"/>
+      <xs:element minOccurs="0" name="PhoneLocal" nillable="true" type="AxdExtType_PhoneLocal"/>
+      <xs:element minOccurs="0" name="PriceGroup" nillable="true" type="AxdExtType_VendPriceGroup"/>
+      <xs:element minOccurs="0" name="PurchAmountPurchaseOrder" nillable="true" type="AxdExtType_PurchAmountPurchaseOrder"/>
+      <xs:element minOccurs="0" name="PurchCalendarId" nillable="true" type="AxdExtType_PurchCalendarId"/>
+      <xs:element minOccurs="0" name="PurchPoolId" nillable="true" type="AxdExtType_VendPurchPoolId"/>
+      <xs:element minOccurs="0" name="SecondTIN" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="SegmentId" nillable="true" type="AxdExtType_smmSegmentId"/>
+      <xs:element minOccurs="0" name="SmallBusiness" nillable="true" type="AxdExtType_VendSmallBusiness"/>
+      <xs:element minOccurs="0" name="SMS" nillable="true" type="AxdExtType_SMS"/>
+      <xs:element minOccurs="0" name="State" nillable="true" type="AxdUnion_AxdExtType_AddressStateId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="Street" nillable="true" type="AxdExtType_AddressStreet"/>
+      <xs:element minOccurs="0" name="SubsegmentId" nillable="true" type="AxdExtType_smmSubsegmentId"/>
+      <xs:element minOccurs="0" name="SuppItemGroupId" nillable="true" type="AxdExtType_VendSuppItemGroupId"/>
+      <xs:element minOccurs="0" name="Tax1099Box" nillable="true" type="AxdExtType_Tax1099Box"/>
+      <xs:element minOccurs="0" name="Tax1099NameChoice" nillable="true" type="AxdEnum_Tax1099NameChoice"/>
+      <xs:element minOccurs="0" name="Tax1099RegNum" nillable="true" type="AxdExtType_Tax1099RegNum"/>
+      <xs:element minOccurs="0" name="Tax1099Reports" nillable="true" type="AxdExtType_Tax1099Reporting"/>
+      <xs:element minOccurs="0" name="TaxGroup" nillable="true" type="AxdExtType_TaxGroup"/>
+      <xs:element minOccurs="0" name="TaxIDType" nillable="true" type="AxdEnum_TaxIDType"/>
+      <xs:element minOccurs="0" name="TaxWithholdCalculate" nillable="true" type="AxdExtType_NoYesId"/>
+      <xs:element minOccurs="0" name="TaxWithholdGroup" nillable="true" type="AxdExtType_TaxWithholdGroup"/>
+      <xs:element minOccurs="0" name="TeleFax" nillable="true" type="AxdExtType_TeleFax"/>
+      <xs:element minOccurs="0" name="Telex" nillable="true" type="AxdExtType_Telex"/>
+      <xs:element minOccurs="0" name="URL" nillable="true" type="AxdExtType_URL"/>
+      <xs:element minOccurs="0" name="VATNum" nillable="true" type="AxdExtType_VATNum"/>
+      <xs:element minOccurs="1" name="VendGroup" type="AxdExtType_VendGroupId"/>
+      <xs:element minOccurs="0" name="VendItemGroupId" nillable="true" type="AxdExtType_VendItemGroupId"/>
+      <xs:element minOccurs="0" name="VendPriceToleranceGroupId" nillable="true" type="AxdExtType_VendPriceToleranceGroupId"/>
+      <xs:element minOccurs="0" name="W9" nillable="true" type="AxdExtType_VendW9"/>
+      <xs:element minOccurs="0" name="YourAccountNum" nillable="true" type="AxdExtType_VendAccountExt"/>
+      <xs:element minOccurs="0" name="ZipCode" nillable="true" type="AxdUnion_AxdExtType_AddressZipCodeId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AddressRelationship" type="AxdEntity_AddressRelationship"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdType_ExtCodeValue">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Value:Actual value of the related record according to the selected external code type.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdUnion_AxdExtType_VendAccount_AxdType_ExtCodeValue">
+    <xs:union memberTypes="AxdExtType_VendAccount AxdType_ExtCodeValue"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendAccount">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Vendor account:Vendor account number.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Addressing">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Address:Addressee - Enter address and ZIP/postal Code; the rest will be inserted if the postal code exists in the postal code table.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="250"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendBankAccountId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Bank account:Identify vendor's bank account.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_BankCentralBankPurposeCode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Central Bank Purpose Code:Code used when reporting to the central bank.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_BankCentralBankPurposeText">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Purpose text:Describe code used when reporting to the central bank.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="140"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendBidOnly">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Bid only:Specify whether the vendor submits quotes and proposals to you, but you have not purchased from the vendor</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendBlocked">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Stopped:Have further orders, deliveries and invoicing been stopped for the vendor?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Invoice"/>
+      <xs:enumeration value="All"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendCashDiscCode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Cash discount:Cash discount code for subsequent approval.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PhoneMobile">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Mobile phone:Mobile phone number.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_AddressCity">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">City:City for ZIP/postal Code.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendClearingPeriod">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Settle period:Terms of payment for period from due date to payment.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_smmChainId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Chain:Chain which the company is a member of</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ContactPersonId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Contact ID:Identification of the contact.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdUnion_AxdExtType_AddressCountryRegionId_AxdType_ExtCodeValue">
+    <xs:union memberTypes="AxdExtType_AddressCountryRegionId AxdType_ExtCodeValue"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_AddressCountryRegionId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Country/region:Specifies default native country/region in connection with addresses.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdUnion_AxdExtType_AddressCountyId_AxdType_ExtCodeValue">
+    <xs:union memberTypes="AxdExtType_AddressCountyId AxdType_ExtCodeValue"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_AddressCountyId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">County:Specifies a county within a state in the current country/region.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendCreditMaxMST">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Credit limit:Vendor's credit limit to us. The amount is specified in default currency (0 = No maximum).</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdType_Decimal">
+    <xs:restriction base="xs:decimal"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendCreditRating">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Credit rating:Credit rating of vendor.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdUnion_AxdExtType_VendCurrencyCode_AxdType_ExtCodeValue">
+    <xs:union memberTypes="AxdExtType_VendCurrencyCode AxdType_ExtCodeValue"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendCurrencyCode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Currency:Current currency code.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdUnion_AxdExtType_CustAccount_AxdType_ExtCodeValue">
+    <xs:union memberTypes="AxdExtType_CustAccount AxdType_ExtCodeValue"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_CustAccount">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Customer account:Customer account number.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_DBA">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">DBA:Doing Business As</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendDestinationCodeId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Destination code:Identification of destination code.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdArray_AxdExtType_Dimension">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Channel:Channel number.
+Department:Department number.
+Product:Product number.
+Partner activity code:Partner activity code number.
+Region code:Region code number.
+Project ID:Project ID number.
+Affiliate:Affiliate number.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="7" maxOccurs="7" name="element" type="AxdExtType_Dimension"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AxdExtType_Dimension">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US"/>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdUnion_AxdExtType_VendDlvModeId_AxdType_ExtCodeValue">
+    <xs:union memberTypes="AxdExtType_VendDlvModeId AxdType_ExtCodeValue"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendDlvModeId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Mode of delivery:Unique identification of delivery mode</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdUnion_AxdExtType_VendDlvTermId_AxdType_ExtCodeValue">
+    <xs:union memberTypes="AxdExtType_VendDlvTermId AxdType_ExtCodeValue"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendDlvTermId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Delivery terms:Specify standard terms of delivery for vendor.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Email">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">E-mail:Internet e-mail address.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="80"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendEndDiscCode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Total discount:Determines total discount group of vendor/purchase.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Tax1099ForeignEntityIndicator">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Foreign entity indicator:Select whether the company is owned by an entity outside of the United States.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendFreightZoneId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">UPS zone:Identification of UPS zone.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InclTax">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Prices incl. sales tax:Do prices include sales tax?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventLocationId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Warehouse:Identify the warehouse.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_InventSiteId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Site:Identify the site</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdUnion_AxdExtType_VendInvoiceAccount_AxdType_ExtCodeValue">
+    <xs:union memberTypes="AxdExtType_VendInvoiceAccount AxdType_ExtCodeValue"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendInvoiceAccount">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Invoice account:Vendor invoice account.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ItemBuyerGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Buyer group:Identification of the buyer group.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendLanguageId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Language:Select the language for the current text.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="7"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendLineDiscCode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Line discount:Unique identification of line discount</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendLineOfBusinessId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Line of business:Identification of line of business</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendLocallyOwned">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Locally owned:Specify whether the vendor meets your guidelines for a local owner</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_smmBusRelAccResponsible">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Main contact:Sales person responsible for base data.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendMarkupGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Misc. charges group:Misc. charges group applicable to vendor</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_smmBusRelMemo">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Memo:The memo field is to record general notes about a phone call.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendMultiLineDiscCode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Multiline disc. group:Specifies multiline discount group of vendor/purchase order.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendName">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Name:Name of vendor.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendTableAlias">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Search name:Find fast name applying to vendor.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_NameControl">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Name control:Name control from 1099 mail label.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_NumberSequenceGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Number sequence group:Group for allocation of different number sequences to different customers/vendors.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_LedgerJournalAC">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Account:Account number for current account type.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_LedgerJournalACType">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Account type:Account type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ledger"/>
+      <xs:enumeration value="Cust"/>
+      <xs:enumeration value="Vend"/>
+      <xs:enumeration value="Project"/>
+      <xs:enumeration value="FixedAssets"/>
+      <xs:enumeration value="Bank"/>
+      <xs:enumeration value="DEL_CostAcc"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_OneTimeSupplier">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">One-time supplier:Is the vendor a one-time supplier?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Pager">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Pager:Number of pager.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdUnion_AxdExtType_DirPartyId_AxdType_ExtCodeValue">
+    <xs:union memberTypes="AxdExtType_DirPartyId AxdType_ExtCodeValue"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_DirPartyId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Address book ID:Address book identification</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_DirPartyType">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Address book type:Address book type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None"/>
+      <xs:enumeration value="Person"/>
+      <xs:enumeration value="Organization"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendPaymDayId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Payment day:Identification of payment days</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendPaymId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Payment ID:Payment identification used upon payment.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="200"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendPaymMode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Method of payment:Identification of the vendor method of payment.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendPaymSchedId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Payment schedule:Payment schedule to be used when invoicing.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="30"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PaymSpec">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Payment specification:Specify payment handling for the current method of payment.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendPaymTermId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Terms of payment:Code for the terms of payment.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Phone">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Telephone:Telephone number.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PhoneLocal">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Extension:Employee's extension at work.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendPriceGroup">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Price group:Determines vendor/purchase price group.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PurchAmountPurchaseOrder">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Purchase order prices/amount:Print prices and amounts on purchase order?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PurchCalendarId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Purchase calendar:Vendor's work-days calendar. Used to calculate order date and delivery date.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendPurchPoolId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Purchase pool:Specify the purchase order pool that purchase orders from vendors will be placed in</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_NoYes">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">:</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_smmSegmentId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Segment:Segment assigned to business relation</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendSmallBusiness">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Small business:Specify whether the vendor meets your guidelines for being a small business</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_SMS">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">SMS:E-mail address for sending SMS to a mobile phone.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="80"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdUnion_AxdExtType_AddressStateId_AxdType_ExtCodeValue">
+    <xs:union memberTypes="AxdExtType_AddressStateId AxdType_ExtCodeValue"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_AddressStateId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">State:Identification of state.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_AddressStreet">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Street name:Enter the street name of the address.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="250"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_smmSubsegmentId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Subsegment:Subsegment for assignment to business relation (for selected segment)</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendSuppItemGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Supplementary item group:Manages the supplementary items for the vendor when supplementary items are calculated.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Tax1099Box">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">1099 box:Box code on the 1099 form that the total amount is posted to.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_Tax1099NameChoice">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Name to use on the 1099:Name to use on the 1099</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="VendorName"/>
+      <xs:enumeration value="DBA"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Tax1099RegNum">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Federal Tax ID:Registration number with federal authorities for 1099 reporting.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="11"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Tax1099Reporting">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Report 1099:Create 1099 form for purchase from vendor.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_TaxGroup">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Sales tax group:Group of sales tax codes that can be calculated for sale and purchase.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_TaxIDType">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Tax ID type:Tax ID type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown"/>
+      <xs:enumeration value="EIN"/>
+      <xs:enumeration value="SSN"/>
+      <xs:enumeration value="ITIN"/>
+      <xs:enumeration value="ATIN"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_NoYesId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">:</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_TaxWithholdGroup">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Withholding tax group:Identification of the withholding tax group.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_TeleFax">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Fax:Telephone number.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Telex">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Telex number:Telex number of the current address.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_URL">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Internet address:WWW address for Internet homepage.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="255"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VATNum">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Tax exempt number:Tax exempt number for extract of statistics.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Vendor group:Group of vendors.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendItemGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Item - Vendor group:Vendor group for external item descriptions</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendPriceToleranceGroupId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Vendor price tolerance group:Identification of vendor price tolerance group for accounts payable invoice matching</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendW9">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">W-9 received:Has the vendor W-9 been received?</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_VendAccountExt">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Our account number:Our account number with vendor</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdUnion_AxdExtType_AddressZipCodeId_AxdType_ExtCodeValue">
+    <xs:union memberTypes="AxdExtType_AddressZipCodeId AxdType_ExtCodeValue"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_AddressZipCodeId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">ZIP/postal Code:Identify ZIP/postal Code district.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_AddressRelationship">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsPrimary" nillable="true" type="AxdExtType_DirIsPrimaryAddress"/>
+      <xs:element minOccurs="1" name="PartyId" type="AxdExtType_DirPartyId"/>
+      <xs:element minOccurs="0" name="Shared" nillable="true" type="AxdExtType_DirIsSharedAddress"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AddressRelationshipMap" type="AxdEntity_AddressRelationshipMap"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdExtType_DirIsPrimaryAddress">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Primary:Address is primary address for address book record.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_DirIsSharedAddress">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Public:Address is shared for address book record.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_AddressRelationshipMap">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AddressRecId" nillable="true" type="AxdExtType_AddressRefRecId"/>
+      <xs:element minOccurs="0" name="PartyAddressRelationshipRecId" nillable="true" type="AxdExtType_RefRecId"/>
+      <xs:element minOccurs="0" name="RefCompanyId" nillable="true" type="AxdExtType_dataAreaId"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Vendor_Address" type="AxdEntity_Vendor_Address"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdExtType_AddressRefRecId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Reference:Reference field in a different table.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Int64"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdType_Int64">
+    <xs:restriction base="xs:long">
+      <xs:minInclusive value="-9223372036854775808"/>
+      <xs:maxInclusive value="9223372036854775807"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_RefRecId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Reference:Reference field in a different table.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Int64"/>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_Vendor_Address">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="AxdExtType_Addressing"/>
+      <xs:element minOccurs="0" name="AddrRecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="AddrTableId" nillable="true" type="AxdExtType_tableId"/>
+      <xs:element minOccurs="0" name="CellularPhone" nillable="true" type="AxdExtType_PhoneMobile"/>
+      <xs:element minOccurs="0" name="City" nillable="true" type="AxdExtType_AddressCity"/>
+      <xs:element minOccurs="0" name="CountryRegionId" nillable="true" type="AxdUnion_AxdExtType_AddressCountryRegionId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="County" nillable="true" type="AxdUnion_AxdExtType_AddressCountyId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="DlvMode" nillable="true" type="AxdExtType_DlvModeId"/>
+      <xs:element minOccurs="0" name="DlvTerm" nillable="true" type="AxdExtType_DlvTermId"/>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="AxdExtType_Email"/>
+      <xs:element minOccurs="0" name="Latitude" nillable="true" type="AxdExtType_AddressLatitude"/>
+      <xs:element minOccurs="0" name="LineNum" nillable="true" type="AxdExtType_LineNum"/>
+      <xs:element minOccurs="0" name="Longitude" nillable="true" type="AxdExtType_AddressLongitude"/>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="AxdExtType_Name"/>
+      <xs:element minOccurs="0" name="Pager" nillable="true" type="AxdExtType_Pager"/>
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="AxdExtType_Phone"/>
+      <xs:element minOccurs="0" name="PhoneLocal" nillable="true" type="AxdExtType_PhoneLocal"/>
+      <xs:element minOccurs="0" name="SalesCalendarId" nillable="true" type="AxdExtType_SalesCalendarId"/>
+      <xs:element minOccurs="0" name="ShipCarrierAccount" nillable="true" type="AxdExtType_ShipCarrierAccount"/>
+      <xs:element minOccurs="0" name="ShipCarrierAccountCode" nillable="true" type="AxdExtType_ShipCarrierAccountCode"/>
+      <xs:element minOccurs="0" name="ShipCarrierBlindShipment" nillable="true" type="AxdExtType_ShipCarrierBlindShipment"/>
+      <xs:element minOccurs="0" name="ShipCarrierID" nillable="true" type="AxdExtType_ShipCarrierId"/>
+      <xs:element minOccurs="0" name="ShipCarrierResidential" nillable="true" type="AxdExtType_ShipCarrierResidentialDest"/>
+      <xs:element minOccurs="0" name="SMS" nillable="true" type="AxdExtType_SMS"/>
+      <xs:element minOccurs="0" name="State" nillable="true" type="AxdUnion_AxdExtType_AddressStateId_AxdType_ExtCodeValue"/>
+      <xs:element minOccurs="0" name="Street" nillable="true" type="AxdExtType_AddressStreet"/>
+      <xs:element minOccurs="0" name="TaxGroup" nillable="true" type="AxdExtType_TaxGroup"/>
+      <xs:element minOccurs="0" name="TeleFax" nillable="true" type="AxdExtType_TeleFax"/>
+      <xs:element minOccurs="0" name="Telex" nillable="true" type="AxdExtType_Telex"/>
+      <xs:element minOccurs="0" name="TimeZone" nillable="true" type="AxdEnum_Timezone"/>
+      <xs:element minOccurs="0" name="type" nillable="true" type="AxdEnum_AddressType"/>
+      <xs:element minOccurs="0" name="URL" nillable="true" type="AxdExtType_URL"/>
+      <xs:element minOccurs="0" name="ZipCode" nillable="true" type="AxdUnion_AxdExtType_AddressZipCodeId_AxdType_ExtCodeValue"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdExtType_recId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Record-ID:Unique ID for the record in the database</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Int64"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_tableId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Table:ID for the table</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Integer"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdType_Integer">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="-2147483648"/>
+      <xs:maxInclusive value="2147483647"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_DlvModeId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Mode of delivery:Unique identification of delivery mode</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_DlvTermId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Delivery terms:Unique identification of delivery terms</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_AddressLatitude">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Latitude:Latitude value for the address.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_LineNum">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Line No:Identification of line.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_AddressLongitude">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Longitude:Longitude value for address</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Decimal">
+      <xs:fractionDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Name">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Name:Name.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_SalesCalendarId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Receipt calendar:Days that customers can receive their orders</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ShipCarrierAccount">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Carrier account number:Account number that is invoiced by the carrier</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="25"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ShipCarrierAccountCode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Account code:Account code to identify the carrier account number that will be used to bill the company</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ShipCarrierBlindShipment">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Blind shipment:If selected, the return address and logo are not printed on the packing slip or invoice</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ShipCarrierId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Carrier ID:Identification of the carrier service, assigned by the shipping carrier</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_ShipCarrierResidentialDest">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Residential destination:Identifies ship via as "residential" to determine the remote delivery surcharge rate</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_Timezone">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">:</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="GMTMINUS1200INTERNATIONALDATELINEWEST"/>
+      <xs:enumeration value="GMTMINUS1100MIDWAYISLAND_SAMOA"/>
+      <xs:enumeration value="GMTMINUS1000HAWAII"/>
+      <xs:enumeration value="GMTMINUS0900ALASKA"/>
+      <xs:enumeration value="GMTMINUS0800PACIFICTIME"/>
+      <xs:enumeration value="GMTMINUS0800TIJUANA_BAJACALIFORNIA"/>
+      <xs:enumeration value="GMTMINUS0700ARIZONA"/>
+      <xs:enumeration value="GMTMINUS0700MOUNTAINTIME"/>
+      <xs:enumeration value="GMTMINUS0700CHIHUAHUA_LAPAZ_MAZATLAN"/>
+      <xs:enumeration value="GMTMINUS0600CENTRALAMERICA"/>
+      <xs:enumeration value="GMTMINUS0600CENTRALTIME"/>
+      <xs:enumeration value="GMTMINUS0600GUADALAJARA_MEXICOCITY"/>
+      <xs:enumeration value="GMTMINUS0600SASKATCHEWAN"/>
+      <xs:enumeration value="GMTMINUS0500BOGOTA_LIMA_QUITO_RIOBRANCO"/>
+      <xs:enumeration value="GMTMINUS0500EASTERNTIME"/>
+      <xs:enumeration value="GMTMINUS0500INDIANA"/>
+      <xs:enumeration value="GMTMINUS0400ATLANTICTIME"/>
+      <xs:enumeration value="GMTMINUS0400LAPAZ"/>
+      <xs:enumeration value="GMTMINUS0400MANAUS"/>
+      <xs:enumeration value="GMTMINUS0400SANTIAGO"/>
+      <xs:enumeration value="GMTMINUS0430CARACAS"/>
+      <xs:enumeration value="GMTMINUS0330NEWFOUNDLAND"/>
+      <xs:enumeration value="GMTMINUS0300BRASILIA"/>
+      <xs:enumeration value="GMTMINUS0300BUENOSAIRES_GEORGETOWN"/>
+      <xs:enumeration value="GMTMINUS0300GREENLAND"/>
+      <xs:enumeration value="GMTMINUS0300MONTEVIDEO"/>
+      <xs:enumeration value="GMTMINUS0200MIDATLANTIC"/>
+      <xs:enumeration value="GMTMINUS0100AZORES"/>
+      <xs:enumeration value="GMTMINUS0100CAPEVERDIS"/>
+      <xs:enumeration value="GMT_CASABLANCA_MONTROVIA_REYKJAVIK"/>
+      <xs:enumeration value="GMT_DUBLIN_EDINBURGH_LISBON_LONDON"/>
+      <xs:enumeration value="GMTPLUS0100_AMSTERDAM_BERLIN_BERN_ROME"/>
+      <xs:enumeration value="GMTPLUS0100BELGRADE_BRATISLAVA_BUDAPEST"/>
+      <xs:enumeration value="GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID"/>
+      <xs:enumeration value="GMTPLUS0100SARAJEVO_SKOPJE_WARSAW_ZAGREB"/>
+      <xs:enumeration value="GMTPLUS0100WESTCENTRALAFRICA"/>
+      <xs:enumeration value="GMTPLUS0200AMMAN"/>
+      <xs:enumeration value="GMTPLUS0200ATHENS_BUCHAREST_ISTANBUL"/>
+      <xs:enumeration value="GMTPLUS0200BEIRUT"/>
+      <xs:enumeration value="GMTPLUS0200MINSK"/>
+      <xs:enumeration value="GMTPLUS0200CAIRO"/>
+      <xs:enumeration value="GMTPLUS0200HARARE_PRETORIA"/>
+      <xs:enumeration value="GMTPLUS0200HELSINKI_KYIV_RIGA_VILNIUS"/>
+      <xs:enumeration value="GMTPLUS0200JERUSALEM"/>
+      <xs:enumeration value="GMTPLUS0200WINDHOEK"/>
+      <xs:enumeration value="GMTPLUS0300BAGHDAD"/>
+      <xs:enumeration value="GMTPLUS0300KUWAIT_RIYADH"/>
+      <xs:enumeration value="GMTPLUS0300MOSCOW_STPETERSBURG_VOLGOGRAD"/>
+      <xs:enumeration value="GMTPLUS0300NAIROBI"/>
+      <xs:enumeration value="GMTPLUS0300TBILISI"/>
+      <xs:enumeration value="GMTPLUS0330TEHRAN"/>
+      <xs:enumeration value="GMTPLUS0400ABUDHABI_MUSCAT"/>
+      <xs:enumeration value="GMTPLUS0400BAKU"/>
+      <xs:enumeration value="GMTPLUS0400CAUCASUSSTANDARDTIME"/>
+      <xs:enumeration value="GMTPLUS0400YEREVAN"/>
+      <xs:enumeration value="GMTPLUS0430KABUL"/>
+      <xs:enumeration value="GMTPLUS0500EKATERINBURG"/>
+      <xs:enumeration value="GMTPLUS0500ISLAMABAD_KARACHI_TASHKENT"/>
+      <xs:enumeration value="GMTPLUS0530CHENNAI_KOLKATA_MUMBAI"/>
+      <xs:enumeration value="GMTPLUS0530SRIJAYAWARDENEPURA"/>
+      <xs:enumeration value="GMTPLUS0545KATHMANDU"/>
+      <xs:enumeration value="GMTPLUS0600ALMATY_NOVOSIBIRSK"/>
+      <xs:enumeration value="GMTPLUS0600ASTANA_DHAKA"/>
+      <xs:enumeration value="GMTPLUS0630_YANGON"/>
+      <xs:enumeration value="GMTPLUS0700_BANGKOK_HANOI_JAKARTA"/>
+      <xs:enumeration value="GMTPLUS0700KRASNOYARSK"/>
+      <xs:enumeration value="GMTPLUS0800BEIJING_CHONGQING_HONGKONG"/>
+      <xs:enumeration value="GMTPLUS0800IRKUTSK_ULAANBATAAR"/>
+      <xs:enumeration value="GMTPLUS0800KUALALUMPUR_SINGAPORE"/>
+      <xs:enumeration value="GMTPLUS0800PERTH"/>
+      <xs:enumeration value="GMTPLUS0800TAIPEI"/>
+      <xs:enumeration value="GMTPLUS0900OSAKA_SAPPORO_TOKYO"/>
+      <xs:enumeration value="GMTPLUS0900SEOUL"/>
+      <xs:enumeration value="GMTPLUS0900YAKUTSK"/>
+      <xs:enumeration value="GMTPLUS0930ADELAIDE"/>
+      <xs:enumeration value="GMTPLUS0930DARWIN"/>
+      <xs:enumeration value="GMTPLUS1000BRISBANE"/>
+      <xs:enumeration value="GMTPLUS1000CANBERRA_MELBOURNE_SYDNEY"/>
+      <xs:enumeration value="GMTPLUS1000GUAM_PORTMORESBY"/>
+      <xs:enumeration value="GMTPLUS1000HOBART"/>
+      <xs:enumeration value="GMTPLUS1000VLADIVOSTOK"/>
+      <xs:enumeration value="GMTPLUS1100MAGADAN_SOLOMONIS"/>
+      <xs:enumeration value="GMTPLUS1200AUCKLAND_WELLINGTON"/>
+      <xs:enumeration value="GMTPLUS1200FIJI_KAMCHATKA_MARSHALLIS"/>
+      <xs:enumeration value="GMTPLUS1300NUKU_ALOFA"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_AddressType">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Address type:Address type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None"/>
+      <xs:enumeration value="Invoice"/>
+      <xs:enumeration value="Delivery"/>
+      <xs:enumeration value="AltDlv"/>
+      <xs:enumeration value="SWIFT"/>
+      <xs:enumeration value="Payment"/>
+      <xs:enumeration value="Service"/>
+      <xs:enumeration value="Home"/>
+      <xs:enumeration value="Other"/>
+      <xs:enumeration value="Business"/>
+      <xs:enumeration value="RemitTo"/>
+      <xs:enumeration value="ShipCarrierThirdPartyShipping"/>
+      <xs:enumeration value="Physical"/>
+      <xs:enumeration value="DEL_BKDRemitTo"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

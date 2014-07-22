@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="PORProjectDataService" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:tns="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_PORProjectDataService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:NegotiateAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http"/>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services/Imports">
+      <xsd:import schemaLocation="porprojectdataservice.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/services"/>
+      <xsd:import schemaLocation="porprojectdataservice_1_2_3_4_5.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+      <xsd:import schemaLocation="porprojectdataservice_1_2_3_4_5_6.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="porprojectdataservice_1.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+      <xsd:import schemaLocation="porprojectdataservice_1_2_3_4_5_6_7.xsd"/>
+      <xsd:import schemaLocation="porprojectdataservice_1_2.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/PORProjectData"/>
+      <xsd:import schemaLocation="porprojectdataservice_1_2_3.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      <xsd:import schemaLocation="porprojectdataservice_1_2_3_4.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="PORProjectDataServiceFindRequest">
+    <wsdl:part name="parameters" element="tns:PORProjectDataServiceFindRequest"/>
+  </wsdl:message>
+  <wsdl:message name="PORProjectDataServiceFindResponse">
+    <wsdl:part name="parameters" element="tns:PORProjectDataServiceFindResponse"/>
+  </wsdl:message>
+  <wsdl:message name="PORProjectDataService_find_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q1:AifFault" xmlns:q1="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="PORProjectDataServiceReadRequest">
+    <wsdl:part name="parameters" element="tns:PORProjectDataServiceReadRequest"/>
+  </wsdl:message>
+  <wsdl:message name="PORProjectDataServiceReadResponse">
+    <wsdl:part name="parameters" element="tns:PORProjectDataServiceReadResponse"/>
+  </wsdl:message>
+  <wsdl:message name="PORProjectDataService_read_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q2:AifFault" xmlns:q2="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="PORProjectDataServiceUpdateRequest">
+    <wsdl:part name="parameters" element="tns:PORProjectDataServiceUpdateRequest"/>
+  </wsdl:message>
+  <wsdl:message name="PORProjectDataService_update_OutputMessage"/>
+  <wsdl:message name="PORProjectDataService_update_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q3:AifFault" xmlns:q3="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="PORProjectDataServiceCreateRequest">
+    <wsdl:part name="parameters" element="tns:PORProjectDataServiceCreateRequest"/>
+  </wsdl:message>
+  <wsdl:message name="PORProjectDataServiceCreateResponse">
+    <wsdl:part name="parameters" element="tns:PORProjectDataServiceCreateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="PORProjectDataService_create_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q4:AifFault" xmlns:q4="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="PORProjectDataServiceDeleteRequest">
+    <wsdl:part name="parameters" element="tns:PORProjectDataServiceDeleteRequest"/>
+  </wsdl:message>
+  <wsdl:message name="PORProjectDataService_delete_OutputMessage"/>
+  <wsdl:message name="PORProjectDataService_delete_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q5:AifFault" xmlns:q5="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:portType name="PORProjectDataService">
+    <wsdl:operation name="find">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/find" name="PORProjectDataServiceFindRequest" message="tns:PORProjectDataServiceFindRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/findResponse" name="PORProjectDataServiceFindResponse" message="tns:PORProjectDataServiceFindResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/findAifFaultFault" name="AifFaultFault" message="tns:PORProjectDataService_find_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="read">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/read" name="PORProjectDataServiceReadRequest" message="tns:PORProjectDataServiceReadRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/readResponse" name="PORProjectDataServiceReadResponse" message="tns:PORProjectDataServiceReadResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/readAifFaultFault" name="AifFaultFault" message="tns:PORProjectDataService_read_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/update" name="PORProjectDataServiceUpdateRequest" message="tns:PORProjectDataServiceUpdateRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/updateResponse" message="tns:PORProjectDataService_update_OutputMessage"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/updateAifFaultFault" name="AifFaultFault" message="tns:PORProjectDataService_update_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/create" name="PORProjectDataServiceCreateRequest" message="tns:PORProjectDataServiceCreateRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/createResponse" name="PORProjectDataServiceCreateResponse" message="tns:PORProjectDataServiceCreateResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/createAifFaultFault" name="AifFaultFault" message="tns:PORProjectDataService_create_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/delete" name="PORProjectDataServiceDeleteRequest" message="tns:PORProjectDataServiceDeleteRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/deleteResponse" message="tns:PORProjectDataService_delete_OutputMessage"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/deleteAifFaultFault" name="AifFaultFault" message="tns:PORProjectDataService_delete_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_PORProjectDataService" type="tns:PORProjectDataService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_PORProjectDataService_policy"/>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="find">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/find" style="document"/>
+      <wsdl:input name="PORProjectDataServiceFindRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="PORProjectDataServiceFindResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="read">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/read" style="document"/>
+      <wsdl:input name="PORProjectDataServiceReadRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="PORProjectDataServiceReadResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/update" style="document"/>
+      <wsdl:input name="PORProjectDataServiceUpdateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/create" style="document"/>
+      <wsdl:input name="PORProjectDataServiceCreateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="PORProjectDataServiceCreateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/PORProjectDataService/delete" style="document"/>
+      <wsdl:input name="PORProjectDataServiceDeleteRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PORProjectDataService">
+    <wsdl:port name="BasicHttpBinding_PORProjectDataService" binding="tns:BasicHttpBinding_PORProjectDataService">
+      <soap:address location="http://vsclapdaxq04w.devqa.local/MicrosoftDynamicsAXAif50/porprojectdataservice.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
