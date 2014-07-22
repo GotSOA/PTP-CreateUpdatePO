@@ -5,8 +5,8 @@
             <EntityKey xmlns="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey">
                <KeyData>
                   <KeyField>
-                     <Field>RecId</Field>
-                     <Value>5637144577</Value>
+                     <Field>PorId</Field>
+                     <Value>1234</Value>
                   </KeyField>
                </KeyData>
             </EntityKey>

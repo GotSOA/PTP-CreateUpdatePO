@@ -1,0 +1,18 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:quer="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:VendTableServiceFindRequest>
+         <!--Optional:-->
+         <quer:QueryCriteria>
+            <quer:CriteriaElement>
+               <quer:DataSourceName>VendTable</quer:DataSourceName>
+               <quer:FieldName>VendGroup</quer:FieldName>
+               <quer:Operator>Equal</quer:Operator>
+               <quer:Value1>Trade</quer:Value1>
+               <!--Optional:-->
+             
+            </quer:CriteriaElement>
+         </quer:QueryCriteria>
+      </ser:VendTableServiceFindRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

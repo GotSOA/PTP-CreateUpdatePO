@@ -1,0 +1,25 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+   <s:Body>
+      <SnPORequestServiceReadResponse xmlns="http://schemas.microsoft.com/dynamics/2008/01/services">
+         <SnPORequest xmlns="http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest">
+            <DocPurpose>Original</DocPurpose>
+            <SenderId>b068</SenderId>
+            <bhnSNPORequest class="entity">
+               <_DocumentHash>74f7304b19dcdba0b4058da42e23fcfb</_DocumentHash>
+               <Action>NEW</Action>
+               <AmountApproved>1000.00</AmountApproved>
+               <ApprovalDateTime localDateTime="2002-05-30T09:00:00" timezone="GMTMINUS1200INTERNATIONALDATELINEWEST">2002-05-30T21:00:00Z</ApprovalDateTime>
+               <ApprovalSource>TEST</ApprovalSource>
+               <ApproverName>John</ApproverName>
+               <ClosedOpen>Open</ClosedOpen>
+               <Currency>USD</Currency>
+               <PorId>1234</PorId>
+               <RecId>5637144583</RecId>
+               <RecVersion>1</RecVersion>
+               <RequestorName>Jane</RequestorName>
+               <VendorId>V101380</VendorId>
+            </bhnSNPORequest>
+         </SnPORequest>
+      </SnPORequestServiceReadResponse>
+   </s:Body>
+</s:Envelope>

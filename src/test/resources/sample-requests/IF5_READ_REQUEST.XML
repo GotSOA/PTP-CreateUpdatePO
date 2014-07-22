@@ -1,0 +1,20 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:ent="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList" xmlns:ent1="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:SnPORequestServiceReadRequest>
+         <!--Optional:-->
+         <ent:EntityKeyList>
+            <!--Zero or more repetitions:-->
+            <ent1:EntityKey>
+               <ent1:KeyData>
+                  <!--1 or more repetitions:-->
+                  <ent1:KeyField>
+                     <ent1:Field>PorId</ent1:Field>
+                     <ent1:Value>1234</ent1:Value>
+                  </ent1:KeyField>
+               </ent1:KeyData>
+            </ent1:EntityKey>
+         </ent:EntityKeyList>
+      </ser:SnPORequestServiceReadRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

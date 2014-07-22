@@ -1,0 +1,54 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:ent="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList" xmlns:ent1="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey" xmlns:snp="http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:SnPORequestServiceUpdateRequest>
+         <!--Optional:-->
+         <ent:EntityKeyList>
+            <!--Zero or more repetitions:-->
+            <ent1:EntityKey>
+               <ent1:KeyData>
+                  <!--1 or more repetitions:-->
+                  <ent1:KeyField>
+                     <ent1:Field>PorId</ent1:Field>
+                     <ent1:Value>1234</ent1:Value>
+                  </ent1:KeyField>
+               </ent1:KeyData>
+            </ent1:EntityKey>
+         </ent:EntityKeyList>
+         <!--Optional:-->
+         <snp:SnPORequest>
+            <!--Optional:-->
+            <snp:DocPurpose>Original</snp:DocPurpose>
+            <!--Optional:-->
+            <snp:SenderId></snp:SenderId>
+            <!--Zero or more repetitions:-->
+            <snp:bhnSNPORequest class="entity" >
+               <!--Optional:-->
+               <snp:_DocumentHash>74f7304b19dcdba0b4058da42e23fcfb</snp:_DocumentHash>
+               <!--Optional:-->
+               <snp:Action>NEW</snp:Action>
+               <!--Optional:-->
+               <snp:AmountApproved>1000</snp:AmountApproved>
+               <!--Optional:-->
+               <snp:ApprovalDateTime localDateTime="2002-05-30T09:00:00" timezone="GMTMINUS1200INTERNATIONALDATELINEWEST">2002-05-30T09:30:10Z</snp:ApprovalDateTime>
+               <!--Optional:-->
+               <snp:ApprovalSource>TEST</snp:ApprovalSource>
+               <!--Optional:-->
+               <snp:ApproverName>John</snp:ApproverName>
+               <!--Optional:-->
+               <snp:ClosedOpen>Closed</snp:ClosedOpen>
+               <!--Optional:-->
+               <snp:Currency>USD</snp:Currency>
+               <!--Optional:-->
+               <snp:PorId>1234</snp:PorId>
+              
+                <snp:RequestorName>Jane</snp:RequestorName>
+               <!--Optional:-->
+               <snp:VendorId>V101380</snp:VendorId>
+               <!--Optional:-->
+               <snp:VendorName></snp:VendorName>
+            </snp:bhnSNPORequest>
+         </snp:SnPORequest>
+      </ser:SnPORequestServiceUpdateRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
