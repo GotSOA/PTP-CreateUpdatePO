@@ -1,0 +1,18 @@
+{
+   "records":[
+      {
+         "u_vendoraccountid":"V2223",
+         "u_vendorguid":"54858588",
+         "u_name":"Vendonr Name",
+         "u_address":"Vendor Address",
+         "u_stoppedstatus":"Stop"
+      },
+      {
+         "u_vendoraccountid":"V2255",
+         "u_vendorguid":"5445435588",
+         "u_name":"Vendonr Name",
+         "u_address":"Vendor Address",
+         "u_stoppedstatus":"Stop"
+      }
+   ]
+}

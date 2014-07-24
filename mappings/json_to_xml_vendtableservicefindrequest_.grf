@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="rvenu00" created="Wed Jul 23 18:31:57 PDT 2014" description="JSON To Xml&lt;VendTableServiceFindRequest&gt;" guiVersion="3.4.4.P" id="1406233632900" licenseCode="Unlicensed" licenseType="Unknown" modified="Wed Jul 23 18:31:57 PDT 2014" modifiedBy="rvenu00" name="JSON_To_Xml_VendTableServiceFindRequest_" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __schemaType="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria}CriteriaElement" __sourcePath="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:VendTableServiceFindRequest/ns1:QueryCriteria/ns1:CriteriaElement" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="6f51a508-0d0d-437c-b58e-ad9bfa549855" _parent_id="__parent_id" _type="Output" id="7946d9f2-0f83-48f8-83a7-661ef18350e9">
+<Record fieldDelimiter="," name="CriteriaElement" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __schemaType="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria}CriteriaElement" __sourcePath="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:VendTableServiceFindRequest/ns1:QueryCriteria/ns1:CriteriaElement/ns1:DataSourceName" containerType="SINGLE" label="DataSourceName" name="DataSourceName" type="string"/>
+<Field __index="1" __schemaType="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria}CriteriaElement" __sourcePath="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:VendTableServiceFindRequest/ns1:QueryCriteria/ns1:CriteriaElement/ns1:FieldName" containerType="SINGLE" label="FieldName" name="FieldName" type="string"/>
+<Field __index="2" __schemaType="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria}CriteriaElement" __sourcePath="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:VendTableServiceFindRequest/ns1:QueryCriteria/ns1:CriteriaElement/ns1:Operator" containerType="SINGLE" label="Operator" name="Operator" type="string"/>
+<Field __index="3" __schemaType="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria}CriteriaElement" __sourcePath="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:VendTableServiceFindRequest/ns1:QueryCriteria/ns1:CriteriaElement/ns1:Value1" containerType="SINGLE" label="Value1" name="Value1" type="string"/>
+<Field __index="4" __schemaType="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria}CriteriaElement" __sourcePath="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:VendTableServiceFindRequest/ns1:QueryCriteria/ns1:CriteriaElement/ns1:Value2" containerType="SINGLE" label="Value2" name="Value2" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="2" __sourcePath="{}/vendor-query-criteria" _dataStructure="OBJECT" _id="__id" _type="Input" id="bf2fad61-fdd4-4f92-b3cd-48b85dca35b6">
+<Record fieldDelimiter="," name="vendor_query_criteria" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/vendor-query-criteria/DataSourceName" containerType="SINGLE" label="DataSourceName" name="DataSourceName" type="string"/>
+<Field __index="1" __sourcePath="{}/vendor-query-criteria/FieldName" containerType="SINGLE" label="FieldName" name="FieldName" type="string"/>
+<Field __index="2" __sourcePath="{}/vendor-query-criteria/Operator" containerType="SINGLE" label="Operator" name="Operator" type="string"/>
+<Field __index="3" __sourcePath="{}/vendor-query-criteria/Value1" containerType="SINGLE" label="Value1" name="Value1" type="string"/>
+</Record>
+</Metadata>
+<Metadata __filteredMetadata="false" __index="0" __referenceCounter="1" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:VendTableServiceFindRequest" _dataStructure="OBJECT" _id="__id" _type="Output" id="6f51a508-0d0d-437c-b58e-ad9bfa549855">
+<Record fieldDelimiter="," name="VendTableServiceFindRequest" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="XML WRITER" guiX="900" guiY="20" id="EXT_XML_WRITER0" type="EXT_XML_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<clover:element clover:name="ns0:VendTableServiceFindRequest" xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" xmlns:ns0="http://schemas.microsoft.com/dynamics/2008/01/services" clover:inPort="0">
+  <clover:element clover:name="ns1:QueryCriteria" xmlns:ns1="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria">
+    <clover:element clover:name="ns1:CriteriaElement" clover:inPort="1" clover:key="__parent_id" clover:parentKey="__id">
+      <clover:element clover:name="ns1:DataSourceName">$1.DataSourceName</clover:element>
+      <clover:element clover:name="ns1:FieldName">$1.FieldName</clover:element>
+      <clover:element clover:name="ns1:Operator">$1.Operator</clover:element>
+      <clover:element clover:name="ns1:Value1">$1.Value1</clover:element>
+      <clover:element clover:name="ns1:Value2">$1.Value2</clover:element>
+    </clover:element>
+  </clover:element>
+</clover:element>]]></attr>
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__metadata"><![CDATA[true]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'vendor-query-criteria' -&gt; 'ns0:VendTableServiceFindRequest'" guiX="460" guiY="20" id="FOREACH_VENDOR_QUERY_CRITERIA_NS0_VEND_TABLE_SERVICE_FIND_REQUEST" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'vendor-query-criteria' -&gt; 'ns1:CriteriaElement'" guiX="460" guiY="120" id="FOREACH_VENDOR_QUERY_CRITERIA_NS1_CRITERIA_ELEMENT" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+output.__parent_id = input.__id;
+//END -> DO NOT REMOVE
+output.DataSourceName = input.DataSourceName;
+output.FieldName = input.FieldName;
+output.Operator = input.Operator;
+output.Value1 = input.Value1;
+]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="JSON READER" guiX="20" guiY="20" id="JSON_READER0" type="JSON_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context xpath="/root">
+  <Context outPort="0" sequenceField="__id" xpath="object">
+    <Mapping cloverField="DataSourceName" trim="true" xpath="DataSourceName"/>
+    <Mapping cloverField="FieldName" trim="true" xpath="FieldName"/>
+    <Mapping cloverField="Operator" trim="true" xpath="Operator"/>
+    <Mapping cloverField="Value1" trim="true" xpath="Value1"/>
+  </Context>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[JSON]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Duplicate vendor_query_criteria" guiX="240" guiY="20" id="SIMPLE_COPY0" type="SIMPLE_COPY"/>
+<Edge debugMode="true" fromNode="FOREACH_VENDOR_QUERY_CRITERIA_NS0_VEND_TABLE_SERVICE_FIND_REQUEST:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="6f51a508-0d0d-437c-b58e-ad9bfa549855" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:0"/>
+<Edge debugMode="true" fromNode="FOREACH_VENDOR_QUERY_CRITERIA_NS1_CRITERIA_ELEMENT:0" guiBendpoints="" id="Edge4" inPort="Port 1 (in)" metadata="7946d9f2-0f83-48f8-83a7-661ef18350e9" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:1"/>
+<Edge debugMode="true" fromNode="JSON_READER0:0" guiBendpoints="" id="Edge2" inPort="Port 0 (in)" metadata="bf2fad61-fdd4-4f92-b3cd-48b85dca35b6" outPort="Port 0 (out)" toNode="SIMPLE_COPY0:0"/>
+<Edge debugMode="true" fromNode="SIMPLE_COPY0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="bf2fad61-fdd4-4f92-b3cd-48b85dca35b6" outPort="Port 0 (out)" toNode="FOREACH_VENDOR_QUERY_CRITERIA_NS0_VEND_TABLE_SERVICE_FIND_REQUEST:0"/>
+<Edge debugMode="true" fromNode="SIMPLE_COPY0:1" guiBendpoints="" id="Edge3" inPort="Port 0 (in)" metadata="bf2fad61-fdd4-4f92-b3cd-48b85dca35b6" outPort="Port 1 (out)" toNode="FOREACH_VENDOR_QUERY_CRITERIA_NS1_CRITERIA_ELEMENT:0"/>
+</Phase>
+</Graph>

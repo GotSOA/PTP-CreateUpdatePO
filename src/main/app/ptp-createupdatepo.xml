@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:https="http://www.mulesoft.org/schema/mule/https" xmlns:context="http://www.springframework.org/schema/context"
+<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:https="http://www.mulesoft.org/schema/mule/https" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.5.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -12,7 +12,8 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
 http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/https/current/mule-https.xsd
-http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd">
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
     <mulexml:namespace-manager includeConfigNamespaces="false">
     	<mulexml:namespace prefix="s" uri="http://schemas.xmlsoap.org/soap/envelope/" />
 	</mulexml:namespace-manager>
@@ -27,12 +28,32 @@ http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/
     <data-mapper:config name="JSON_To_Xml_POROrderTypeServiceFindRequest_" transformationGraphPath="json_to_xml_porordertypeservicefindrequest_.grf" doc:name="JSON_To_Xml_POROrderTypeServiceFindRequest_"/>
     <context:property-placeholder location="ptp-createupdatepo.properties,${mule.env}-ptp-createupdatepo.properties"/>
     <data-mapper:config name="Xml_POROrderTypeServiceFindResponse__To_JSON" transformationGraphPath="xml_porordertypeservicefindresponse__to_json.grf" doc:name="Xml_POROrderTypeServiceFindResponse__To_JSON"/>
+    <data-mapper:config name="JSON_To_Xml_VendTableServiceFindRequest_" transformationGraphPath="json_to_xml_vendtableservicefindrequest_.grf" doc:name="JSON_To_Xml_VendTableServiceFindRequest_"/>
+    <data-mapper:config name="Xml_VendTableServiceFindResponse__To_JSON" transformationGraphPath="xml_vendtableservicefindresponse__to_json.grf" doc:name="Xml_VendTableServiceFindResponse__To_JSON"/>
     <flow name="quartz-ordertype" doc:name="quartz-ordertype">
         <poll doc:name="Poll">
-            <fixed-frequency-scheduler frequency="15" timeUnit="SECONDS"/>
-            <flow-ref name="sync-ordertype" doc:name="sync ordertype"/>
+            <fixed-frequency-scheduler frequency="30" timeUnit="SECONDS"/>
+            <flow-ref name="sync-dax-sn" doc:name="sync dax-sn"/>
         </poll>
-        <logger message="Successfully Updated" level="INFO" doc:name="Successfully Updated"/>
+        <logger message="Successfully Updated" level="INFO" doc:name="Sync Successful"/>
+    </flow>
+    <flow name="sync-dax-sn" doc:name="sync-dax-sn">
+        <flow-ref name="sync-vendor" doc:name="sync vendor"/>
+        <flow-ref name="sync-ordertype" doc:name="sync ordertype"/>
+        <flow-ref name="sync-projectdata" doc:name="sync projectdata"/>
+    </flow>
+    <flow name="sync-vendor" doc:name="sync-vendor">
+    	<set-payload value="{&quot;DataSourceName&quot;:&quot;VendTable&quot;,&quot;FieldName&quot;:&quot;VendGroup&quot;,&quot;Operator&quot;:&quot;Equal&quot;,&quot;Value1&quot;:&quot;Trade&quot;}" doc:name="Query Parameters in JSON"/>
+        <data-mapper:transform doc:name="JSON To Xml&lt;VendTableServiceFindRequest&gt;" config-ref="JSON_To_Xml_VendTableServiceFindRequest_"/>
+		<expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
+        <ws:consumer config-ref="Vendor_Web_Service_Consumer" operation="find" doc:name="Vendor Web Service Consumer"/>
+        <data-mapper:transform doc:name="Xml&lt;VendTableServiceFindResponse&gt; To JSON" config-ref="Xml_VendTableServiceFindResponse__To_JSON"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <logger message="Vendor: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN"/>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+        <https:outbound-endpoint exchange-pattern="request-response" method="POST"  doc:name="HTTP" host="bhndev.service-now.com" password="$erv1ce" path="u_dax_vendor.do?JSON&amp;sysparm_action=insertMultiple" port="443" user="bhn_ptp"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <logger message="Vendor: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN"/>
     </flow>
     <flow name="sync-ordertype" doc:name="sync-ordertype">
         <set-payload value="{&quot;DataSourceName&quot;:&quot;PurchPool&quot;,&quot;FieldName&quot;:&quot;PurchPoolId&quot;,&quot;Operator&quot;:&quot;NotEqual&quot;,&quot;Value1&quot;:&quot; &quot;}" doc:name="Query Parameters in JSON"/>
@@ -43,9 +64,12 @@ http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
         <logger message="OrderType: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN"/>
         <json:object-to-json-transformer doc:name="Object to JSON"/>
-        <https:outbound-endpoint  exchange-pattern="request-response" method="POST"  doc:name="HTTP" host="bhndev.service-now.com" password="$erv1ce" path="u_dax_order_type.do?JSON&amp;sysparm_action=insertMultiple" port="443" user="bhn_ptp"/>
+        <https:outbound-endpoint exchange-pattern="request-response" method="POST"  doc:name="HTTP" host="bhndev.service-now.com" password="$erv1ce" path="u_dax_order_type.do?JSON&amp;sysparm_action=insertMultiple" port="443" user="bhn_ptp"/>
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
         <logger message="OrderType: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN"/>
+    </flow>
+    <flow name="sync-projectdata" doc:name="sync-projectdata">
+    	<logger message="sync-projectdata" level="INFO" doc:name="sync-projectdata"/>
     </flow>
 
 </mule>
