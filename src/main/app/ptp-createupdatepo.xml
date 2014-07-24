@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:https="http://www.mulesoft.org/schema/mule/https" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.5.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
+<mule xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:context="http://www.springframework.org/schema/context" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:https="http://www.mulesoft.org/schema/mule/https" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="EE-3.5.0" xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
@@ -13,63 +8,100 @@ http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schem
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
 http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/https/current/mule-https.xsd
 http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
-http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd">
     <mulexml:namespace-manager includeConfigNamespaces="false">
-    	<mulexml:namespace prefix="s" uri="http://schemas.xmlsoap.org/soap/envelope/" />
-	</mulexml:namespace-manager>
-    <http:connector name="http_inbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS"/>
-    <http:connector name="http_outbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS"/>
+        <mulexml:namespace prefix="s" uri="http://schemas.xmlsoap.org/soap/envelope/" />
+    </mulexml:namespace-manager>
+    <http:connector name="http_inbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS" />
+    <http:connector name="http_outbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS" />
     <http:connector name="ntlmConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS">
-        <service-overrides sessionHandler="org.mule.session.NullSessionHandler"  outboundTransformer="com.mulesoft.support.CustomObjectToHttpClientMethodRequest"  dispatcherFactory="org.mule.transport.http.NTLMv2HttpClientMessageDispatcherFactor" />
-    </http:connector>  
-    <ws:consumer-config name="Vendor_Web_Service_Consumer" wsdlLocation="wsdl/vendtableservice_1.wsdl" service="VendTableService" port="BasicHttpBinding_VendTableService" serviceAddress="http://${dax.http.host}/${dax.http.vendor.path}" doc:name="Vendor Web Service Consumer" connector-ref="ntlmConnector"/>
-    <ws:consumer-config name="OrderType_Web_Service_Consumer" wsdlLocation="wsdl/porordertypeservice_1.wsdl" service="POROrderTypeService" port="BasicHttpBinding_POROrderTypeService" serviceAddress="http://${dax.http.host}/${dax.http.ordertype.path}" doc:name="OrderType Web Service Consumer" connector-ref="ntlmConnector"/>
-    <ws:consumer-config name="ProjectData_Web_Service_Consumer" wsdlLocation="wsdl/porprojectdataservice_1.wsdl" service="PORProjectDataService" port="BasicHttpBinding_PORProjectDataService" serviceAddress="http://${dax.http.host}/${dax.http.projectdata.path}" doc:name="ProjectData Web Service Consumer" connector-ref="ntlmConnector"/>
-    <data-mapper:config name="JSON_To_Xml_POROrderTypeServiceFindRequest_" transformationGraphPath="json_to_xml_porordertypeservicefindrequest_.grf" doc:name="JSON_To_Xml_POROrderTypeServiceFindRequest_"/>
-    <context:property-placeholder location="ptp-createupdatepo.properties,${mule.env}-ptp-createupdatepo.properties"/>
-    <data-mapper:config name="Xml_POROrderTypeServiceFindResponse__To_JSON" transformationGraphPath="xml_porordertypeservicefindresponse__to_json.grf" doc:name="Xml_POROrderTypeServiceFindResponse__To_JSON"/>
-    <data-mapper:config name="JSON_To_Xml_VendTableServiceFindRequest_" transformationGraphPath="json_to_xml_vendtableservicefindrequest_.grf" doc:name="JSON_To_Xml_VendTableServiceFindRequest_"/>
-    <data-mapper:config name="Xml_VendTableServiceFindResponse__To_JSON" transformationGraphPath="xml_vendtableservicefindresponse__to_json.grf" doc:name="Xml_VendTableServiceFindResponse__To_JSON"/>
+        <service-overrides sessionHandler="org.mule.session.NullSessionHandler" outboundTransformer="com.mulesoft.support.CustomObjectToHttpClientMethodRequest" dispatcherFactory="org.mule.transport.http.NTLMv2HttpClientMessageDispatcherFactor" />
+    </http:connector>
+    <ws:consumer-config name="Vendor_Web_Service_Consumer" wsdlLocation="wsdl/vendtableservice_1.wsdl" service="VendTableService" port="BasicHttpBinding_VendTableService" serviceAddress="http://${dax.http.host}/${dax.http.vendor.path}" doc:name="Vendor Web Service Consumer" connector-ref="ntlmConnector" />
+    <ws:consumer-config name="OrderType_Web_Service_Consumer" wsdlLocation="wsdl/porordertypeservice_1.wsdl" service="POROrderTypeService" port="BasicHttpBinding_POROrderTypeService" serviceAddress="http://${dax.http.host}/${dax.http.ordertype.path}" doc:name="OrderType Web Service Consumer" connector-ref="ntlmConnector" />
+    <ws:consumer-config name="ProjectData_Web_Service_Consumer" wsdlLocation="wsdl/porprojectdataservice_1.wsdl" service="PORProjectDataService" port="BasicHttpBinding_PORProjectDataService" serviceAddress="http://${dax.http.host}/${dax.http.projectdata.path}" doc:name="ProjectData Web Service Consumer" connector-ref="ntlmConnector" />
+    <data-mapper:config name="JSON_To_Xml_POROrderTypeServiceFindRequest_" transformationGraphPath="json_to_xml_porordertypeservicefindrequest_.grf" doc:name="JSON_To_Xml_POROrderTypeServiceFindRequest_" />
+    <context:property-placeholder location="ptp-createupdatepo.properties,${mule.env}-ptp-createupdatepo.properties" />
+    <data-mapper:config name="Xml_POROrderTypeServiceFindResponse__To_JSON" transformationGraphPath="xml_porordertypeservicefindresponse__to_json.grf" doc:name="Xml_POROrderTypeServiceFindResponse__To_JSON" />
+    <data-mapper:config name="JSON_To_Xml_VendTableServiceFindRequest_" transformationGraphPath="json_to_xml_vendtableservicefindrequest_.grf" doc:name="JSON_To_Xml_VendTableServiceFindRequest_" />
+    <data-mapper:config name="Xml_VendTableServiceFindResponse__To_JSON" transformationGraphPath="xml_vendtableservicefindresponse__to_json.grf" doc:name="Xml_VendTableServiceFindResponse__To_JSON" />
+
+    <apikit:config xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" name="ptp-createupdatepo-config" raml="ptp-createupdatepo.raml" consoleEnabled="true" consolePath="console" doc:name="Router"/>
+    <apikit:mapping-exception-strategy xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" name="ptp-createupdatepo-apiKitGlobalExceptionMapping" doc:name="Mapping Exception Strategy">
+        <apikit:mapping statusCode="404">
+            <apikit:exception value="org.mule.module.apikit.exception.NotFoundException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
+            <set-payload value="{ &quot;message&quot;: &quot;Resource not found&quot; }" doc:name="Set Payload"/>
+        </apikit:mapping>
+        <apikit:mapping statusCode="405">
+            <apikit:exception value="org.mule.module.apikit.exception.MethodNotAllowedException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
+            <set-payload value="{ &quot;message&quot;: &quot;Method not allowed&quot; }" doc:name="Set Payload"/>
+        </apikit:mapping>
+        <apikit:mapping statusCode="415">
+            <apikit:exception value="org.mule.module.apikit.exception.UnsupportedMediaTypeException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
+            <set-payload value="{ &quot;message&quot;: &quot;Unsupported media type&quot; }" doc:name="Set Payload"/>
+        </apikit:mapping>
+        <apikit:mapping statusCode="406">
+            <apikit:exception value="org.mule.module.apikit.exception.NotAcceptableException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
+            <set-payload value="{ &quot;message&quot;: &quot;Not acceptable&quot; }" doc:name="Set Payload"/>
+        </apikit:mapping>
+        <apikit:mapping statusCode="400">
+            <apikit:exception value="org.mule.module.apikit.exception.BadRequestException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
+            <set-payload value="{ &quot;message&quot;: &quot;Bad request&quot; }" doc:name="Set Payload"/>
+        </apikit:mapping>
+    </apikit:mapping-exception-strategy>
     <flow name="quartz-ordertype" doc:name="quartz-ordertype">
         <poll doc:name="Poll">
-            <fixed-frequency-scheduler frequency="30" timeUnit="SECONDS"/>
-            <flow-ref name="sync-dax-sn" doc:name="sync dax-sn"/>
+            <fixed-frequency-scheduler frequency="3600" timeUnit="SECONDS" />
+            <flow-ref name="sync-dax-sn" doc:name="sync dax-sn" />
         </poll>
-        <logger message="Successfully Updated" level="INFO" doc:name="Sync Successful"/>
+        <logger message="Successfully Updated" level="INFO" doc:name="Sync Successful" />
     </flow>
     <flow name="sync-dax-sn" doc:name="sync-dax-sn">
-        <flow-ref name="sync-vendor" doc:name="sync vendor"/>
-        <flow-ref name="sync-ordertype" doc:name="sync ordertype"/>
-        <flow-ref name="sync-projectdata" doc:name="sync projectdata"/>
+        <flow-ref name="sync-vendor" doc:name="sync vendor" />
+        <flow-ref name="sync-ordertype" doc:name="sync ordertype" />
+        <flow-ref name="sync-projectdata" doc:name="sync projectdata" />
     </flow>
     <flow name="sync-vendor" doc:name="sync-vendor">
-    	<set-payload value="{&quot;DataSourceName&quot;:&quot;VendTable&quot;,&quot;FieldName&quot;:&quot;VendGroup&quot;,&quot;Operator&quot;:&quot;Equal&quot;,&quot;Value1&quot;:&quot;Trade&quot;}" doc:name="Query Parameters in JSON"/>
-        <data-mapper:transform doc:name="JSON To Xml&lt;VendTableServiceFindRequest&gt;" config-ref="JSON_To_Xml_VendTableServiceFindRequest_"/>
-		<expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
-        <ws:consumer config-ref="Vendor_Web_Service_Consumer" operation="find" doc:name="Vendor Web Service Consumer"/>
-        <data-mapper:transform doc:name="Xml&lt;VendTableServiceFindResponse&gt; To JSON" config-ref="Xml_VendTableServiceFindResponse__To_JSON"/>
-        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
-        <logger message="Vendor: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN"/>
-        <json:object-to-json-transformer doc:name="Object to JSON"/>
-        <https:outbound-endpoint exchange-pattern="request-response" method="POST"  doc:name="HTTP" host="bhndev.service-now.com" password="$erv1ce" path="u_dax_vendor.do?JSON&amp;sysparm_action=insertMultiple" port="443" user="bhn_ptp"/>
-        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
-        <logger message="Vendor: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN"/>
+        <set-payload value="{&quot;DataSourceName&quot;:&quot;VendTable&quot;,&quot;FieldName&quot;:&quot;VendGroup&quot;,&quot;Operator&quot;:&quot;Equal&quot;,&quot;Value1&quot;:&quot;Trade&quot;}" doc:name="Query Parameters in JSON" />
+        <data-mapper:transform doc:name="JSON To Xml&lt;VendTableServiceFindRequest&gt;" config-ref="JSON_To_Xml_VendTableServiceFindRequest_" />
+        <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
+        <ws:consumer config-ref="Vendor_Web_Service_Consumer" operation="find" doc:name="Vendor Web Service Consumer" />
+        <data-mapper:transform doc:name="Xml&lt;VendTableServiceFindResponse&gt; To JSON" config-ref="Xml_VendTableServiceFindResponse__To_JSON" />
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
+        <logger message="Vendor: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
+        <json:object-to-json-transformer doc:name="Object to JSON" />
+        <https:outbound-endpoint exchange-pattern="request-response" method="POST" doc:name="HTTP" host="bhndev.service-now.com" password="$erv1ce" path="u_dax_vendor.do?JSON&amp;sysparm_action=insertMultiple" port="443" user="bhn_ptp" />
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
+        <logger message="Vendor: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
     </flow>
     <flow name="sync-ordertype" doc:name="sync-ordertype">
-        <set-payload value="{&quot;DataSourceName&quot;:&quot;PurchPool&quot;,&quot;FieldName&quot;:&quot;PurchPoolId&quot;,&quot;Operator&quot;:&quot;NotEqual&quot;,&quot;Value1&quot;:&quot; &quot;}" doc:name="Query Parameters in JSON"/>
-        <data-mapper:transform config-ref="JSON_To_Xml_POROrderTypeServiceFindRequest_" doc:name="JSON To Xml&lt;POROrderTypeServiceFindRequest&gt;"/>
+        <set-payload value="{&quot;DataSourceName&quot;:&quot;PurchPool&quot;,&quot;FieldName&quot;:&quot;PurchPoolId&quot;,&quot;Operator&quot;:&quot;NotEqual&quot;,&quot;Value1&quot;:&quot; &quot;}" doc:name="Query Parameters in JSON" />
+        <data-mapper:transform config-ref="JSON_To_Xml_POROrderTypeServiceFindRequest_" doc:name="JSON To Xml&lt;POROrderTypeServiceFindRequest&gt;" />
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
-        <ws:consumer config-ref="OrderType_Web_Service_Consumer" operation="find" doc:name="OrderType Web Service Consumer"/>
-        <data-mapper:transform config-ref="Xml_POROrderTypeServiceFindResponse__To_JSON" doc:name="Xml&lt;POROrderTypeServiceFindResponse&gt; To JSON"/>
-        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
-        <logger message="OrderType: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN"/>
-        <json:object-to-json-transformer doc:name="Object to JSON"/>
-        <https:outbound-endpoint exchange-pattern="request-response" method="POST"  doc:name="HTTP" host="bhndev.service-now.com" password="$erv1ce" path="u_dax_order_type.do?JSON&amp;sysparm_action=insertMultiple" port="443" user="bhn_ptp"/>
-        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
-        <logger message="OrderType: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN"/>
+        <ws:consumer config-ref="OrderType_Web_Service_Consumer" operation="find" doc:name="OrderType Web Service Consumer" />
+        <data-mapper:transform config-ref="Xml_POROrderTypeServiceFindResponse__To_JSON" doc:name="Xml&lt;POROrderTypeServiceFindResponse&gt; To JSON" />
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
+        <logger message="OrderType: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
+        <json:object-to-json-transformer doc:name="Object to JSON" />
+        <https:outbound-endpoint exchange-pattern="request-response" method="POST" doc:name="HTTP" host="bhndev.service-now.com" password="$erv1ce" path="u_dax_order_type.do?JSON&amp;sysparm_action=insertMultiple" port="443" user="bhn_ptp" />
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
+        <logger message="OrderType: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
     </flow>
     <flow name="sync-projectdata" doc:name="sync-projectdata">
-    	<logger message="sync-projectdata" level="INFO" doc:name="sync-projectdata"/>
+        <logger message="sync-projectdata" level="INFO" doc:name="sync-projectdata" />
     </flow>
-
+    <flow name="ptp-createupdatepo-main" doc:name="ptp-createupdatepo-main">
+        <http:inbound-endpoint connector-ref="http_inbound" address="http://localhost:8081/api" doc:name="HTTP"/>
+        <apikit:router xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" config-ref="ptp-createupdatepo-config" doc:name="APIkit Router"/>
+        <exception-strategy ref="ptp-createupdatepo-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy"/>
+    </flow>
+    <flow name="post:/ptp-createupdatepo:ptp-createupdatepo-config" doc:name="post:/ptp-createupdatepo:ptp-createupdatepo-config">
+        <set-payload value="{&#xA;  &quot;status&quot;: &quot;ACK&quot;&#xA;}" doc:name="Set Payload"/>
+    </flow>
 </mule>

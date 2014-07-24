@@ -1,0 +1,28 @@
+#%RAML 0.8
+title: Procure To Pay
+version: v0.1
+baseUri: http://server/api/{version}
+documentation:
+  - title: Procure To Pay API
+    content: |
+      Procure To Pay API that Mule Exposes
+      
+      * IF1 (Service-Now to Mule)
+/ptp-createupdatepo:
+  displayName: IF1 (Service-Now to Mule)
+  post:
+    description: IF1 (Service-Now to Mule)
+    body:
+      application/json:
+        schema: !include schemas/if1-sn-mule-schema.json
+        example: !include examples/if1-sn-mule.json
+    responses:
+      200:
+        description: |
+          Request Acknowledged
+        body:
+          application/json:
+            example: |
+              {
+                "status": "ACK"
+              }

@@ -1,0 +1,35 @@
+{
+   "type":"object",
+   "$schema":"http://json-schema.org/draft-04/schema",
+   "required":true,
+   "properties":{
+      "u_request_type":{
+         "type":"string",
+         "required":true
+       },
+       "number":{
+         "type":"string",
+         "required":true
+       },
+       "u_approved":{
+         "type":"string",
+         "required":true
+       },
+       "u_approver1":{
+         "type":"string",
+         "required":true
+       },
+       "u_amount_approved":{
+         "type":"string",
+         "required":true
+       },
+       "u_requested_for":{
+         "type":"string",
+         "required":true
+       },
+       "u_vendor":{
+         "type":"string",
+         "required":true
+       }
+    }
+}
