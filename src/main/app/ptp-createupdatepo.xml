@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+<mule xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.5.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd">
-    <http:connector  name="ntlmConnector" doc:name="HTTP\HTTPS" clientSoTimeout="10000" cookieSpec="netscape"  receiveBacklog="0" receiveBufferSize="0" sendBufferSize="0" serverSoTimeout="10000" socketSoLinger="0" validateConnections="true">
+    <http:connector name="http_inbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS"/>
+    <http:connector name="http_outbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS"/>
+    <http:connector name="ntlmConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS">
         <service-overrides sessionHandler="org.mule.session.NullSessionHandler"  outboundTransformer="com.mulesoft.support.CustomObjectToHttpClientMethodRequest"  dispatcherFactory="org.mule.transport.http.NTLMv2HttpClientMessageDispatcherFactor" />
     </http:connector>  
-    <ws:consumer-config name="Web_Service_Consumer" wsdlLocation="C:\Users\rvenu00\Documents\PTP-CreateUpdatePO\src\main\resources\wsdl\porordertypeservice_1.wsdl" service="POROrderTypeService" port="BasicHttpBinding_POROrderTypeService" serviceAddress="http://vsclapdaxq04w.devqa.local/MicrosoftDynamicsAXAif50/porordertypeservice.svc" doc:name="Web Service Consumer" connector-ref="ntlmConnector"/>
+    <ws:consumer-config name="Vendor_Web_Service_Consumer" wsdlLocation="wsdl/vendtableservice_1.wsdl" service="VendTableService" port="BasicHttpBinding_VendTableService" serviceAddress="http://${dax.http.host}/${dax.http.vendor.path}" doc:name="Vendor Web Service Consumer" connector-ref="ntlmConnector"/>
+    <ws:consumer-config name="OrderType_Web_Service_Consumer" wsdlLocation="wsdl/porordertypeservice_1.wsdl" service="POROrderTypeService" port="BasicHttpBinding_POROrderTypeService" serviceAddress="http://${dax.http.host}/${dax.http.ordertype.path}" doc:name="OrderType Web Service Consumer" connector-ref="ntlmConnector"/>
+    <ws:consumer-config name="ProjectData_Web_Service_Consumer" wsdlLocation="wsdl/porprojectdataservice_1.wsdl" service="PORProjectDataService" port="BasicHttpBinding_PORProjectDataService" serviceAddress="http://${dax.http.host}/${dax.http.projectdata.path}" doc:name="ProjectData Web Service Consumer" connector-ref="ntlmConnector"/>
     <data-mapper:config name="JSON_To_Xml_POROrderTypeServiceFindRequest_" transformationGraphPath="json_to_xml_porordertypeservicefindrequest_.grf" doc:name="JSON_To_Xml_POROrderTypeServiceFindRequest_"/>
+    <context:property-placeholder location="ptp-createupdatepo.properties,${mule.env}-ptp-createupdatepo.properties"/>
     <flow name="ptp-createupdatepoFlow1" doc:name="ptp-createupdatepoFlow1">
-        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" doc:name="HTTP"/>
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" doc:name="HTTP" connector-ref="http_inbound"/>
         <data-mapper:transform config-ref="JSON_To_Xml_POROrderTypeServiceFindRequest_" doc:name="JSON To Xml&lt;POROrderTypeServiceFindRequest&gt;"/>
-        <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='scl-erp-dax-il-s'; flowVars['password']='gZh#rYt5'; flowVars['domain']='vsclapdaxq04w.devqa.local'; flowVars['realm']='DEVQA' ;]]></expression-component>
-        <ws:consumer config-ref="Web_Service_Consumer" operation="find" doc:name="Web Service Consumer"/>
+        <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
+        <ws:consumer config-ref="OrderType_Web_Service_Consumer" operation="find" doc:name="OrderType Web Service Consumer"/>
     </flow>
 </mule>
