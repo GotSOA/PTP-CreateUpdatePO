@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:context="http://www.springframework.org/schema/context"
+<mule xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:https="http://www.mulesoft.org/schema/mule/https" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.5.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -9,7 +9,13 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd">
+http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/https/current/mule-https.xsd
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd">
+    <mulexml:namespace-manager includeConfigNamespaces="false">
+    	<mulexml:namespace prefix="s" uri="http://schemas.xmlsoap.org/soap/envelope/" />
+	</mulexml:namespace-manager>
     <http:connector name="http_inbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS"/>
     <http:connector name="http_outbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS"/>
     <http:connector name="ntlmConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS">
@@ -20,19 +26,26 @@ http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schem
     <ws:consumer-config name="ProjectData_Web_Service_Consumer" wsdlLocation="wsdl/porprojectdataservice_1.wsdl" service="PORProjectDataService" port="BasicHttpBinding_PORProjectDataService" serviceAddress="http://${dax.http.host}/${dax.http.projectdata.path}" doc:name="ProjectData Web Service Consumer" connector-ref="ntlmConnector"/>
     <data-mapper:config name="JSON_To_Xml_POROrderTypeServiceFindRequest_" transformationGraphPath="json_to_xml_porordertypeservicefindrequest_.grf" doc:name="JSON_To_Xml_POROrderTypeServiceFindRequest_"/>
     <context:property-placeholder location="ptp-createupdatepo.properties,${mule.env}-ptp-createupdatepo.properties"/>
+    <data-mapper:config name="Xml_POROrderTypeServiceFindResponse__To_JSON" transformationGraphPath="xml_porordertypeservicefindresponse__to_json.grf" doc:name="Xml_POROrderTypeServiceFindResponse__To_JSON"/>
     <flow name="quartz-ordertype" doc:name="quartz-ordertype">
         <poll doc:name="Poll">
-            <fixed-frequency-scheduler frequency="60" timeUnit="SECONDS"/>
-            <flow-ref name="ordertype-flow" doc:name="OrderType Flow Reference"/>
+            <fixed-frequency-scheduler frequency="15" timeUnit="SECONDS"/>
+            <flow-ref name="sync-ordertype" doc:name="sync ordertype"/>
         </poll>
-        <logger message="Update SN" level="INFO" doc:name="Update SN"/>
         <logger message="Successfully Updated" level="INFO" doc:name="Successfully Updated"/>
     </flow>
-    <sub-flow name="ordertype-flow" doc:name="ordertype-flow">
+    <flow name="sync-ordertype" doc:name="sync-ordertype">
         <set-payload value="{&quot;DataSourceName&quot;:&quot;PurchPool&quot;,&quot;FieldName&quot;:&quot;PurchPoolId&quot;,&quot;Operator&quot;:&quot;NotEqual&quot;,&quot;Value1&quot;:&quot; &quot;}" doc:name="Query Parameters in JSON"/>
         <data-mapper:transform config-ref="JSON_To_Xml_POROrderTypeServiceFindRequest_" doc:name="JSON To Xml&lt;POROrderTypeServiceFindRequest&gt;"/>
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
         <ws:consumer config-ref="OrderType_Web_Service_Consumer" operation="find" doc:name="OrderType Web Service Consumer"/>
-    </sub-flow>
+        <data-mapper:transform config-ref="Xml_POROrderTypeServiceFindResponse__To_JSON" doc:name="Xml&lt;POROrderTypeServiceFindResponse&gt; To JSON"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <logger message="OrderType: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN"/>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+        <https:outbound-endpoint  exchange-pattern="request-response" method="POST"  doc:name="HTTP" host="bhndev.service-now.com" password="$erv1ce" path="u_dax_order_type.do?JSON&amp;sysparm_action=insertMultiple" port="443" user="bhn_ptp"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <logger message="OrderType: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN"/>
+    </flow>
 
 </mule>
