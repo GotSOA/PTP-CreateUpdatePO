@@ -87,7 +87,7 @@ http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mu
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="Vendor: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
         <json:object-to-json-transformer doc:name="Object to JSON" />
-        <https:outbound-endpoint exchange-pattern="request-response" method="POST" doc:name="HTTP" host="bhndev.service-now.com" password="$erv1ce" path="u_dax_vendor.do?JSON&amp;sysparm_action=insertMultiple" port="443" user="bhn_ptp" />
+        <https:outbound-endpoint exchange-pattern="request-response" method="POST" doc:name="HTTP" host="${http.sn.host}" password="${sn.password}" path="u_dax_vendor.do?JSON&amp;sysparm_action=insertMultiple" port="${http.sn.port}" user="${sn.user}" />
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="Vendor: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
     </flow>
@@ -100,7 +100,7 @@ http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mu
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="OrderType: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
         <json:object-to-json-transformer doc:name="Object to JSON" />
-        <https:outbound-endpoint exchange-pattern="request-response" method="POST" doc:name="HTTP" host="bhndev.service-now.com" password="$erv1ce" path="u_dax_order_type.do?JSON&amp;sysparm_action=insertMultiple" port="443" user="bhn_ptp" />
+        <https:outbound-endpoint exchange-pattern="request-response" method="POST" doc:name="HTTP" host="${http.sn.host}" password="${sn.password}" path="u_dax_order_type.do?JSON&amp;sysparm_action=insertMultiple" port="${http.sn.port}" user="${sn.user}" />
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="OrderType: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
     </flow>
@@ -113,7 +113,7 @@ http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mu
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="ProjectData: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
         <json:object-to-json-transformer doc:name="Object to JSON" />
-        <https:outbound-endpoint exchange-pattern="request-response" method="POST" doc:name="HTTP" host="bhndev.service-now.com" password="$erv1ce" path="u_dax_project.do?JSON&amp;sysparm_action=insertMultiple" port="443" user="bhn_ptp" />
+        <https:outbound-endpoint exchange-pattern="request-response" method="POST" doc:name="HTTP" host="${http.sn.host}" password="${sn.password}" path="u_dax_project.do?JSON&amp;sysparm_action=insertMultiple" port="${http.sn.port}" user="${sn.user}" />
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="ProjectData: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
     </flow>
