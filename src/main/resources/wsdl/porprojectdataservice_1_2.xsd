@@ -539,7 +539,6 @@ Affiliate:Affiliate number.</xs:documentation>
     <xs:restriction base="xs:string">
       <xs:minLength value="38"/>
       <xs:maxLength value="38"/>
-      <xs:pattern value="({[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}})"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="AxdExtType_SyncTransId">

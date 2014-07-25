@@ -1,0 +1,7 @@
+{
+   "DataSourceName":"ProjTable",
+   "FieldName":"ProjId",
+   "Operator":"NotEqual",
+   "Value1":" ",
+   "Value2":"?"
+}

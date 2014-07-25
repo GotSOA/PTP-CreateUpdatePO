@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="rvenu00" created="Wed Jul 23 18:31:57 PDT 2014" description="JSON To Xml&lt;VendTableServiceFindRequest&gt;" guiVersion="3.4.4.P" id="1406233632900" licenseCode="Unlicensed" licenseType="Unknown" modified="Wed Jul 23 18:31:57 PDT 2014" modifiedBy="rvenu00" name="JSON_To_Xml_VendTableServiceFindRequest_" revision="1.0" showComponentDetails="false">
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="rvenu00" created="Wed Jul 23 18:31:57 PDT 2014" description="JSON To Xml&lt;VendTableServiceFindRequest&gt;" guiVersion="3.4.4.P" id="1406233632900" licenseCode="Unlicensed" licenseType="Unknown" modified="Wed Jul 23 18:31:57 PDT 2014" modifiedBy="rvenu00" name="JSON_To_Xml_VendTableServiceFindRequest_" preview-file="${Project_Home}/src/main/resources/query-criteria/query-vendor.json" revision="1.0" showComponentDetails="false">
 <Global>
 <Metadata __index="0" __referenceCounter="1" __schemaType="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria}CriteriaElement" __sourcePath="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:VendTableServiceFindRequest/ns1:QueryCriteria/ns1:CriteriaElement" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="6f51a508-0d0d-437c-b58e-ad9bfa549855" _parent_id="__parent_id" _type="Output" id="7946d9f2-0f83-48f8-83a7-661ef18350e9">
 <Record fieldDelimiter="," name="CriteriaElement" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
@@ -11,13 +11,13 @@
 <Field __index="4" __schemaType="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria}CriteriaElement" __sourcePath="{http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:VendTableServiceFindRequest/ns1:QueryCriteria/ns1:CriteriaElement/ns1:Value2" containerType="SINGLE" label="Value2" name="Value2" type="string"/>
 </Record>
 </Metadata>
-<Metadata __index="0" __referenceCounter="2" __sourcePath="{}/vendor-query-criteria" _dataStructure="OBJECT" _id="__id" _type="Input" id="bf2fad61-fdd4-4f92-b3cd-48b85dca35b6">
-<Record fieldDelimiter="," name="vendor_query_criteria" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Metadata __index="0" __referenceCounter="2" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="f6b491df-a187-4adb-b131-e4a752d8fe2d">
+<Record fieldDelimiter="," name="object" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
 <Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
-<Field __index="0" __sourcePath="{}/vendor-query-criteria/DataSourceName" containerType="SINGLE" label="DataSourceName" name="DataSourceName" type="string"/>
-<Field __index="1" __sourcePath="{}/vendor-query-criteria/FieldName" containerType="SINGLE" label="FieldName" name="FieldName" type="string"/>
-<Field __index="2" __sourcePath="{}/vendor-query-criteria/Operator" containerType="SINGLE" label="Operator" name="Operator" type="string"/>
-<Field __index="3" __sourcePath="{}/vendor-query-criteria/Value1" containerType="SINGLE" label="Value1" name="Value1" type="string"/>
+<Field __index="0" __sourcePath="{}/object/DataSourceName" containerType="SINGLE" label="DataSourceName" name="DataSourceName" type="string"/>
+<Field __index="1" __sourcePath="{}/object/FieldName" containerType="SINGLE" label="FieldName" name="FieldName" type="string"/>
+<Field __index="2" __sourcePath="{}/object/Operator" containerType="SINGLE" label="Operator" name="Operator" type="string"/>
+<Field __index="3" __sourcePath="{}/object/Value1" containerType="SINGLE" label="Value1" name="Value1" type="string"/>
 </Record>
 </Metadata>
 <Metadata __filteredMetadata="false" __index="0" __referenceCounter="1" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:VendTableServiceFindRequest" _dataStructure="OBJECT" _id="__id" _type="Output" id="6f51a508-0d0d-437c-b58e-ad9bfa549855">
@@ -47,14 +47,14 @@
 <attr name="_data_format"><![CDATA[XML]]></attr>
 <attr name="__metadata"><![CDATA[true]]></attr>
 </Node>
-<Node enabled="enabled" guiName="Foreach 'vendor-query-criteria' -&gt; 'ns0:VendTableServiceFindRequest'" guiX="460" guiY="20" id="FOREACH_VENDOR_QUERY_CRITERIA_NS0_VEND_TABLE_SERVICE_FIND_REQUEST" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<Node enabled="enabled" guiName="Foreach 'object' -&gt; 'ns0:VendTableServiceFindRequest'" guiX="460" guiY="20" id="FOREACH_OBJECT_NS0_VEND_TABLE_SERVICE_FIND_REQUEST" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
 <attr name="melScript"><![CDATA[//MEL
 //START -> DO NOT REMOVE
 output.__id = input.__id;
 //END -> DO NOT REMOVE
 ]]></attr>
 </Node>
-<Node enabled="enabled" guiName="Foreach 'vendor-query-criteria' -&gt; 'ns1:CriteriaElement'" guiX="460" guiY="120" id="FOREACH_VENDOR_QUERY_CRITERIA_NS1_CRITERIA_ELEMENT" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<Node enabled="enabled" guiName="Foreach 'object' -&gt; 'ns1:CriteriaElement'" guiX="460" guiY="120" id="FOREACH_OBJECT_NS1_CRITERIA_ELEMENT" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
 <attr name="melScript"><![CDATA[//MEL
 //START -> DO NOT REMOVE
 output.__id = input.__id;
@@ -78,12 +78,13 @@ output.Value1 = input.Value1;
 </Context>
 ]]></attr>
 <attr name="_data_format"><![CDATA[JSON]]></attr>
+<attr name="jsonSchemaURL"><![CDATA[./src/main/resources/query-criteria/query-vendor.json]]></attr>
 </Node>
-<Node enabled="enabled" guiName="Duplicate vendor_query_criteria" guiX="240" guiY="20" id="SIMPLE_COPY0" type="SIMPLE_COPY"/>
-<Edge debugMode="true" fromNode="FOREACH_VENDOR_QUERY_CRITERIA_NS0_VEND_TABLE_SERVICE_FIND_REQUEST:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="6f51a508-0d0d-437c-b58e-ad9bfa549855" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:0"/>
-<Edge debugMode="true" fromNode="FOREACH_VENDOR_QUERY_CRITERIA_NS1_CRITERIA_ELEMENT:0" guiBendpoints="" id="Edge4" inPort="Port 1 (in)" metadata="7946d9f2-0f83-48f8-83a7-661ef18350e9" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:1"/>
-<Edge debugMode="true" fromNode="JSON_READER0:0" guiBendpoints="" id="Edge2" inPort="Port 0 (in)" metadata="bf2fad61-fdd4-4f92-b3cd-48b85dca35b6" outPort="Port 0 (out)" toNode="SIMPLE_COPY0:0"/>
-<Edge debugMode="true" fromNode="SIMPLE_COPY0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="bf2fad61-fdd4-4f92-b3cd-48b85dca35b6" outPort="Port 0 (out)" toNode="FOREACH_VENDOR_QUERY_CRITERIA_NS0_VEND_TABLE_SERVICE_FIND_REQUEST:0"/>
-<Edge debugMode="true" fromNode="SIMPLE_COPY0:1" guiBendpoints="" id="Edge3" inPort="Port 0 (in)" metadata="bf2fad61-fdd4-4f92-b3cd-48b85dca35b6" outPort="Port 1 (out)" toNode="FOREACH_VENDOR_QUERY_CRITERIA_NS1_CRITERIA_ELEMENT:0"/>
+<Node enabled="enabled" guiName="Duplicate object" guiX="240" guiY="20" id="SIMPLE_COPY0" type="SIMPLE_COPY"/>
+<Edge debugMode="true" fromNode="FOREACH_OBJECT_NS0_VEND_TABLE_SERVICE_FIND_REQUEST:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="6f51a508-0d0d-437c-b58e-ad9bfa549855" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:0"/>
+<Edge debugMode="true" fromNode="FOREACH_OBJECT_NS1_CRITERIA_ELEMENT:0" guiBendpoints="" id="Edge4" inPort="Port 1 (in)" metadata="7946d9f2-0f83-48f8-83a7-661ef18350e9" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:1"/>
+<Edge debugMode="true" fromNode="JSON_READER0:0" guiBendpoints="" id="Edge2" inPort="Port 0 (in)" metadata="f6b491df-a187-4adb-b131-e4a752d8fe2d" outPort="Port 0 (out)" toNode="SIMPLE_COPY0:0"/>
+<Edge debugMode="true" fromNode="SIMPLE_COPY0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="f6b491df-a187-4adb-b131-e4a752d8fe2d" outPort="Port 0 (out)" toNode="FOREACH_OBJECT_NS0_VEND_TABLE_SERVICE_FIND_REQUEST:0"/>
+<Edge debugMode="true" fromNode="SIMPLE_COPY0:1" guiBendpoints="" id="Edge3" inPort="Port 0 (in)" metadata="f6b491df-a187-4adb-b131-e4a752d8fe2d" outPort="Port 1 (out)" toNode="FOREACH_OBJECT_NS1_CRITERIA_ELEMENT:0"/>
 </Phase>
 </Graph>

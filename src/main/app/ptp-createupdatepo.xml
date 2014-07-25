@@ -57,6 +57,8 @@ http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/a
         </apikit:mapping>
     </apikit:mapping-exception-strategy>
     <data-mapper:config name="JSON_To_Xml_SnPORequestServiceCreateRequest_" transformationGraphPath="json_to_xml_snporequestservicecreaterequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceCreateRequest_"/>
+    <data-mapper:config name="JSON_To_Xml_PORProjectDataServiceFindRequest_" transformationGraphPath="json_to_xml_porprojectdataservicefindrequest_.grf" doc:name="JSON_To_Xml_PORProjectDataServiceFindRequest_"/>
+    <data-mapper:config name="Xml_PORProjectDataServiceFindResponse__To_JSON" transformationGraphPath="xml_porprojectdataservicefindresponse__to_json.grf" doc:name="Xml_PORProjectDataServiceFindResponse__To_JSON"/>
     <flow name="quartz-ordertype" doc:name="quartz-ordertype">
         <poll doc:name="Poll">
             <fixed-frequency-scheduler frequency="3600" timeUnit="SECONDS" />
@@ -96,7 +98,17 @@ http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/a
         <logger message="OrderType: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
     </flow>
     <flow name="sync-projectdata" doc:name="sync-projectdata">
-        <logger message="sync-projectdata" level="INFO" doc:name="sync-projectdata" />
+        <set-payload value="{&quot;DataSourceName&quot;:&quot;ProjTable&quot;,&quot;FieldName&quot;:&quot;ProjId&quot;,&quot;Operator&quot;:&quot;NotEqual&quot;,&quot;Value1&quot;:&quot; &quot;,&quot;Value2&quot;:&quot;?&quot;}" doc:name="Query Parameters in JSON"/>
+        <data-mapper:transform config-ref="JSON_To_Xml_PORProjectDataServiceFindRequest_" doc:name="JSON To Xml&lt;PORProjectDataServiceFindRequest&gt;"/>
+        <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
+        <ws:consumer config-ref="ProjectData_Web_Service_Consumer" operation="find" doc:name="ProjectData Web Service Consumer"/>
+        <data-mapper:transform config-ref="Xml_PORProjectDataServiceFindResponse__To_JSON" doc:name="Xml&lt;PORProjectDataServiceFindResponse&gt; To JSON"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
+        <logger message="ProjectData: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
+        <json:object-to-json-transformer doc:name="Object to JSON" />
+        <https:outbound-endpoint exchange-pattern="request-response" method="POST" doc:name="HTTP" host="bhndev.service-now.com" password="$erv1ce" path="u_dax_vendor.do?JSON&amp;sysparm_action=insertMultiple" port="443" user="bhn_ptp" />
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
+        <logger message="ProjectData: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
     </flow>
     <flow name="ptp-createupdatepo-main" doc:name="ptp-createupdatepo-main">
         <http:inbound-endpoint connector-ref="http_inbound" address="http://${http.host}:${http.port}" doc:name="HTTP"/>

@@ -1,0 +1,6 @@
+{
+   "DataSourceName":"PurchPool",
+   "FieldName":"PurchPoolId",
+   "Operator":"NotEqual",
+   "Value1":" "
+}
