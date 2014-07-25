@@ -18,7 +18,7 @@ http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/a
     <http:connector name="ntlmConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS">
         <service-overrides sessionHandler="org.mule.session.NullSessionHandler" outboundTransformer="com.mulesoft.support.CustomObjectToHttpClientMethodRequest" dispatcherFactory="org.mule.transport.http.NTLMv2HttpClientMessageDispatcherFactor" />
     </http:connector>
-    <ws:consumer-config name="SnPor_Web_Service_Consumer" wsdlLocation="wsdl/snporequestservice_1.wsdl" service="SnPORequestService" port="BasicHttpBinding_SnPORequestService" serviceAddress="http://vsclapdaxq04w.devqa.local/MicrosoftDynamicsAXAif50/snporequestservice.svc" doc:name="Web Service Consumer"/>
+    <ws:consumer-config name="SnPor_Web_Service_Consumer" wsdlLocation="wsdl/snporequestservice_1.wsdl" service="SnPORequestService" port="BasicHttpBinding_SnPORequestService" serviceAddress="http://${dax.http.host}/${dax.http.snpor.path}" doc:name="SnPor Web Service Consumer" connector-ref="ntlmConnector" />
     <ws:consumer-config name="Vendor_Web_Service_Consumer" wsdlLocation="wsdl/vendtableservice_1.wsdl" service="VendTableService" port="BasicHttpBinding_VendTableService" serviceAddress="http://${dax.http.host}/${dax.http.vendor.path}" doc:name="Vendor Web Service Consumer" connector-ref="ntlmConnector" />
     <ws:consumer-config name="OrderType_Web_Service_Consumer" wsdlLocation="wsdl/porordertypeservice_1.wsdl" service="POROrderTypeService" port="BasicHttpBinding_POROrderTypeService" serviceAddress="http://${dax.http.host}/${dax.http.ordertype.path}" doc:name="OrderType Web Service Consumer" connector-ref="ntlmConnector" />
     <ws:consumer-config name="ProjectData_Web_Service_Consumer" wsdlLocation="wsdl/porprojectdataservice_1.wsdl" service="PORProjectDataService" port="BasicHttpBinding_PORProjectDataService" serviceAddress="http://${dax.http.host}/${dax.http.projectdata.path}" doc:name="ProjectData Web Service Consumer" connector-ref="ntlmConnector" />
@@ -56,6 +56,7 @@ http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/a
             <set-payload value="{ &quot;message&quot;: &quot;Bad request&quot; }" doc:name="Set Payload"/>
         </apikit:mapping>
     </apikit:mapping-exception-strategy>
+    <data-mapper:config name="JSON_To_Xml_SnPORequestServiceCreateRequest_" transformationGraphPath="json_to_xml_snporequestservicecreaterequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceCreateRequest_"/>
     <flow name="quartz-ordertype" doc:name="quartz-ordertype">
         <poll doc:name="Poll">
             <fixed-frequency-scheduler frequency="3600" timeUnit="SECONDS" />
@@ -103,13 +104,16 @@ http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/a
         <exception-strategy ref="ptp-createupdatepo-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy"/>
     </flow>
     <flow name="post:/ptp-createupdatepo:ptp-createupdatepo-config" doc:name="post:/ptp-createupdatepo:ptp-createupdatepo-config">
-        <set-payload value="{&quot;status&quot;:&quot;ACK&quot;}" doc:name="Send ACK"/>
         <async doc:name="Async">
             <flow-ref name="if2-flow" doc:name="IF2 Flow"/>
         </async>
+        <set-payload value="{&quot;status&quot;:&quot;ACK&quot;}" doc:name="Send ACK"/>
 
     </flow>
     <flow name="if2-flow" doc:name="if2-flow">
-        <logger message="IF2 Flow" level="INFO" doc:name="IF2 Flow"/>
+        <data-mapper:transform config-ref="JSON_To_Xml_SnPORequestServiceCreateRequest_" doc:name="JSON To Xml&lt;SnPORequestServiceCreateRequest&gt;"/>
+        <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
+        <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="create" doc:name="Web Service Consumer"/>
+        <logger message="IF2 Completed" level="INFO" doc:name="IF2 Completed"/>
     </flow>
 </mule>
