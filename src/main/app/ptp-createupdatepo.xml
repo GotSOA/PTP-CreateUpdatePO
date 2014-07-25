@@ -18,6 +18,7 @@ http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/a
     <http:connector name="ntlmConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS">
         <service-overrides sessionHandler="org.mule.session.NullSessionHandler" outboundTransformer="com.mulesoft.support.CustomObjectToHttpClientMethodRequest" dispatcherFactory="org.mule.transport.http.NTLMv2HttpClientMessageDispatcherFactor" />
     </http:connector>
+    <ws:consumer-config name="SnPor_Web_Service_Consumer" wsdlLocation="wsdl/snporequestservice_1.wsdl" service="SnPORequestService" port="BasicHttpBinding_SnPORequestService" serviceAddress="http://vsclapdaxq04w.devqa.local/MicrosoftDynamicsAXAif50/snporequestservice.svc" doc:name="Web Service Consumer"/>
     <ws:consumer-config name="Vendor_Web_Service_Consumer" wsdlLocation="wsdl/vendtableservice_1.wsdl" service="VendTableService" port="BasicHttpBinding_VendTableService" serviceAddress="http://${dax.http.host}/${dax.http.vendor.path}" doc:name="Vendor Web Service Consumer" connector-ref="ntlmConnector" />
     <ws:consumer-config name="OrderType_Web_Service_Consumer" wsdlLocation="wsdl/porordertypeservice_1.wsdl" service="POROrderTypeService" port="BasicHttpBinding_POROrderTypeService" serviceAddress="http://${dax.http.host}/${dax.http.ordertype.path}" doc:name="OrderType Web Service Consumer" connector-ref="ntlmConnector" />
     <ws:consumer-config name="ProjectData_Web_Service_Consumer" wsdlLocation="wsdl/porprojectdataservice_1.wsdl" service="PORProjectDataService" port="BasicHttpBinding_PORProjectDataService" serviceAddress="http://${dax.http.host}/${dax.http.projectdata.path}" doc:name="ProjectData Web Service Consumer" connector-ref="ntlmConnector" />
@@ -97,11 +98,18 @@ http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/a
         <logger message="sync-projectdata" level="INFO" doc:name="sync-projectdata" />
     </flow>
     <flow name="ptp-createupdatepo-main" doc:name="ptp-createupdatepo-main">
-        <http:inbound-endpoint connector-ref="http_inbound" address="http://localhost:8081/api" doc:name="HTTP"/>
+        <http:inbound-endpoint connector-ref="http_inbound" address="http://${http.host}:${http.port}" doc:name="HTTP"/>
         <apikit:router xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" config-ref="ptp-createupdatepo-config" doc:name="APIkit Router"/>
         <exception-strategy ref="ptp-createupdatepo-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy"/>
     </flow>
     <flow name="post:/ptp-createupdatepo:ptp-createupdatepo-config" doc:name="post:/ptp-createupdatepo:ptp-createupdatepo-config">
-        <set-payload value="{&#xA;  &quot;status&quot;: &quot;ACK&quot;&#xA;}" doc:name="Set Payload"/>
+        <set-payload value="{&quot;status&quot;:&quot;ACK&quot;}" doc:name="Send ACK"/>
+        <async doc:name="Async">
+            <flow-ref name="if2-flow" doc:name="IF2 Flow"/>
+        </async>
+
+    </flow>
+    <flow name="if2-flow" doc:name="if2-flow">
+        <logger message="IF2 Flow" level="INFO" doc:name="IF2 Flow"/>
     </flow>
 </mule>
