@@ -95,6 +95,7 @@ output.AmountApproved = str2decimal(input.u_amount_approved);
 output.ApproverName = input.u_approver1;
 output.RequestorName = input.u_requested_for;
 output.PorId = input.number;
+output.text = str2calendar(input.u_approved, "yyyy-MM-dd hh:mm:ss");
 ]]></attr>
 </Node>
 <Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="JSON READER" guiX="20" guiY="20" id="JSON_READER0" type="JSON_READER">
