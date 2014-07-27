@@ -66,6 +66,8 @@ http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mu
     <data-mapper:config name="JSON_To_Xml_SnPORequestServiceCreateRequest_" transformationGraphPath="json_to_xml_snporequestservicecreaterequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceCreateRequest_"/>
     <data-mapper:config name="JSON_To_Xml_PORProjectDataServiceFindRequest_" transformationGraphPath="json_to_xml_porprojectdataservicefindrequest_.grf" doc:name="JSON_To_Xml_PORProjectDataServiceFindRequest_"/>
     <data-mapper:config name="Xml_PORProjectDataServiceFindResponse__To_JSON" transformationGraphPath="xml_porprojectdataservicefindresponse__to_json.grf" doc:name="Xml_PORProjectDataServiceFindResponse__To_JSON"/>
+    <data-mapper:config name="JSON_To_Xml_SnPORequestServiceReadRequest_" transformationGraphPath="json_to_xml_snporequestservicereadrequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceReadRequest_"/>
+    <data-mapper:config name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" transformationGraphPath="xml_snporequestservicereadresponse__to_xml_snporequestserviceupdaterequest_.grf" doc:name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_"/>
     <flow name="quartz-ordertype" doc:name="quartz-ordertype">
         <poll doc:name="Poll">
             <schedulers:cron-scheduler expression="${quartz.sync-dax-sn.cron}"/>
@@ -135,4 +137,25 @@ http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mu
         <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="create" doc:name="Web Service Consumer"/>
         <logger message="IF2 Completed" level="INFO" doc:name="IF2 Completed"/>
     </flow>
+    <flow name="if3-if4-if5-flow" doc:name="if3-if4-if5-flow">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="if3" doc:name="HTTP" connector-ref="http_inbound"/>
+        <flow-ref name="if3-flow" doc:name="IF3"/>
+        <flow-ref name="if4-flow" doc:name="IF4"/>
+        <flow-ref name="if5-flow" doc:name="IF5"/>
+    </flow>
+    <sub-flow name="if3-flow" doc:name="if3-flow">
+        <logger message="If3" level="INFO" doc:name="IF3"/>
+    </sub-flow>
+    <sub-flow name="if4-flow" doc:name="if4-flow">
+        <https:outbound-endpoint exchange-pattern="request-response" host="${http.sn.host}" port="${http.sn.port}" path="u_bhn_ptp.do?JSON&amp;sysparm_query=number=POR100340&amp;sysparm_action=update" method="POST" user="${sn.user}" password="${sn.password}" doc:name="IF4 Update"/>
+        <flow-ref name="if5-flow" doc:name="IF5"/>
+    </sub-flow>
+    <sub-flow name="if5-flow" doc:name="if5-flow">
+        <data-mapper:transform config-ref="JSON_To_Xml_SnPORequestServiceReadRequest_" doc:name="JSON To Xml&lt;SnPORequestServiceReadRequest&gt;"/>
+        <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
+        <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="read" doc:name="SnPor Read Web Service Consumer"/>
+        <data-mapper:transform config-ref="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" doc:name="Xml&lt;SnPORequestServiceReadResponse&gt; To Xml&lt;SnPORequestServiceUpdateRequest&gt;"/>
+        <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="update" doc:name="SnPor Update Web Service Consumer"/>
+        <logger message="IF5 Completed" level="INFO" doc:name="IF5 Completed"/>
+    </sub-flow>
 </mule>
