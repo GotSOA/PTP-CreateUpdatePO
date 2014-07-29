@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:schedulers="http://www.mulesoft.org/schema/mule/schedulers" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+<mule xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns:schedulers="http://www.mulesoft.org/schema/mule/schedulers" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
 	xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:context="http://www.springframework.org/schema/context" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:https="http://www.mulesoft.org/schema/mule/https" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="EE-3.5.0" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
@@ -12,10 +12,9 @@ http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/ht
 http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
-http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mule/schedulers/current/mule-schedulers.xsd">
-    <mulexml:namespace-manager includeConfigNamespaces="false">
-        <mulexml:namespace prefix="s" uri="http://schemas.xmlsoap.org/soap/envelope/" />
-    </mulexml:namespace-manager>
+http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mule/schedulers/current/mule-schedulers.xsd
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd">
+    
     <http:connector name="http_inbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS" />
     <http:connector name="http_outbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS" />
     <http:connector name="ntlmConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS">
@@ -63,11 +62,13 @@ http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mu
         	<json:object-to-json-transformer doc:name="Object to JSON"/>
         </apikit:mapping>
     </apikit:mapping-exception-strategy>
-    <data-mapper:config name="JSON_To_Xml_SnPORequestServiceCreateRequest_" transformationGraphPath="json_to_xml_snporequestservicecreaterequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceCreateRequest_"/>
+
     <data-mapper:config name="JSON_To_Xml_PORProjectDataServiceFindRequest_" transformationGraphPath="json_to_xml_porprojectdataservicefindrequest_.grf" doc:name="JSON_To_Xml_PORProjectDataServiceFindRequest_"/>
     <data-mapper:config name="Xml_PORProjectDataServiceFindResponse__To_JSON" transformationGraphPath="xml_porprojectdataservicefindresponse__to_json.grf" doc:name="Xml_PORProjectDataServiceFindResponse__To_JSON"/>
     <data-mapper:config name="JSON_To_Xml_SnPORequestServiceReadRequest_" transformationGraphPath="json_to_xml_snporequestservicereadrequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceReadRequest_"/>
     <data-mapper:config name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" transformationGraphPath="xml_snporequestservicereadresponse__to_xml_snporequestserviceupdaterequest_.grf" doc:name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_"/>
+    <data-mapper:config name="JSON_To_Xml_SnPORequestServiceCreateRequest_" transformationGraphPath="json_to_xml_snporequestservicecreaterequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceCreateRequest_"/>
+    <data-mapper:config name="Pojo_To_JSON" transformationGraphPath="pojo_to_json.grf" doc:name="Pojo_To_JSON"/>
     <flow name="quartz-ordertype" doc:name="quartz-ordertype">
         <poll doc:name="Poll">
             <schedulers:cron-scheduler expression="${quartz.sync-dax-sn.cron}"/>
@@ -138,17 +139,19 @@ http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mu
         <logger message="IF2 Completed" level="INFO" doc:name="IF2 Completed"/>
     </flow>
     <flow name="if3-if4-if5-flow" doc:name="if3-if4-if5-flow">
-        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="if3" doc:name="HTTP" connector-ref="http_inbound"/>
-        <flow-ref name="if3-flow" doc:name="IF3"/>
-        <flow-ref name="if4-flow" doc:name="IF4"/>
-        <flow-ref name="if5-flow" doc:name="IF5"/>
+        <http:inbound-endpoint connector-ref="http_inbound" exchange-pattern="request-response" host="${http.host}" port="${http.port}" path="PORDataSyncService" doc:name="HTTP">
+        	<cxf:simple-service doc:name="CXF" serviceClass="com.bhnetwork.service.PORDataSyncService"/>
+        </http:inbound-endpoint>
+        <component class="com.bhnetwork.service.PORDataSyncServiceImpl" doc:name="PORDataSyncService"/>
+        <async doc:name="Async">
+            <flow-ref name="if4-flow" doc:name="IF4"/>
+            <flow-ref name="if5-flow" doc:name="IF5"/>
+        </async>
     </flow>
-    <sub-flow name="if3-flow" doc:name="if3-flow">
-        <logger message="If3" level="INFO" doc:name="IF3"/>
-    </sub-flow>
     <sub-flow name="if4-flow" doc:name="if4-flow">
-        <https:outbound-endpoint exchange-pattern="request-response" host="${http.sn.host}" port="${http.sn.port}" path="u_bhn_ptp.do?JSON&amp;sysparm_query=number=POR100340&amp;sysparm_action=update" method="POST" user="${sn.user}" password="${sn.password}" doc:name="IF4 Update"/>
-        <flow-ref name="if5-flow" doc:name="IF5"/>
+        <set-variable variableName="porId" value="#[payload.porDataSyncServiceRequest.porId]" doc:name="porId"/>
+        <data-mapper:transform config-ref="Pojo_To_JSON" doc:name="Pojo To JSON"/>
+        <https:outbound-endpoint exchange-pattern="request-response" host="${http.sn.host}" port="${http.sn.port}" path="u_bhn_ptp.do?JSON&amp;sysparm_query=number=#[flowVars.porId]&amp;sysparm_action=update" method="POST" user="${sn.user}" password="${sn.password}" doc:name="IF4 Update"/>
     </sub-flow>
     <sub-flow name="if5-flow" doc:name="if5-flow">
         <data-mapper:transform config-ref="JSON_To_Xml_SnPORequestServiceReadRequest_" doc:name="JSON To Xml&lt;SnPORequestServiceReadRequest&gt;"/>
