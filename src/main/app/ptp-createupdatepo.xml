@@ -83,7 +83,7 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
     <flow name="sync-dax-sn" doc:name="sync-dax-sn">
         <flow-ref name="sync-vendor" doc:name="sync vendor" />
         <flow-ref name="sync-ordertype" doc:name="sync ordertype" />
-        <flow-ref name="sync-projectdata" doc:name="sync projectdata" />
+        <!-- <flow-ref name="sync-projectdata" doc:name="sync projectdata" /> -->
     </flow>
     <flow name="sync-vendor" doc:name="sync-vendor">
         <set-payload value="{&quot;DataSourceName&quot;:&quot;VendTable&quot;,&quot;FieldName&quot;:&quot;VendGroup&quot;,&quot;Operator&quot;:&quot;Equal&quot;,&quot;Value1&quot;:&quot;Trade&quot;}" doc:name="Query Parameters in JSON" />
