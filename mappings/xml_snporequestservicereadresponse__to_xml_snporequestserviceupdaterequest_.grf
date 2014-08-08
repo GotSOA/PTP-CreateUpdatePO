@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="rvenu00" created="Thu Jul 24 20:57:03 PDT 2014" description="Xml&lt;SnPORequestServiceReadResponse&gt; To Xml&lt;SnPORequestServiceUpdateRequest&gt;" guiVersion="3.4.4.P" id="1406434688791" licenseCode="Unlicensed" licenseType="Unknown" modified="Thu Jul 24 20:57:03 PDT 2014" modifiedBy="rvenu00" name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" revision="1.0" showComponentDetails="false">
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="rvenu00" created="Fri Aug 08 06:04:56 PDT 2014" description="Xml&lt;SnPORequestServiceReadResponse&gt; To Xml&lt;SnPORequestServiceUpdateRequest&gt;" guiVersion="3.4.4.P" id="1407514795231" licenseCode="Unlicensed" licenseType="Unknown" modified="Fri Aug 08 06:04:56 PDT 2014" modifiedBy="rvenu00" name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" revision="1.0" showComponentDetails="false">
 <Global>
-<Metadata __index="2" __referenceCounter="2" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="0c3e5f51-ad78-4000-bd09-068c9d3dbd48" _parent_id="__parent_id" _type="Input" id="046ca528-7698-4809-a49e-699d823e6cbb">
+<Metadata __index="2" __referenceCounter="2" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="37916998-9f50-4888-8905-faff5f42e483" _parent_id="__parent_id" _type="Input" id="6a59dcd5-cb8a-4ead-9454-d6642b6ca99f">
 <Record fieldDelimiter="," name="bhnSNPORequest" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
 <Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
 <Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
@@ -24,7 +24,7 @@
 <Field __index="19" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/@action" containerType="SINGLE" label="action" name="action" type="string"/>
 </Record>
 </Metadata>
-<Metadata __index="4" __referenceCounter="1" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns3,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceUpdateRequest/ns3:SnPORequest/ns3:bhnSNPORequest" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="4afb889c-baa7-43e6-81ea-6f5f060990f2" _parent_id="__parent_id" _type="Output" id="58b21c20-364f-4fc1-b85e-38d8b2a94ac2">
+<Metadata __index="4" __referenceCounter="1" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns3,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceUpdateRequest/ns3:SnPORequest/ns3:bhnSNPORequest" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="8a0d2ac2-8be0-4fda-9846-e97f05bbf33a" _parent_id="__parent_id" _type="Output" id="0c757c33-3243-46eb-a3f2-91a03ca121ec">
 <Record fieldDelimiter="," name="bhnSNPORequest" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
 <Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
 <Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
@@ -48,13 +48,13 @@
 <Field __index="21" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns3,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceUpdateRequest/ns3:SnPORequest/ns3:bhnSNPORequest/@action" containerType="SINGLE" label="action" name="action" type="string"/>
 </Record>
 </Metadata>
-<Metadata __index="0" __referenceCounter="0" __schemaType="{http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey}EntityKey" __sourcePath="{http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey=ns2,http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceUpdateRequest/ns1:EntityKeyList/ns2:EntityKey" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="4afb889c-baa7-43e6-81ea-6f5f060990f2" _parent_id="__parent_id" _type="Output" id="e4cf21da-b908-4c16-beb0-0f4d3533819b">
+<Metadata __index="0" __referenceCounter="0" __schemaType="{http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey}EntityKey" __sourcePath="{http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey=ns2,http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceUpdateRequest/ns1:EntityKeyList/ns2:EntityKey" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="8a0d2ac2-8be0-4fda-9846-e97f05bbf33a" _parent_id="__parent_id" _type="Output" id="1900885e-91f0-4959-9bd2-2bc33a66f181">
 <Record fieldDelimiter="," name="EntityKey" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
 <Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
 <Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
 </Record>
 </Metadata>
-<Metadata __index="0" __referenceCounter="1" __schemaType="{http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey}KeyField" __sourcePath="{http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey=ns2,http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceUpdateRequest/ns1:EntityKeyList/ns2:EntityKey/ns2:KeyData/ns2:KeyField" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="e4cf21da-b908-4c16-beb0-0f4d3533819b" _parent_id="__parent_id" _type="Output" id="2e7ad2cb-79ae-4fc8-8707-a636083a440f">
+<Metadata __index="0" __referenceCounter="1" __schemaType="{http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey}KeyField" __sourcePath="{http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey=ns2,http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceUpdateRequest/ns1:EntityKeyList/ns2:EntityKey/ns2:KeyData/ns2:KeyField" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="1900885e-91f0-4959-9bd2-2bc33a66f181" _parent_id="__parent_id" _type="Output" id="e2b93c1b-fd18-4ad8-bb11-75b494845bec">
 <Record fieldDelimiter="," name="KeyField" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
 <Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
 <Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
@@ -62,14 +62,14 @@
 <Field __index="1" __schemaType="{http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey}KeyField" __sourcePath="{http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey=ns2,http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceUpdateRequest/ns1:EntityKeyList/ns2:EntityKey/ns2:KeyData/ns2:KeyField/ns2:Value" containerType="SINGLE" label="Value" name="Value" type="string"/>
 </Record>
 </Metadata>
-<Metadata __filteredMetadata="false" __index="0" __referenceCounter="1" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse" _dataStructure="OBJECT" _id="__id" _type="Input" id="0c3e5f51-ad78-4000-bd09-068c9d3dbd48">
+<Metadata __filteredMetadata="false" __index="0" __referenceCounter="1" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse" _dataStructure="OBJECT" _id="__id" _type="Input" id="37916998-9f50-4888-8905-faff5f42e483">
 <Record fieldDelimiter="," name="SnPORequestServiceReadResponse" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
 <Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
 <Field __index="0" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdSnPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:DocPurpose" containerType="SINGLE" label="DocPurpose" name="DocPurpose" type="string"/>
 <Field __index="1" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdSnPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:SenderId" containerType="SINGLE" label="SenderId" name="SenderId" type="string"/>
 </Record>
 </Metadata>
-<Metadata __filteredMetadata="false" __index="0" __referenceCounter="1" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceUpdateRequest" _dataStructure="OBJECT" _id="__id" _type="Output" id="4afb889c-baa7-43e6-81ea-6f5f060990f2">
+<Metadata __filteredMetadata="false" __index="0" __referenceCounter="1" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceUpdateRequest" _dataStructure="OBJECT" _id="__id" _type="Output" id="8a0d2ac2-8be0-4fda-9846-e97f05bbf33a">
 <Record fieldDelimiter="," name="SnPORequestServiceUpdateRequest" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
 <Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
 <Field __index="2" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdSnPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns3,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceUpdateRequest/ns3:SnPORequest/ns3:DocPurpose" containerType="SINGLE" label="DocPurpose" name="DocPurpose" type="string"/>
@@ -131,11 +131,12 @@ output.SenderId = input.SenderId;
 <Node enabled="enabled" guiName="Foreach 'ns1:bhnSNPORequest' -&gt; 'ns2:KeyField'" guiX="460" guiY="220" id="FOREACH_NS1_BHN_SNPOREQUEST_NS2_KEY_FIELD" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
 <attr name="melScript"><![CDATA[//MEL
 //START -> DO NOT REMOVE
+
 output.__id = input.__id;
 output.__parent_id = input.__parent_id;
 //END -> DO NOT REMOVE
-output.Value = input.PorId;
-output.Field = 'PorId';]]></attr>
+output.Field = 'PorId';
+output.Value = input.PorId;]]></attr>
 </Node>
 <Node enabled="enabled" guiName="Foreach 'ns1:bhnSNPORequest' -&gt; 'ns3:bhnSNPORequest'" guiX="460" guiY="120" id="FOREACH_NS1_BHN_SNPOREQUEST_NS3_BHN_SNPOREQUEST" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
 <attr name="melScript"><![CDATA[//MEL
@@ -160,7 +161,8 @@ output.RequestorName = input.RequestorName;
 output.VendorId = input.VendorId;
 output.VendorName = input.VendorName;
 output.class = "entity";
-output.Action = input.action;]]></attr>
+output.Action = input.action;
+]]></attr>
 </Node>
 <Node enabled="enabled" guiName="Duplicate bhnSNPORequest" guiX="240" guiY="20" id="SIMPLE_COPY0" type="SIMPLE_COPY"/>
 <Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="XML READER" guiX="20" guiY="20" id="XML_READER0" type="XML_READER">
@@ -193,12 +195,12 @@ output.Action = input.action;]]></attr>
 <attr name="_data_format"><![CDATA[XML]]></attr>
 <attr name="__metadata"><![CDATA[true]]></attr>
 </Node>
-<Edge debugMode="true" fromNode="FOREACH_NS0_SN_POREQUEST_SERVICE_READ_RESPONSE_NS0_SN_POREQUEST_SERVICE_UPDATE_REQUEST:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="4afb889c-baa7-43e6-81ea-6f5f060990f2" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:0"/>
-<Edge debugMode="true" fromNode="FOREACH_NS1_BHN_SNPOREQUEST_NS2_KEY_FIELD:0" guiBendpoints="" id="Edge6" inPort="Port 2 (in)" metadata="2e7ad2cb-79ae-4fc8-8707-a636083a440f" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:2"/>
-<Edge debugMode="true" fromNode="FOREACH_NS1_BHN_SNPOREQUEST_NS3_BHN_SNPOREQUEST:0" guiBendpoints="" id="Edge3" inPort="Port 1 (in)" metadata="58b21c20-364f-4fc1-b85e-38d8b2a94ac2" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:1"/>
-<Edge debugMode="true" fromNode="SIMPLE_COPY0:0" guiBendpoints="" id="Edge2" inPort="Port 0 (in)" metadata="046ca528-7698-4809-a49e-699d823e6cbb" outPort="Port 0 (out)" toNode="FOREACH_NS1_BHN_SNPOREQUEST_NS3_BHN_SNPOREQUEST:0"/>
-<Edge debugMode="true" fromNode="SIMPLE_COPY0:1" guiBendpoints="" id="Edge5" inPort="Port 0 (in)" metadata="046ca528-7698-4809-a49e-699d823e6cbb" outPort="Port 1 (out)" toNode="FOREACH_NS1_BHN_SNPOREQUEST_NS2_KEY_FIELD:0"/>
-<Edge debugMode="true" fromNode="XML_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="0c3e5f51-ad78-4000-bd09-068c9d3dbd48" outPort="Port 0 (out)" toNode="FOREACH_NS0_SN_POREQUEST_SERVICE_READ_RESPONSE_NS0_SN_POREQUEST_SERVICE_UPDATE_REQUEST:0"/>
-<Edge debugMode="true" fromNode="XML_READER0:1" guiBendpoints="" id="Edge4" inPort="Port 0 (in)" metadata="046ca528-7698-4809-a49e-699d823e6cbb" outPort="Port 1 (out)" toNode="SIMPLE_COPY0:0"/>
+<Edge debugMode="true" fromNode="FOREACH_NS0_SN_POREQUEST_SERVICE_READ_RESPONSE_NS0_SN_POREQUEST_SERVICE_UPDATE_REQUEST:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="8a0d2ac2-8be0-4fda-9846-e97f05bbf33a" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:0"/>
+<Edge debugMode="true" fromNode="FOREACH_NS1_BHN_SNPOREQUEST_NS2_KEY_FIELD:0" guiBendpoints="" id="Edge6" inPort="Port 2 (in)" metadata="e2b93c1b-fd18-4ad8-bb11-75b494845bec" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:2"/>
+<Edge debugMode="true" fromNode="FOREACH_NS1_BHN_SNPOREQUEST_NS3_BHN_SNPOREQUEST:0" guiBendpoints="" id="Edge3" inPort="Port 1 (in)" metadata="0c757c33-3243-46eb-a3f2-91a03ca121ec" outPort="Port 0 (out)" toNode="EXT_XML_WRITER0:1"/>
+<Edge debugMode="true" fromNode="SIMPLE_COPY0:0" guiBendpoints="" id="Edge2" inPort="Port 0 (in)" metadata="6a59dcd5-cb8a-4ead-9454-d6642b6ca99f" outPort="Port 0 (out)" toNode="FOREACH_NS1_BHN_SNPOREQUEST_NS3_BHN_SNPOREQUEST:0"/>
+<Edge debugMode="true" fromNode="SIMPLE_COPY0:1" guiBendpoints="" id="Edge5" inPort="Port 0 (in)" metadata="6a59dcd5-cb8a-4ead-9454-d6642b6ca99f" outPort="Port 1 (out)" toNode="FOREACH_NS1_BHN_SNPOREQUEST_NS2_KEY_FIELD:0"/>
+<Edge debugMode="true" fromNode="XML_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="37916998-9f50-4888-8905-faff5f42e483" outPort="Port 0 (out)" toNode="FOREACH_NS0_SN_POREQUEST_SERVICE_READ_RESPONSE_NS0_SN_POREQUEST_SERVICE_UPDATE_REQUEST:0"/>
+<Edge debugMode="true" fromNode="XML_READER0:1" guiBendpoints="" id="Edge4" inPort="Port 0 (in)" metadata="6a59dcd5-cb8a-4ead-9454-d6642b6ca99f" outPort="Port 1 (out)" toNode="SIMPLE_COPY0:0"/>
 </Phase>
 </Graph>

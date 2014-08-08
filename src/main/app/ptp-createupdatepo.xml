@@ -17,7 +17,7 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
     
     <http:connector name="http_inbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS" />
     <http:connector name="http_outbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS" />
-    <http:connector name="ntlmConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS">
+    <http:connector name="ntlmConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS" proxyHostname="127.0.0.1" proxyPort="8888">
         <service-overrides sessionHandler="org.mule.session.NullSessionHandler" outboundTransformer="com.mulesoft.support.CustomObjectToHttpClientMethodRequest" dispatcherFactory="org.mule.transport.http.NTLMv2HttpClientMessageDispatcherFactor" />
     </http:connector>
     <ws:consumer-config name="SnPor_Web_Service_Consumer" wsdlLocation="wsdl/snporequestservice_1.wsdl" service="SnPORequestService" port="BasicHttpBinding_SnPORequestService" serviceAddress="http://${dax.http.host}/${dax.http.snpor.path}" doc:name="SnPor Web Service Consumer" connector-ref="ntlmConnector" />
@@ -66,9 +66,13 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
     <data-mapper:config name="JSON_To_Xml_PORProjectDataServiceFindRequest_" transformationGraphPath="json_to_xml_porprojectdataservicefindrequest_.grf" doc:name="JSON_To_Xml_PORProjectDataServiceFindRequest_"/>
     <data-mapper:config name="Xml_PORProjectDataServiceFindResponse__To_JSON" transformationGraphPath="xml_porprojectdataservicefindresponse__to_json.grf" doc:name="Xml_PORProjectDataServiceFindResponse__To_JSON"/>
     <data-mapper:config name="JSON_To_Xml_SnPORequestServiceReadRequest_" transformationGraphPath="json_to_xml_snporequestservicereadrequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceReadRequest_"/>
-    <data-mapper:config name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" transformationGraphPath="xml_snporequestservicereadresponse__to_xml_snporequestserviceupdaterequest_.grf" doc:name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_"/>
+
     <data-mapper:config name="JSON_To_Xml_SnPORequestServiceCreateRequest_" transformationGraphPath="json_to_xml_snporequestservicecreaterequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceCreateRequest_"/>
     <data-mapper:config name="Pojo_To_JSON" transformationGraphPath="pojo_to_json.grf" doc:name="Pojo_To_JSON"/>
+    <data-mapper:config name="JSON_To_Xml_SnPORequestServiceUpdateRequest_" transformationGraphPath="json_to_xml_snporequestserviceupdaterequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceUpdateRequest_"/>
+    <data-mapper:config name="Xml_SnPORequestServiceReadResponse__To_XML" transformationGraphPath="xml_snporequestservicereadresponse__to_xml.grf" doc:name="Xml_SnPORequestServiceReadResponse__To_XML"/>
+    <data-mapper:config name="Xml_SnPORequestServiceReadResponse__To_Map" transformationGraphPath="xml_snporequestservicereadresponse__to_map.grf" doc:name="Xml_SnPORequestServiceReadResponse__To_Map"/>
+    <data-mapper:config name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" transformationGraphPath="xml_snporequestservicereadresponse__to_xml_snporequestserviceupdaterequest_.grf" doc:name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_"/>
     <flow name="quartz-ordertype" doc:name="quartz-ordertype">
         <poll doc:name="Poll">
             <schedulers:cron-scheduler expression="${quartz.sync-dax-sn.cron}"/>
@@ -151,14 +155,26 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
     <sub-flow name="if4-flow" doc:name="if4-flow">
         <set-variable variableName="porId" value="#[payload.porDataSyncServiceRequest.porId]" doc:name="porId"/>
         <data-mapper:transform config-ref="Pojo_To_JSON" doc:name="Pojo To JSON"/>
+        <byte-array-to-object-transformer doc:name="Byte Array to Object"/>
+        <logger message="if4request #[payload]" level="INFO" doc:name="if4request"/>
         <https:outbound-endpoint exchange-pattern="request-response" host="${http.sn.host}" port="${http.sn.port}" path="u_bhn_ptp.do?JSON&amp;sysparm_query=number=#[flowVars.porId]&amp;sysparm_action=update" method="POST" user="${sn.user}" password="${sn.password}" doc:name="IF4 Update"/>
     </sub-flow>
     <sub-flow name="if5-flow" doc:name="if5-flow">
+        <byte-array-to-object-transformer doc:name="Byte Array to Object"/>
+        <logger message="if4response #[payload]" level="INFO" doc:name="if4response"/>
+        <set-variable variableName="if4response" value="#[payload]" doc:name="if4response"/>
         <data-mapper:transform config-ref="JSON_To_Xml_SnPORequestServiceReadRequest_" doc:name="JSON To Xml&lt;SnPORequestServiceReadRequest&gt;"/>
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
         <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="read" doc:name="SnPor Read Web Service Consumer"/>
         <data-mapper:transform config-ref="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" doc:name="Xml&lt;SnPORequestServiceReadResponse&gt; To Xml&lt;SnPORequestServiceUpdateRequest&gt;"/>
         <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="update" doc:name="SnPor Update Web Service Consumer"/>
+<!--         <set-payload value="#[flowVars.if4response]" doc:name="if4response"/>
+        <data-mapper:transform config-ref="JSON_To_Xml_SnPORequestServiceUpdateRequest_" input-ref="#[flowVars[&quot;if4response&quot;]]" doc:name="JSON To Xml&lt;SnPORequestServiceUpdateRequest&gt;"/>
+
+        <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="update" doc:name="SnPor Update Web Service Consumer"/> -->
         <logger message="IF5 Completed" level="INFO" doc:name="IF5 Completed"/>
+    </sub-flow>
+    <sub-flow name="if5-read" doc:name="if5-read">
+        <data-mapper:transform config-ref="Xml_SnPORequestServiceReadResponse__To_Map" doc:name="Xml&lt;SnPORequestServiceReadResponse&gt; To Map"/>
     </sub-flow>
 </mule>

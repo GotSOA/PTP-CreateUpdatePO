@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="rvenu00" created="Fri Aug 08 06:04:56 PDT 2014" description="Xml&lt;SnPORequestServiceReadResponse&gt; To Map" guiVersion="3.4.4.P" id="1407508771603" licenseCode="Unlicensed" licenseType="Unknown" modified="Fri Aug 08 06:04:56 PDT 2014" modifiedBy="rvenu00" name="Xml_SnPORequestServiceReadResponse__To_Map" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="2" __referenceCounter="1" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="07d85ad1-ab26-40c0-80bf-0afc68bdcd6a" _parent_id="__parent_id" _type="Input" id="12860f98-ea50-4d94-8a52-7eb91f1f6048">
+<Record fieldDelimiter="," name="bhnSNPORequest" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="2" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:_DocumentHash" containerType="SINGLE" label="_DocumentHash" name="_DocumentHash" type="string"/>
+<Field __index="3" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:Action" containerType="SINGLE" label="Action" name="Action" type="string"/>
+<Field __index="4" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:AmountApproved" containerType="SINGLE" label="AmountApproved" name="AmountApproved" type="decimal"/>
+<Field __dmType="Calendar" __index="5" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdType_DateTime" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:ApprovalDateTime/@localDateTime" containerType="SINGLE" label="localDateTime" name="localDateTime" type="string"/>
+<Field __index="6" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdType_DateTime" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:ApprovalDateTime/@timezone" containerType="SINGLE" label="timezone" name="timezone" type="string"/>
+<Field __index="7" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdType_DateTime" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:ApprovalDateTime/@text()" containerType="SINGLE" label="text()" name="text" type="string"/>
+<Field __index="8" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:ApprovalSource" containerType="SINGLE" label="ApprovalSource" name="ApprovalSource" type="string"/>
+<Field __index="9" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:ApproverName" containerType="SINGLE" label="ApproverName" name="ApproverName" type="string"/>
+<Field __index="10" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:ClosedOpen" containerType="SINGLE" label="ClosedOpen" name="ClosedOpen" type="string"/>
+<Field __index="11" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:Currency" containerType="SINGLE" label="Currency" name="Currency" type="string"/>
+<Field __index="12" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:PorId" containerType="SINGLE" label="PorId" name="PorId" type="string"/>
+<Field __index="13" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:RecId" containerType="SINGLE" label="RecId" name="RecId" type="long"/>
+<Field __index="14" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:RecVersion" containerType="SINGLE" label="RecVersion" name="RecVersion" type="integer"/>
+<Field __index="15" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:RequestorName" containerType="SINGLE" label="RequestorName" name="RequestorName" type="string"/>
+<Field __index="16" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:VendorId" containerType="SINGLE" label="VendorId" name="VendorId" type="string"/>
+<Field __index="17" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/ns1:VendorName" containerType="SINGLE" label="VendorName" name="VendorName" type="string"/>
+<Field __index="18" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/@class" containerType="SINGLE" label="class" name="class" type="string"/>
+<Field __index="19" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdEntity_bhnSNPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:bhnSNPORequest/@action" containerType="SINGLE" label="action" name="action" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="2" __referenceCounter="1" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="b9b6cefd-d9fd-4a43-a5a6-db229e0fef2d" _parent_id="__parent_id" _type="Output" id="ae6c1bf5-5a07-49ef-bd80-79ecc71ceb3f">
+<Record fieldDelimiter="," name="bhnSNPORequest" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __index="3" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/Action" containerType="SINGLE" label="Action" name="Action" type="string"/>
+<Field __index="4" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/AmountApproved" containerType="SINGLE" label="AmountApproved" name="AmountApproved" type="decimal"/>
+<Field __dmType="Calendar" __index="5" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/ApprovalDateTime/localDateTime" containerType="SINGLE" label="localDateTime" name="localDateTime" type="string"/>
+<Field __index="7" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/ApprovalDateTime/text_x0028_x0029" containerType="SINGLE" label="text()" name="text" type="string"/>
+<Field __index="6" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/ApprovalDateTime/timezone" containerType="SINGLE" label="timezone" name="timezone" type="string"/>
+<Field __index="8" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/ApprovalSource" containerType="SINGLE" label="ApprovalSource" name="ApprovalSource" type="string"/>
+<Field __index="9" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/ApproverName" containerType="SINGLE" label="ApproverName" name="ApproverName" type="string"/>
+<Field __index="10" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/ClosedOpen" containerType="SINGLE" label="ClosedOpen" name="ClosedOpen" type="string"/>
+<Field __index="11" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/Currency" containerType="SINGLE" label="Currency" name="Currency" type="string"/>
+<Field __index="12" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/PorId" containerType="SINGLE" label="PorId" name="PorId" type="string"/>
+<Field __index="13" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/RecId" containerType="SINGLE" label="RecId" name="RecId" type="long"/>
+<Field __index="14" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/RecVersion" containerType="SINGLE" label="RecVersion" name="RecVersion" type="integer"/>
+<Field __index="15" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/RequestorName" containerType="SINGLE" label="RequestorName" name="RequestorName" type="string"/>
+<Field __index="16" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/VendorId" containerType="SINGLE" label="VendorId" name="VendorId" type="string"/>
+<Field __index="17" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/VendorName" containerType="SINGLE" label="VendorName" name="VendorName" type="string"/>
+<Field __index="2" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/_x005fDocumentHash" containerType="SINGLE" label="_DocumentHash" name="_DocumentHash" type="string"/>
+<Field __index="19" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/action" containerType="SINGLE" label="action" name="action" type="string"/>
+<Field __index="18" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/bhnSNPORequest/class" containerType="SINGLE" label="class" name="class" type="string"/>
+</Record>
+</Metadata>
+<Metadata __filteredMetadata="false" __index="0" __referenceCounter="1" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse" _dataStructure="OBJECT" _id="__id" _type="Input" id="07d85ad1-ab26-40c0-80bf-0afc68bdcd6a">
+<Record fieldDelimiter="," name="SnPORequestServiceReadResponse" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdSnPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:DocPurpose" containerType="SINGLE" label="DocPurpose" name="DocPurpose" type="string"/>
+<Field __index="1" __schemaType="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest}AxdSnPORequest" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest=ns1,http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadResponse/ns1:SnPORequest/ns1:SenderId" containerType="SINGLE" label="SenderId" name="SenderId" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/SnPORequestServiceReadResponse" _dataStructure="OBJECT" _id="__id" _type="Output" id="b9b6cefd-d9fd-4a43-a5a6-db229e0fef2d">
+<Record fieldDelimiter="," name="SnPORequestServiceReadResponse" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/DocPurpose" containerType="SINGLE" label="DocPurpose" name="DocPurpose" type="string"/>
+<Field __index="1" __sourcePath="{}/SnPORequestServiceReadResponse/SnPORequest/SenderId" containerType="SINGLE" label="SenderId" name="SenderId" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" guiName="Foreach 'ns0:SnPORequestServiceReadResponse' -&gt; 'SnPORequestServiceReadResponse'" guiX="460" guiY="20" id="FOREACH_NS0_SN_POREQUEST_SERVICE_READ_RESPONSE_SN_POREQUEST_SERVICE_READ_RESPONSE" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.DocPurpose = input.DocPurpose;
+output.SenderId = input.SenderId;
+]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'ns1:bhnSNPORequest' -&gt; 'bhnSNPORequest'" guiX="460" guiY="120" id="FOREACH_NS1_BHN_SNPOREQUEST_BHN_SNPOREQUEST" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+output.__parent_id = input.__parent_id;
+//END -> DO NOT REMOVE
+output._DocumentHash = input._DocumentHash;
+output.Action = input.Action;
+output.AmountApproved = input.AmountApproved;
+output.localDateTime = input.localDateTime;
+output.timezone = input.timezone;
+output.text = input.text;
+output.ApprovalSource = input.ApprovalSource;
+output.ApproverName = input.ApproverName;
+output.ClosedOpen = input.ClosedOpen;
+output.Currency = input.Currency;
+output.PorId = input.PorId;
+output.RecId = input.RecId;
+output.RecVersion = input.RecVersion;
+output.RequestorName = input.RequestorName;
+output.VendorId = input.VendorId;
+output.VendorName = input.VendorName;
+output.class = input.class;
+output.Action = input.action;
+]]></attr>
+</Node>
+<Node cacheInMemory="true" enabled="enabled" fileURL="dict:outputPayload" guiName="Map&lt;k,v&gt; WRITER" guiX="900" guiY="20" id="MAP_WRITER0" type="MAP_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<SnPORequestServiceReadResponse xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" clover:inPort="0">
+  <SnPORequest>
+    <DocPurpose>$0.DocPurpose</DocPurpose>
+    <SenderId>$0.SenderId</SenderId>
+    <clover:collection clover:name="bhnSNPORequest">
+      <item clover:inPort="1" clover:key="__parent_id" clover:parentKey="__id">
+        <clover:element clover:name="_DocumentHash">$1._DocumentHash</clover:element>
+        <Action>$1.Action</Action>
+        <AmountApproved>$1.AmountApproved</AmountApproved>
+        <ApprovalDateTime>
+          <localDateTime clover:dataType="java.util.Calendar">$1.localDateTime</localDateTime>
+          <timezone>$1.timezone</timezone>
+          <clover:element clover:name="text()">$1.text</clover:element>
+        </ApprovalDateTime>
+        <ApprovalSource>$1.ApprovalSource</ApprovalSource>
+        <ApproverName>$1.ApproverName</ApproverName>
+        <ClosedOpen>$1.ClosedOpen</ClosedOpen>
+        <Currency>$1.Currency</Currency>
+        <PorId>$1.PorId</PorId>
+        <RecId>$1.RecId</RecId>
+        <RecVersion>$1.RecVersion</RecVersion>
+        <RequestorName>$1.RequestorName</RequestorName>
+        <VendorId>$1.VendorId</VendorId>
+        <VendorName>$1.VendorName</VendorName>
+        <class>$1.class</class>
+        <action>$1.action</action>
+      </item>
+    </clover:collection>
+  </SnPORequest>
+</SnPORequestServiceReadResponse>]]></attr>
+<attr name="_data_format"><![CDATA[MAP]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="XML READER" guiX="20" guiY="20" id="XML_READER0" type="XML_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context namespacePaths="ns0=&quot;http://schemas.microsoft.com/dynamics/2008/01/services&quot;" outPort="0" sequenceField="__id" xpath="/ns0:SnPORequestServiceReadResponse">
+  <Mapping cloverField="DocPurpose" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:SnPORequest/ns1:DocPurpose"/>
+  <Mapping cloverField="SenderId" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:SnPORequest/ns1:SenderId"/>
+  <Context generatedKey="__parent_id" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" outPort="1" parentKey="__id" sequenceField="__id" xpath="ns1:SnPORequest/ns1:bhnSNPORequest">
+    <Mapping cloverField="_DocumentHash" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:_DocumentHash"/>
+    <Mapping cloverField="Action" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:Action"/>
+    <Mapping cloverField="AmountApproved" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:AmountApproved"/>
+    <Mapping cloverField="localDateTime" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:ApprovalDateTime/@localDateTime"/>
+    <Mapping cloverField="timezone" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:ApprovalDateTime/@timezone"/>
+    <Mapping cloverField="text" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:ApprovalDateTime/text()"/>
+    <Mapping cloverField="ApprovalSource" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:ApprovalSource"/>
+    <Mapping cloverField="ApproverName" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:ApproverName"/>
+    <Mapping cloverField="ClosedOpen" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:ClosedOpen"/>
+    <Mapping cloverField="Currency" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:Currency"/>
+    <Mapping cloverField="PorId" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:PorId"/>
+    <Mapping cloverField="RecId" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:RecId"/>
+    <Mapping cloverField="RecVersion" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:RecVersion"/>
+    <Mapping cloverField="RequestorName" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:RequestorName"/>
+    <Mapping cloverField="VendorId" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:VendorId"/>
+    <Mapping cloverField="VendorName" namespacePaths="ns1=&quot;http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest&quot;" trim="true" xpath="ns1:VendorName"/>
+    <Mapping cloverField="class" trim="true" xpath="@class"/>
+    <Mapping cloverField="action" trim="true" xpath="@action"/>
+  </Context>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[XML]]></attr>
+<attr name="__metadata"><![CDATA[true]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="FOREACH_NS0_SN_POREQUEST_SERVICE_READ_RESPONSE_SN_POREQUEST_SERVICE_READ_RESPONSE:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="b9b6cefd-d9fd-4a43-a5a6-db229e0fef2d" outPort="Port 0 (out)" toNode="MAP_WRITER0:0"/>
+<Edge debugMode="true" fromNode="FOREACH_NS1_BHN_SNPOREQUEST_BHN_SNPOREQUEST:0" guiBendpoints="" id="Edge3" inPort="Port 1 (in)" metadata="ae6c1bf5-5a07-49ef-bd80-79ecc71ceb3f" outPort="Port 0 (out)" toNode="MAP_WRITER0:1"/>
+<Edge debugMode="true" fromNode="XML_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="07d85ad1-ab26-40c0-80bf-0afc68bdcd6a" outPort="Port 0 (out)" toNode="FOREACH_NS0_SN_POREQUEST_SERVICE_READ_RESPONSE_SN_POREQUEST_SERVICE_READ_RESPONSE:0"/>
+<Edge debugMode="true" fromNode="XML_READER0:1" guiBendpoints="" id="Edge2" inPort="Port 0 (in)" metadata="12860f98-ea50-4d94-8a52-7eb91f1f6048" outPort="Port 1 (out)" toNode="FOREACH_NS1_BHN_SNPOREQUEST_BHN_SNPOREQUEST:0"/>
+</Phase>
+</Graph>

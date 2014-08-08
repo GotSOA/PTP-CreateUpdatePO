@@ -1,0 +1,12 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <ns2:porDataSyncResponse xmlns:ns2="http://service.bhnetwork.com/">
+         <porDataSyncServiceRequest>
+            <poNumber>PO78-778</poNumber>
+            <porId>POR100340</porId>
+            <vendorId>V101372</vendorId>
+         </porDataSyncServiceRequest>
+         <status>ACK</status>
+      </ns2:porDataSyncResponse>
+   </soap:Body>
+</soap:Envelope>

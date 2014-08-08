@@ -1,0 +1,10 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.bhnetwork.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:porDataSync>
+         <poNumber>PO78-778</poNumber>
+         <porId>POR100340</porId>
+         <vendorId>V101372</vendorId>
+      </ser:porDataSync>
+   </soapenv:Body>
+</soapenv:Envelope>

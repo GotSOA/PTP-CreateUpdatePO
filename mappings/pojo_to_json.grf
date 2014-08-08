@@ -10,7 +10,7 @@
 <Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
 <Field __index="0" __sourcePath="{}/object/porDataSyncServiceRequest/poNumber" containerType="SINGLE" label="poNumber" name="poNumber" type="string"/>
 <Field __index="1" __sourcePath="{}/object/porDataSyncServiceRequest/porId" containerType="SINGLE" label="porId" name="porId" type="string"/>
-<Field __index="2" __sourcePath="{}/object/porDataSyncServiceRequest/vendor" containerType="SINGLE" label="vendor" name="vendor" type="string"/>
+<Field __index="2" __sourcePath="{}/object/porDataSyncServiceRequest/vendorId" containerType="SINGLE" label="vendorId" name="vendorId" type="string"/>
 <Field __index="3" __sourcePath="{}/object/status" containerType="SINGLE" label="status" name="status" type="string"/>
 </Record>
 </Metadata>
@@ -147,7 +147,7 @@
 <Context outPort="0" sequenceField="__id" xpath=".">
   <Mapping cloverField="poNumber" trim="true" xpath="porDataSyncServiceRequest/poNumber"/>
   <Mapping cloverField="porId" trim="true" xpath="porDataSyncServiceRequest/porId"/>
-  <Mapping cloverField="vendor" trim="true" xpath="porDataSyncServiceRequest/vendor"/>
+  <Mapping cloverField="vendorId" trim="true" xpath="porDataSyncServiceRequest/vendorId"/>
   <Mapping cloverField="status" trim="true" xpath="status"/>
 </Context>
 ]]></attr>
@@ -157,7 +157,7 @@
   <typed-object type="com.bhnetwork.service.PORDataSyncServiceRequest">
     <typed-object-ref name="poNumber" type-ref="java.lang.String"/>
     <typed-object-ref name="porId" type-ref="java.lang.String"/>
-    <typed-object-ref name="vendor" type-ref="java.lang.String"/>
+    <typed-object-ref name="vendorId" type-ref="java.lang.String"/>
   </typed-object>
   <typed-object type="com.bhnetwork.service.PORDataSyncServiceResponse">
     <typed-object-ref name="porDataSyncServiceRequest" type-ref="com.bhnetwork.service.PORDataSyncServiceRequest"/>
@@ -180,7 +180,6 @@ output.__id = input.__id;
 output.__id = input.__id;
 output.__parent_id = input.__id;
 //END -> DO NOT REMOVE
-output.u_vendor = input.vendor;
 output.u_po_number = input.poNumber;]]></attr>
 </Node>
 <Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="JSON WRITER" guiX="900" guiY="20" id="JSON_WRITER0" type="JSON_WRITER">
