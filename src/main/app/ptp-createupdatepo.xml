@@ -140,7 +140,7 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
     </flow>
     <flow name="if3-if4-if5-flow" doc:name="if3-if4-if5-flow">
         <http:inbound-endpoint connector-ref="http_inbound" exchange-pattern="request-response" host="${http.host}" port="${http.port}" path="PORDataSyncService" doc:name="HTTP">
-        	<cxf:simple-service doc:name="CXF" serviceClass="com.bhnetwork.service.PORDataSyncService"/>
+        	<cxf:jaxws-service doc:name="CXF" serviceClass="com.bhnetwork.service.PORDataSyncService" validationEnabled="true"/>
         </http:inbound-endpoint>
         <component class="com.bhnetwork.service.PORDataSyncServiceImpl" doc:name="PORDataSyncService"/>
         <async doc:name="Async">

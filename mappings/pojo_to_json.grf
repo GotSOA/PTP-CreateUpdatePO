@@ -180,7 +180,8 @@ output.__id = input.__id;
 output.__id = input.__id;
 output.__parent_id = input.__id;
 //END -> DO NOT REMOVE
-output.u_vendor = input.vendor;]]></attr>
+output.u_vendor = input.vendor;
+output.u_po_number = input.poNumber;]]></attr>
 </Node>
 <Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="JSON WRITER" guiX="900" guiY="20" id="JSON_WRITER0" type="JSON_WRITER">
 <attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>

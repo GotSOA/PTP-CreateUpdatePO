@@ -1,5 +1,9 @@
 package com.bhnetwork.service;
 
+import javax.jws.WebService;
+
+@WebService(endpointInterface = "com.bhnetwork.service.PORDataSyncService",
+			serviceName = "PORDataSyncService")
 public class PORDataSyncServiceImpl implements PORDataSyncService {
 
 	public PORDataSyncServiceResponse porDataSync(

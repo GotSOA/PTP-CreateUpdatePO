@@ -1,9 +1,20 @@
 package com.bhnetwork.service;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "porDataSyncServiceResponse", propOrder = {
+    "porDataSyncServiceRequest",
+    "status"
+})
 public class PORDataSyncServiceResponse {
 	
-	private String status;
+	@XmlElement(required=true)
+	private String status;	
+	@XmlElement(required=true)
 	private PORDataSyncServiceRequest porDataSyncServiceRequest;
 	
 	public String getStatus() {
