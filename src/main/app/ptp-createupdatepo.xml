@@ -89,12 +89,24 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
         <set-payload value="{&quot;DataSourceName&quot;:&quot;VendTable&quot;,&quot;FieldName&quot;:&quot;VendGroup&quot;,&quot;Operator&quot;:&quot;Equal&quot;,&quot;Value1&quot;:&quot;Trade&quot;}" doc:name="Query Parameters in JSON" />
         <data-mapper:transform doc:name="JSON To Xml&lt;VendTableServiceFindRequest&gt;" config-ref="JSON_To_Xml_VendTableServiceFindRequest_" />
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
-        <ws:consumer config-ref="Vendor_Web_Service_Consumer" operation="find" doc:name="Vendor Web Service Consumer" />
+        <set-variable variableName="if6request" value="#[payload]" doc:name="if6request"/>
+        <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
+            <processor-chain doc:name="Processor Chain">
+                <set-payload value="#[flowVars.if6request]" doc:name="if6request (For replay)"/>
+                <ws:consumer config-ref="Vendor_Web_Service_Consumer" operation="find" doc:name="Vendor Web Service Consumer"/>
+            </processor-chain>
+        </until-successful>
         <data-mapper:transform doc:name="Xml&lt;VendTableServiceFindResponse&gt; To JSON" config-ref="Xml_VendTableServiceFindResponse__To_JSON" />
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="Vendor: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
         <json:object-to-json-transformer doc:name="Object to JSON" />
-        <https:outbound-endpoint exchange-pattern="request-response" method="POST" doc:name="HTTP" host="${http.sn.host}" password="${sn.password}" path="u_dax_vendor.do?JSON&amp;sysparm_action=insertMultiple" port="${http.sn.port}" user="${sn.user}" />
+        <set-variable variableName="if7request" value="#[payload]" doc:name="if7request"/>
+        <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
+            <processor-chain doc:name="Processor Chain">
+                <set-payload value="#[flowVars.if7request]" doc:name="if7request (For replay)"/>
+                <https:outbound-endpoint exchange-pattern="request-response" host="${http.sn.host}" port="${http.sn.port}" path="u_dax_vendor.do?JSON&amp;sysparm_action=insertMultiple" method="POST" user="${sn.user}" password="${sn.password}" doc:name="HTTP"/>
+            </processor-chain>
+        </until-successful>
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="Vendor: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
     </flow>
@@ -102,12 +114,24 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
         <set-payload value="{&quot;DataSourceName&quot;:&quot;PurchPool&quot;,&quot;FieldName&quot;:&quot;PurchPoolId&quot;,&quot;Operator&quot;:&quot;NotEqual&quot;,&quot;Value1&quot;:&quot; &quot;}" doc:name="Query Parameters in JSON" />
         <data-mapper:transform config-ref="JSON_To_Xml_POROrderTypeServiceFindRequest_" doc:name="JSON To Xml&lt;POROrderTypeServiceFindRequest&gt;" />
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
-        <ws:consumer config-ref="OrderType_Web_Service_Consumer" operation="find" doc:name="OrderType Web Service Consumer" />
+        <set-variable variableName="if8request" value="#[payload]" doc:name="if8request"/>
+        <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
+            <processor-chain doc:name="Processor Chain">
+                <set-payload value="#[flowVars.if8request]" doc:name="if8request (For replay)"/>
+                <ws:consumer config-ref="OrderType_Web_Service_Consumer" operation="find" doc:name="OrderType Web Service Consumer"/>
+            </processor-chain>
+        </until-successful>
         <data-mapper:transform config-ref="Xml_POROrderTypeServiceFindResponse__To_JSON" doc:name="Xml&lt;POROrderTypeServiceFindResponse&gt; To JSON" />
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="OrderType: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
         <json:object-to-json-transformer doc:name="Object to JSON" />
-        <https:outbound-endpoint exchange-pattern="request-response" method="POST" doc:name="HTTP" host="${http.sn.host}" password="${sn.password}" path="u_dax_order_type.do?JSON&amp;sysparm_action=insertMultiple" port="${http.sn.port}" user="${sn.user}" />
+        <set-variable variableName="if9request" value="#[payload]" doc:name="if9request"/>
+        <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
+            <processor-chain doc:name="Processor Chain">
+                <set-payload value="#[flowVars.if9request]" doc:name="if9request (For replay)"/>
+                <https:outbound-endpoint exchange-pattern="request-response" host="${http.sn.host}" port="${http.sn.port}" path="u_dax_order_type.do?JSON&amp;sysparm_action=insertMultiple" method="POST" user="${sn.user}" password="${sn.password}" doc:name="HTTP"/>
+            </processor-chain>
+        </until-successful>
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="OrderType: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
     </flow>
@@ -115,12 +139,26 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
         <set-payload value="{&quot;DataSourceName&quot;:&quot;ProjTable&quot;,&quot;FieldName&quot;:&quot;ProjId&quot;,&quot;Operator&quot;:&quot;NotEqual&quot;,&quot;Value1&quot;:&quot; &quot;,&quot;Value2&quot;:&quot;?&quot;}" doc:name="Query Parameters in JSON"/>
         <data-mapper:transform config-ref="JSON_To_Xml_PORProjectDataServiceFindRequest_" doc:name="JSON To Xml&lt;PORProjectDataServiceFindRequest&gt;"/>
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
-        <ws:consumer config-ref="ProjectData_Web_Service_Consumer" operation="find" doc:name="ProjectData Web Service Consumer"/>
+        <set-variable variableName="if10request" value="#[payload]" doc:name="if10request"/>
+        <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
+            <processor-chain doc:name="Processor Chain">
+                <set-payload value="#[flowVars.if10request]" doc:name="if10request (For replay)"/>
+                <ws:consumer config-ref="ProjectData_Web_Service_Consumer" operation="find" doc:name="ProjectData Web Service Consumer"/>
+            </processor-chain>
+        </until-successful>
+
         <data-mapper:transform config-ref="Xml_PORProjectDataServiceFindResponse__To_JSON" doc:name="Xml&lt;PORProjectDataServiceFindResponse&gt; To JSON"/>
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="ProjectData: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
         <json:object-to-json-transformer doc:name="Object to JSON" />
-        <https:outbound-endpoint exchange-pattern="request-response" method="POST" doc:name="HTTP" host="${http.sn.host}" password="${sn.password}" path="u_dax_project.do?JSON&amp;sysparm_action=insertMultiple" port="${http.sn.port}" user="${sn.user}" />
+        <set-variable variableName="if11request" value="#[payload]" doc:name="if11request"/>
+        <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
+            <processor-chain doc:name="Processor Chain">
+                <set-payload value="#[flowVars.if11request]" doc:name="if11request (For replay)"/>
+                <https:outbound-endpoint exchange-pattern="request-response" host="${http.sn.host}" port="${http.sn.port}" path="u_dax_project.do?JSON&amp;sysparm_action=insertMultiple" method="POST" user="${sn.user}" password="${sn.password}" doc:name="HTTP"/>
+            </processor-chain>
+        </until-successful>
+
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="ProjectData: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
     </flow>
@@ -163,7 +201,14 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
         <data-mapper:transform config-ref="Pojo_To_JSON" doc:name="Pojo To JSON"/>
         <byte-array-to-object-transformer doc:name="Byte Array to Object"/>
         <logger message="if4request #[payload]" level="INFO" doc:name="if4request"/>
-        <https:outbound-endpoint exchange-pattern="request-response" host="${http.sn.host}" port="${http.sn.port}" path="u_bhn_ptp.do?JSON&amp;sysparm_query=number=#[flowVars.porId]&amp;sysparm_action=update" method="POST" user="${sn.user}" password="${sn.password}" doc:name="IF4 Update"/>
+        <set-variable variableName="if4updaterequest" value="#[payload]" doc:name="if4updaterequest"/>
+        <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
+            <processor-chain doc:name="Processor Chain">
+                <set-payload value="#[flowVars.if4updaterequest]" doc:name="if4updaterequest (For replay)"/>
+                <https:outbound-endpoint exchange-pattern="request-response" host="${http.sn.host}" port="${http.sn.port}" path="u_bhn_ptp.do?JSON&amp;sysparm_query=number=#[flowVars.porId]&amp;sysparm_action=update" method="POST" user="${sn.user}" password="${sn.password}" doc:name="IF4 Update"/>
+            </processor-chain>
+        </until-successful>
+
     </sub-flow>
     <sub-flow name="if5-flow" doc:name="if5-flow">
         <byte-array-to-object-transformer doc:name="Byte Array to Object"/>
@@ -171,9 +216,22 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
         <set-variable variableName="if4response" value="#[payload]" doc:name="if4response"/>
         <data-mapper:transform config-ref="JSON_To_Xml_SnPORequestServiceReadRequest_" doc:name="JSON To Xml&lt;SnPORequestServiceReadRequest&gt;"/>
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
-        <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="read" doc:name="SnPor Read Web Service Consumer"/>
+        <set-variable variableName="if5readrequest" value="#[payload]" doc:name="if5readrequest"/>
+        <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
+            <processor-chain doc:name="Processor Chain">
+                <set-payload value="#[flowVars.if5readrequest]" doc:name="if5readrequest (For replay)"/>
+                <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="read" doc:name="SnPor Read Web Service Consumer"/>
+            </processor-chain>
+        </until-successful>
         <data-mapper:transform config-ref="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" doc:name="Xml&lt;SnPORequestServiceReadResponse&gt; To Xml&lt;SnPORequestServiceUpdateRequest&gt;"/>
-        <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="update" doc:name="SnPor Update Web Service Consumer"/>
+        <set-variable variableName="if5updaterequest" value="#[payload]" doc:name="if5updaterequest"/>
+        <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
+            <processor-chain doc:name="Processor Chain">
+                <set-payload value="#[flowVars.if5updaterequest]" doc:name="if5updaterequest (For replay)"/>
+                <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="update" doc:name="SnPor Update Web Service Consumer"/>
+            </processor-chain>
+        </until-successful>
+
 <!--         <set-payload value="#[flowVars.if4response]" doc:name="if4response"/>
         <data-mapper:transform config-ref="JSON_To_Xml_SnPORequestServiceUpdateRequest_" input-ref="#[flowVars[&quot;if4response&quot;]]" doc:name="JSON To Xml&lt;SnPORequestServiceUpdateRequest&gt;"/>
 
