@@ -139,7 +139,13 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
     <flow name="if2-flow" doc:name="if2-flow">
         <data-mapper:transform config-ref="JSON_To_Xml_SnPORequestServiceCreateRequest_" doc:name="JSON To Xml&lt;SnPORequestServiceCreateRequest&gt;"/>
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
-        <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="create" doc:name="Web Service Consumer"/>
+        <set-variable variableName="if2request" value="#[payload]" doc:name="if2request"/>
+        <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
+            <processor-chain doc:name="Processor Chain">
+                <set-payload value="#[flowVars.if2request]" doc:name="if2request (for replay)"/>
+                <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="create" doc:name="SnPor Create Web Service Consumer"/>
+            </processor-chain>
+        </until-successful>
         <logger message="IF2 Completed" level="INFO" doc:name="IF2 Completed"/>
     </flow>
     <flow name="if3-if4-if5-flow" doc:name="if3-if4-if5-flow">
