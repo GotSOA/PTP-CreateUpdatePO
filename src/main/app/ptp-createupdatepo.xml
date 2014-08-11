@@ -17,7 +17,7 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
     
     <http:connector name="http_inbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS" />
     <http:connector name="http_outbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS" />
-    <http:connector name="ntlmConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS" proxyHostname="127.0.0.1" proxyPort="8888">
+    <http:connector name="ntlmConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS">
         <service-overrides sessionHandler="org.mule.session.NullSessionHandler" outboundTransformer="com.mulesoft.support.CustomObjectToHttpClientMethodRequest" dispatcherFactory="org.mule.transport.http.NTLMv2HttpClientMessageDispatcherFactor" />
     </http:connector>
     <ws:consumer-config name="SnPor_Web_Service_Consumer" wsdlLocation="wsdl/snporequestservice_1.wsdl" service="SnPORequestService" port="BasicHttpBinding_SnPORequestService" serviceAddress="http://${dax.http.host}/${dax.http.snpor.path}" doc:name="SnPor Web Service Consumer" connector-ref="ntlmConnector" />
