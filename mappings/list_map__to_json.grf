@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="rvenu00" created="Tue Aug 12 12:37:22 PDT 2014" description="List&lt;Map&gt; To JSON" guiVersion="3.4.4.P" id="1407876918579" licenseCode="Unlicensed" licenseType="Unknown" modified="Tue Aug 12 12:37:22 PDT 2014" modifiedBy="rvenu00" name="List_Map__To_JSON" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/Map" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _type="Input" id="f3aa0dc4-0c12-4407-8d13-dbae86af850b">
+<Record fieldDelimiter="," name="Map" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __implementationClass="java.lang.String" __index="1" __sourcePath="{}/Map/AccountNum" containerType="SINGLE" label="AccountNum" name="AccountNum" type="string"/>
+<Field __implementationClass="java.lang.String" __index="2" __sourcePath="{}/Map/Address" containerType="SINGLE" label="Address" name="Address" type="string"/>
+<Field __implementationClass="java.lang.Integer" __index="3" __sourcePath="{}/Map/Blocked" containerType="SINGLE" label="Blocked" name="Blocked" type="integer"/>
+<Field __implementationClass="java.lang.String" __index="0" __sourcePath="{}/Map/Name" containerType="SINGLE" label="Name" name="Name" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="0" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Output" id="d6fb2f8f-01ea-4c28-9697-201eb71430cc">
+<Record fieldDelimiter="," name="object" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object/records" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="d6fb2f8f-01ea-4c28-9697-201eb71430cc" _parent_id="__parent_id" _type="Output" id="e6796f7b-f154-45f1-a597-4b9bab63110f">
+<Record fieldDelimiter="," name="records" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/records/u_x005fvendoraccountid" containerType="SINGLE" label="u_vendoraccountid" name="u_vendoraccountid" type="string"/>
+<Field __index="1" __sourcePath="{}/object/records/u_x005fvendorguid" containerType="SINGLE" label="u_vendorguid" name="u_vendorguid" type="string"/>
+<Field __index="2" __sourcePath="{}/object/records/u_x005fname" containerType="SINGLE" label="u_name" name="u_name" type="string"/>
+<Field __index="3" __sourcePath="{}/object/records/u_x005faddress" containerType="SINGLE" label="u_address" name="u_address" type="string"/>
+<Field __index="4" __sourcePath="{}/object/records/u_x005fstoppedstatus" containerType="SINGLE" label="u_stoppedstatus" name="u_stoppedstatus" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" fileURL="dict:inputPayload" guiName="Map&lt;k,v&gt; READER" guiX="20" guiY="20" id="BEAN_READER0" type="BEAN_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context outPort="0" sequenceField="__id" xpath=".">
+  <Mapping cloverField="AccountNum" trim="true" xpath="AccountNum"/>
+  <Mapping cloverField="Address" trim="true" xpath="Address"/>
+  <Mapping cloverField="Blocked" trim="true" xpath="Blocked"/>
+  <Mapping cloverField="Name" trim="true" xpath="Name"/>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[MAP]]></attr>
+<attr name="__metadata"><![CDATA[true]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'Map' -&gt; 'records'" guiX="460" guiY="20" id="FOREACH_MAP_RECORDS" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+output.__parent_id = input.__id;
+//END -> DO NOT REMOVE
+output.u_vendoraccountid = input.AccountNum;
+output.u_address = input.Address;
+output.u_name = input.Name;
+output.u_stoppedstatus = num2str(input.Blocked);]]></attr>
+</Node>
+<Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="JSON WRITER" guiX="900" guiY="20" id="JSON_WRITER0" type="JSON_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<object xmlns:clover="http://www.cloveretl.com/ns/xmlmapping">
+  <clover:collection clover:name="records">
+    <item clover:inPort="0">
+      <clover:element clover:name="u_vendoraccountid">$0.u_vendoraccountid</clover:element>
+      <clover:element clover:name="u_vendorguid">$0.u_vendorguid</clover:element>
+      <clover:element clover:name="u_name">$0.u_name</clover:element>
+      <clover:element clover:name="u_address">$0.u_address</clover:element>
+      <clover:element clover:name="u_stoppedstatus">$0.u_stoppedstatus</clover:element>
+    </item>
+  </clover:collection>
+</object>]]></attr>
+<attr name="_data_format"><![CDATA[JSON]]></attr>
+<attr name="jsonSchemaURL"><![CDATA[./src/test/resources/sample-requests/u_dax_vendor.json]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="BEAN_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="f3aa0dc4-0c12-4407-8d13-dbae86af850b" outPort="Port 0 (out)" toNode="FOREACH_MAP_RECORDS:0"/>
+<Edge debugMode="true" fromNode="FOREACH_MAP_RECORDS:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="e6796f7b-f154-45f1-a597-4b9bab63110f" outPort="Port 0 (out)" toNode="JSON_WRITER0:0"/>
+</Phase>
+</Graph>

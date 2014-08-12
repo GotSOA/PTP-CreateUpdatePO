@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
 	xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp"
 	xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns:schedulers="http://www.mulesoft.org/schema/mule/schedulers" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
-	xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:context="http://www.springframework.org/schema/context" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:https="http://www.mulesoft.org/schema/mule/https" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="EE-3.5.0" xsi:schemaLocation="
-http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd 
-http://www.mulesoft.org/schema/mule/smtp http://www.mulesoft.org/schema/mule/smtp/current/mule-smtp.xsd http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:context="http://www.springframework.org/schema/context" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:https="http://www.mulesoft.org/schema/mule/https" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="EE-3.5.0" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.mulesoft.org/schema/mule/smtp http://www.mulesoft.org/schema/mule/smtp/current/mule-smtp.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
@@ -17,7 +17,8 @@ http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
 http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mule/schedulers/current/mule-schedulers.xsd
-http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd">
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
     
 	<!-- global exception strategy -->
 	<catch-exception-strategy name="global-main-exception-strategy">
@@ -27,7 +28,7 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
     </catch-exception-strategy> 
     <smtp:gmail-connector name="smtpGmailConnector" doc:name="Gmail"/>    
     <http:connector name="http_inbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS" />
-    <http:connector name="http_outbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS" />
+    <http:connector name="http_outbound" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS" proxyHostname="127.0.0.1" proxyPort="8888"/>
     <http:connector name="ntlmConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS">
         <service-overrides sessionHandler="org.mule.session.NullSessionHandler" outboundTransformer="com.mulesoft.support.CustomObjectToHttpClientMethodRequest" dispatcherFactory="org.mule.transport.http.NTLMv2HttpClientMessageDispatcherFactor" />
     </http:connector>
@@ -38,8 +39,7 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
     <data-mapper:config name="JSON_To_Xml_POROrderTypeServiceFindRequest_" transformationGraphPath="json_to_xml_porordertypeservicefindrequest_.grf" doc:name="JSON_To_Xml_POROrderTypeServiceFindRequest_" />
     <context:property-placeholder location="ptp-createupdatepo.properties,${mule.env}-ptp-createupdatepo.properties" />
     <data-mapper:config name="Xml_POROrderTypeServiceFindResponse__To_JSON" transformationGraphPath="xml_porordertypeservicefindresponse__to_json.grf" doc:name="Xml_POROrderTypeServiceFindResponse__To_JSON" />
-    <data-mapper:config name="JSON_To_Xml_VendTableServiceFindRequest_" transformationGraphPath="json_to_xml_vendtableservicefindrequest_.grf" doc:name="JSON_To_Xml_VendTableServiceFindRequest_" />
-    <data-mapper:config name="Xml_VendTableServiceFindResponse__To_JSON" transformationGraphPath="xml_vendtableservicefindresponse__to_json.grf" doc:name="Xml_VendTableServiceFindResponse__To_JSON" />
+
 
     <apikit:config xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" name="ptp-createupdatepo-config" raml="ptp-createupdatepo.raml" consoleEnabled="true" consolePath="console" doc:name="Router"/>
     <apikit:mapping-exception-strategy xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" name="ptp-createupdatepo-apiKitGlobalExceptionMapping" doc:name="Mapping Exception Strategy">
@@ -87,6 +87,8 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
     <spring:beans>
         <spring:bean id="Bean" name="EmailBody" class="com.bhnetwork.integration.component.EmailBody" scope="prototype"  />
     </spring:beans>
+    <db:generic-config name="Generic_Database_Configuration" url="${dax.database.url};user=${dax.database.user};password=${dax.database.password}" driverClassName="net.sourceforge.jtds.jdbc.Driver" doc:name="Generic Database Configuration"/>
+    <data-mapper:config name="List_Map__To_JSON" transformationGraphPath="list_map__to_json.grf" doc:name="List_Map__To_JSON"/>
     <flow name="quartz-ordertype" doc:name="quartz-ordertype">
         <poll doc:name="Poll">
             <schedulers:cron-scheduler expression="${quartz.sync-dax-sn.cron}"/>
@@ -102,18 +104,17 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
         <exception-strategy ref="global-main-exception-strategy" doc:name="Reference Exception Strategy" />
     </flow>
     <flow name="sync-vendor" doc:name="sync-vendor">
-        <set-payload value="{&quot;DataSourceName&quot;:&quot;VendTable&quot;,&quot;FieldName&quot;:&quot;VendGroup&quot;,&quot;Operator&quot;:&quot;Equal&quot;,&quot;Value1&quot;:&quot;Trade&quot;}" doc:name="Query Parameters in JSON" />
-        <data-mapper:transform doc:name="JSON To Xml&lt;VendTableServiceFindRequest&gt;" config-ref="JSON_To_Xml_VendTableServiceFindRequest_" />
-        <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
-        <set-session-variable variableName="integrationStep" value="dax.read.vendor (IF6)" doc:name="integrationStep = dax.read.vendor"/>
-        <set-variable variableName="if6request" value="#[payload]" doc:name="if6request"/>
+
         <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
             <processor-chain doc:name="Processor Chain">
-                <set-payload value="#[flowVars.if6request]" doc:name="if6request (For replay)"/>
-                <ws:consumer config-ref="Vendor_Web_Service_Consumer" operation="find" doc:name="Vendor Web Service Consumer"/>
+                <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
+                    <db:parameterized-query><![CDATA[select TOP 1000 AccountNum, Name, Blocked,  Address from VENDTABLE where VENDTABLE.VENDGROUP = 'TRADE']]></db:parameterized-query>
+                </db:select>
+                <data-mapper:transform config-ref="List_Map__To_JSON" doc:name="List&lt;Map&gt; To JSON"/>
+
             </processor-chain>
         </until-successful>
-        <data-mapper:transform doc:name="Xml&lt;VendTableServiceFindResponse&gt; To JSON" config-ref="Xml_VendTableServiceFindResponse__To_JSON" />
+
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="Vendor: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
         <json:object-to-json-transformer doc:name="Object to JSON" />
