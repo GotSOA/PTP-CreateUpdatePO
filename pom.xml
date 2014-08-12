@@ -289,6 +289,12 @@
 			<version>${mule.version}</version>
 			<scope>provided</scope>
 	    </dependency>
+	    <!-- sr added velocity for email formatting -->
+	    <dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
 		<!-- Xml configuration -->
 		<dependency>
 			<groupId>org.mule.modules</groupId>
@@ -459,5 +465,4 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
 </project>
