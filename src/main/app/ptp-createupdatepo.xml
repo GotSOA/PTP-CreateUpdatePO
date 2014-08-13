@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+<mule xmlns:batch="http://www.mulesoft.org/schema/mule/batch" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
 	xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp"
 	xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns:schedulers="http://www.mulesoft.org/schema/mule/schedulers" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
 	xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:context="http://www.springframework.org/schema/context" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:https="http://www.mulesoft.org/schema/mule/https" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="EE-3.5.0" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
@@ -18,7 +18,8 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
 http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mule/schedulers/current/mule-schedulers.xsd
 http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
-http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd">
     
 	<!-- global exception strategy -->
 	<catch-exception-strategy name="global-main-exception-strategy">
@@ -82,7 +83,7 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
     <data-mapper:config name="Pojo_To_JSON" transformationGraphPath="pojo_to_json.grf" doc:name="Pojo_To_JSON"/>
     <data-mapper:config name="JSON_To_Xml_SnPORequestServiceUpdateRequest_" transformationGraphPath="json_to_xml_snporequestserviceupdaterequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceUpdateRequest_"/>
     <data-mapper:config name="Xml_SnPORequestServiceReadResponse__To_XML" transformationGraphPath="xml_snporequestservicereadresponse__to_xml.grf" doc:name="Xml_SnPORequestServiceReadResponse__To_XML"/>
-    <data-mapper:config name="Xml_SnPORequestServiceReadResponse__To_Map" transformationGraphPath="xml_snporequestservicereadresponse__to_map.grf" doc:name="Xml_SnPORequestServiceReadResponse__To_Map"/>
+
     <data-mapper:config name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" transformationGraphPath="xml_snporequestservicereadresponse__to_xml_snporequestserviceupdaterequest_.grf" doc:name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_"/>
     <spring:beans>
         <spring:bean id="Bean" name="EmailBody" class="com.bhnetwork.integration.component.EmailBody" scope="prototype"  />
@@ -97,40 +98,53 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
         <logger message="Successfully Updated" level="INFO" doc:name="Sync Successful" />
         <exception-strategy ref="global-main-exception-strategy" doc:name="Reference Exception Strategy" />
     </flow>
-    <flow name="sync-dax-sn" doc:name="sync-dax-sn">
+    <sub-flow name="sync-dax-sn" doc:name="sync-dax-sn">
         <flow-ref name="sync-vendor" doc:name="sync vendor" />
-        <flow-ref name="sync-ordertype" doc:name="sync ordertype" />
+        <flow-ref name="sync-ordertype" doc:name="sync ordertype" /> 
         <!-- <flow-ref name="sync-projectdata" doc:name="sync projectdata" /> -->
-        <exception-strategy ref="global-main-exception-strategy" doc:name="Reference Exception Strategy" />
-    </flow>
-    <flow name="sync-vendor" doc:name="sync-vendor">
-
+    </sub-flow>
+    <sub-flow name="sync-vendor" doc:name="sync-vendor">
         <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
             <processor-chain doc:name="Processor Chain">
                 <db:select config-ref="Generic_Database_Configuration" doc:name="Database">
-                    <db:parameterized-query><![CDATA[select TOP 1000 AccountNum, Name, Blocked,  Address from VENDTABLE where VENDTABLE.VENDGROUP = 'TRADE']]></db:parameterized-query>
+                    <db:parameterized-query><![CDATA[select AccountNum, Name, Blocked,  Address from VENDTABLE where VENDTABLE.VENDGROUP = 'TRADE']]></db:parameterized-query>
                 </db:select>
                 <data-mapper:transform config-ref="List_Map__To_JSON" doc:name="List&lt;Map&gt; To JSON"/>
-
             </processor-chain>
         </until-successful>
-
+        <!-- Prototype concept for batch solution. Commented out as increasing the timeout solved the issue -->
+        <!-- <json:json-to-object-transformer returnClass="java.util.HashMap" doc:name="JSON to Object"/>
+        <set-payload value="#[payload.records]" doc:name="Set Payload"/>
+        <batch:execute name="batch" doc:name="Batch Execute"/> -->
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="Vendor: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
         <json:object-to-json-transformer doc:name="Object to JSON" />
-        <set-session-variable variableName="integrationStep" value="sn.post.vendor (IF7)" doc:name="integrationStep = sn.post.vendor"/>
+        <set-session-variable variableName="integrationStep" value="sn.post.vendor (IF7)" doc:name="integrationStep = sn.post.vendor"/> 
         <set-variable variableName="if7request" value="#[payload]" doc:name="if7request"/>
         <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
             <processor-chain doc:name="Processor Chain">
                 <set-payload value="#[flowVars.if7request]" doc:name="if7request (For replay)"/>
-                <https:outbound-endpoint exchange-pattern="request-response" host="${http.sn.host}" port="${http.sn.port}" path="u_dax_vendor.do?JSON&amp;sysparm_action=insertMultiple" method="POST" user="${sn.user}" password="${sn.password}" doc:name="HTTP"/>
+                <https:outbound-endpoint exchange-pattern="request-response" host="${http.sn.host}" port="${http.sn.port}" path="u_dax_vendor.do?JSON&amp;sysparm_action=insertMultiple" method="POST" user="${sn.user}" password="${sn.password}" doc:name="HTTP" contentType="application/json" responseTimeout="${responseTimeout}"/>
             </processor-chain>
         </until-successful>
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="Vendor: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
-        <exception-strategy ref="global-main-exception-strategy" doc:name="Reference Exception Strategy" />
-    </flow>
-    <flow name="sync-ordertype" doc:name="sync-ordertype">
+    </sub-flow>
+    <!-- Batch solution to insert records is no more needed. Increasing the timeout does solves the problem -->
+    <!-- <batch:job name="batch">
+        <batch:threading-profile poolExhaustedAction="WAIT"/>
+        <batch:process-records>
+            <batch:step name="Batch_Step">
+                <batch:commit size="500" doc:name="Batch Commit">
+                    <json:object-to-json-transformer doc:name="Object to JSON"/>
+                    <set-payload value="{&quot;records&quot;: #[payload]}" doc:name="Set Payload"/>
+                    <logger message="RequestToSN #[payload]" level="INFO" doc:name="Logger"/>
+                    <https:outbound-endpoint exchange-pattern="request-response" host="${http.sn.host}" port="${http.sn.port}" path="u_dax_vendor.do?JSON&amp;sysparm_action=insertMultiple" method="POST" user="${sn.user}" password="${sn.password}" doc:name="HTTP"/>
+                </batch:commit>
+            </batch:step>
+        </batch:process-records>
+    </batch:job> -->
+    <sub-flow name="sync-ordertype" doc:name="sync-ordertype">
         <set-payload value="{&quot;DataSourceName&quot;:&quot;PurchPool&quot;,&quot;FieldName&quot;:&quot;PurchPoolId&quot;,&quot;Operator&quot;:&quot;NotEqual&quot;,&quot;Value1&quot;:&quot; &quot;}" doc:name="Query Parameters in JSON" />
         <data-mapper:transform config-ref="JSON_To_Xml_POROrderTypeServiceFindRequest_" doc:name="JSON To Xml&lt;POROrderTypeServiceFindRequest&gt;" />
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
@@ -156,9 +170,8 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
         </until-successful>
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="OrderType: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
-        <exception-strategy ref="global-main-exception-strategy" doc:name="Reference Exception Strategy" />
-    </flow>
-    <flow name="sync-projectdata" doc:name="sync-projectdata">
+    </sub-flow>
+    <sub-flow name="sync-projectdata" doc:name="sync-projectdata">
         <set-payload value="{&quot;DataSourceName&quot;:&quot;ProjTable&quot;,&quot;FieldName&quot;:&quot;ProjId&quot;,&quot;Operator&quot;:&quot;NotEqual&quot;,&quot;Value1&quot;:&quot; &quot;,&quot;Value2&quot;:&quot;?&quot;}" doc:name="Query Parameters in JSON"/>
         <data-mapper:transform config-ref="JSON_To_Xml_PORProjectDataServiceFindRequest_" doc:name="JSON To Xml&lt;PORProjectDataServiceFindRequest&gt;"/>
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
@@ -170,7 +183,6 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
                 <ws:consumer config-ref="ProjectData_Web_Service_Consumer" operation="find" doc:name="ProjectData Web Service Consumer"/>
             </processor-chain>
         </until-successful>
-
         <data-mapper:transform config-ref="Xml_PORProjectDataServiceFindResponse__To_JSON" doc:name="Xml&lt;PORProjectDataServiceFindResponse&gt; To JSON"/>
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="ProjectData: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
@@ -183,11 +195,9 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
                 <https:outbound-endpoint exchange-pattern="request-response" host="${http.sn.host}" port="${http.sn.port}" path="u_dax_project.do?JSON&amp;sysparm_action=insertMultiple" method="POST" user="${sn.user}" password="${sn.password}" doc:name="HTTP"/>
             </processor-chain>
         </until-successful>
-
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="ProjectData: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
-        <exception-strategy ref="global-main-exception-strategy" doc:name="Reference Exception Strategy" />
-    </flow>
+    </sub-flow>
     <flow name="ptp-createupdatepo-main" doc:name="ptp-createupdatepo-main">
         <http:inbound-endpoint connector-ref="http_inbound" address="http://${http.host}:${http.port}" doc:name="HTTP"/>
         <apikit:router xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" config-ref="ptp-createupdatepo-config" doc:name="APIkit Router"/>
@@ -268,9 +278,7 @@ http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/cu
         
         <logger message="IF5 Completed" level="INFO" doc:name="IF5 Completed"/>
     </sub-flow>
-    <sub-flow name="if5-read" doc:name="if5-read">
-        <data-mapper:transform config-ref="Xml_SnPORequestServiceReadResponse__To_Map" doc:name="Xml&lt;SnPORequestServiceReadResponse&gt; To Map"/>
-    </sub-flow>
+
     
     <flow name="DAX-DLQ-flow" doc:name="DAX-DLQ-flow">
         <vm:inbound-endpoint exchange-pattern="one-way" doc:name="VM-DLQ" path="Q.dlq" />
