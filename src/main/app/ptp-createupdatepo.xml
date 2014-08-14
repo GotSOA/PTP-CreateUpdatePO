@@ -46,6 +46,7 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
     <data-mapper:config name="Xml_POROrderTypeServiceFindResponse__To_JSON" transformationGraphPath="xml_porordertypeservicefindresponse__to_json.grf" doc:name="Xml_POROrderTypeServiceFindResponse__To_JSON" />
 	
     <data-mapper:config name="JSON_To_Xml_DimensionsServiceFindRequest_" transformationGraphPath="json_to_xml_dimensionsservicefindrequest_.grf" doc:name="JSON_To_Xml_DimensionsServiceFindRequest_"/>
+	<data-mapper:config name="Xml_DimensionsServiceFindResponse__To_JSON" transformationGraphPath="xml_dimensionsservicefindresponse__to_json.grf" doc:name="Xml_DimensionsServiceFindResponse__To_JSON"/>
 
     <data-mapper:config name="JSON_To_Xml_SnPORequestServiceCreateRequest_" transformationGraphPath="json_to_xml_snporequestservicecreaterequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceCreateRequest_"/>
     <data-mapper:config name="JSON_To_Xml_SnPORequestServiceReadRequest_" transformationGraphPath="json_to_xml_snporequestservicereadrequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceReadRequest_"/>
@@ -93,7 +94,7 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
         	<json:object-to-json-transformer doc:name="Object to JSON"/>
         </apikit:mapping>
     </apikit:mapping-exception-strategy>
-
+    
     <flow name="quartz-sync-metadata" doc:name="quartz-sync-metadata">
         <poll doc:name="Poll">
             <schedulers:cron-scheduler expression="${quartz.sync-dax-sn.cron}"/>
@@ -106,7 +107,7 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
     </flow>
     <sub-flow name="sync-dax-sn" doc:name="sync-dax-sn">
         <flow-ref name="sync-vendor" doc:name="sync vendor" />
-        <flow-ref name="sync-ordertype" doc:name="sync ordertype" /> 
+        <flow-ref name="sync-ordertype" doc:name="sync ordertype" />  
         <flow-ref name="sync-dimension" doc:name="sync dimension" />
     </sub-flow>
     <sub-flow name="sync-vendor" doc:name="sync-vendor">
@@ -190,9 +191,9 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
                 <ws:consumer config-ref="Dimension_Web_Service_Consumer" operation="find" doc:name="Dimension Web Service Consumer"/>
             </processor-chain>
         </until-successful>
-        <logger message="TODO SN" level="INFO" doc:name="TODO SN"/>
-        <!-- <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
-        <logger message="ProjectData: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
+        <data-mapper:transform config-ref="Xml_DimensionsServiceFindResponse__To_JSON" doc:name="Xml&lt;DimensionsServiceFindResponse&gt; To JSON"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
+        <logger message="Dimension: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
         <json:object-to-json-transformer doc:name="Object to JSON" />
         <set-session-variable variableName="integrationStep" value="sn.post.dimensions (IF11)" doc:name="integrationStep = sn.post.dimensions"/>
         <set-variable variableName="if11request" value="#[payload]" doc:name="if11request"/>
@@ -203,7 +204,7 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
             </processor-chain>
         </until-successful>
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
-        <logger message="ProjectData: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" /> -->
+        <logger message="Dimension: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
     </sub-flow>
     <flow name="ptp-createupdatepo-main" doc:name="ptp-createupdatepo-main">
         <http:inbound-endpoint connector-ref="http_inbound" address="http://${http.host}:${http.port}" doc:name="HTTP"/>
