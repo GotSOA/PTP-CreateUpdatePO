@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/dynamics/2008/01/services">
+  <xs:import schemaLocation="dimensionsservice_1.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+  <xs:import schemaLocation="dimensionsservice_1_2.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Dimensions"/>
+  <xs:import schemaLocation="dimensionsservice_1_2_3.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+  <xs:element name="DimensionsServiceFindRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q1:QueryCriteria" xmlns:q1="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DimensionsServiceFindResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q2:Dimensions" xmlns:q2="http://schemas.microsoft.com/dynamics/2008/01/documents/Dimensions"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DimensionsServiceFindKeysRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q3:QueryCriteria" xmlns:q3="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DimensionsServiceFindKeysResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q4:EntityKeyList" xmlns:q4="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DimensionsServiceCreateRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q5:Dimensions" xmlns:q5="http://schemas.microsoft.com/dynamics/2008/01/documents/Dimensions"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DimensionsServiceCreateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q6:EntityKeyList" xmlns:q6="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DimensionsServiceReadRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q7:EntityKeyList" xmlns:q7="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DimensionsServiceReadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q8:Dimensions" xmlns:q8="http://schemas.microsoft.com/dynamics/2008/01/documents/Dimensions"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

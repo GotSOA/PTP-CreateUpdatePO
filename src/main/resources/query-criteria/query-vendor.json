@@ -1,6 +1,0 @@
-{
-   "DataSourceName":"VendTable",
-   "FieldName":"VendGroup",
-   "Operator":"Equal",
-   "Value1":"Trade"
-}

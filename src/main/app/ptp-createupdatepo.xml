@@ -33,15 +33,34 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
     <http:connector name="ntlmConnector" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS">
         <service-overrides sessionHandler="org.mule.session.NullSessionHandler" outboundTransformer="com.mulesoft.support.CustomObjectToHttpClientMethodRequest" dispatcherFactory="org.mule.transport.http.NTLMv2HttpClientMessageDispatcherFactor" />
     </http:connector>
+    
     <ws:consumer-config name="SnPor_Web_Service_Consumer" wsdlLocation="wsdl/snporequestservice_1.wsdl" service="SnPORequestService" port="BasicHttpBinding_SnPORequestService" serviceAddress="http://${dax.http.host}/${dax.http.snpor.path}" doc:name="SnPor Web Service Consumer" connector-ref="ntlmConnector" />
-    <ws:consumer-config name="Vendor_Web_Service_Consumer" wsdlLocation="wsdl/vendtableservice_1.wsdl" service="VendTableService" port="BasicHttpBinding_VendTableService" serviceAddress="http://${dax.http.host}/${dax.http.vendor.path}" doc:name="Vendor Web Service Consumer" connector-ref="ntlmConnector" />
+
     <ws:consumer-config name="OrderType_Web_Service_Consumer" wsdlLocation="wsdl/porordertypeservice_1.wsdl" service="POROrderTypeService" port="BasicHttpBinding_POROrderTypeService" serviceAddress="http://${dax.http.host}/${dax.http.ordertype.path}" doc:name="OrderType Web Service Consumer" connector-ref="ntlmConnector" />
-    <ws:consumer-config name="ProjectData_Web_Service_Consumer" wsdlLocation="wsdl/porprojectdataservice_1.wsdl" service="PORProjectDataService" port="BasicHttpBinding_PORProjectDataService" serviceAddress="http://${dax.http.host}/${dax.http.projectdata.path}" doc:name="ProjectData Web Service Consumer" connector-ref="ntlmConnector" />
+
+    <ws:consumer-config name="Dimension_Web_Service_Consumer" wsdlLocation="wsdl/dimensionsservice_1.wsdl" service="DimensionsService" port="BasicHttpBinding_DimensionsService" serviceAddress="http://${dax.http.host}/${dax.http.dimension.path}" doc:name="Web Service Consumer" connector-ref="ntlmConnector"/>
+    
+    <data-mapper:config name="List_Map__To_JSON" transformationGraphPath="list_map__to_json.grf" doc:name="List_Map__To_JSON"/>
+    
     <data-mapper:config name="JSON_To_Xml_POROrderTypeServiceFindRequest_" transformationGraphPath="json_to_xml_porordertypeservicefindrequest_.grf" doc:name="JSON_To_Xml_POROrderTypeServiceFindRequest_" />
-    <context:property-placeholder location="ptp-createupdatepo.properties,${mule.env}-ptp-createupdatepo.properties" />
     <data-mapper:config name="Xml_POROrderTypeServiceFindResponse__To_JSON" transformationGraphPath="xml_porordertypeservicefindresponse__to_json.grf" doc:name="Xml_POROrderTypeServiceFindResponse__To_JSON" />
+	
+    <data-mapper:config name="JSON_To_Xml_DimensionsServiceFindRequest_" transformationGraphPath="json_to_xml_dimensionsservicefindrequest_.grf" doc:name="JSON_To_Xml_DimensionsServiceFindRequest_"/>
 
+    <data-mapper:config name="JSON_To_Xml_SnPORequestServiceCreateRequest_" transformationGraphPath="json_to_xml_snporequestservicecreaterequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceCreateRequest_"/>
+    <data-mapper:config name="JSON_To_Xml_SnPORequestServiceReadRequest_" transformationGraphPath="json_to_xml_snporequestservicereadrequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceReadRequest_"/>
+    <data-mapper:config name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" transformationGraphPath="xml_snporequestservicereadresponse__to_xml_snporequestserviceupdaterequest_.grf" doc:name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_"/>
 
+    <data-mapper:config name="Pojo_To_JSON" transformationGraphPath="pojo_to_json.grf" doc:name="Pojo_To_JSON"/>
+    
+	<context:property-placeholder location="ptp-createupdatepo.properties,${mule.env}-ptp-createupdatepo.properties" />
+
+	<db:generic-config name="Generic_Database_Configuration" url="${dax.database.url};user=${dax.database.user};password=${dax.database.password}" driverClassName="net.sourceforge.jtds.jdbc.Driver" doc:name="Generic Database Configuration"/>
+    
+    <spring:beans>
+        <spring:bean id="Bean" name="EmailBody" class="com.bhnetwork.integration.component.EmailBody" scope="prototype"  />
+    </spring:beans>
+    
     <apikit:config xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" name="ptp-createupdatepo-config" raml="ptp-createupdatepo.raml" consoleEnabled="true" consolePath="console" doc:name="Router"/>
     <apikit:mapping-exception-strategy xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" name="ptp-createupdatepo-apiKitGlobalExceptionMapping" doc:name="Mapping Exception Strategy">
         <apikit:mapping statusCode="404">
@@ -75,33 +94,20 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
         </apikit:mapping>
     </apikit:mapping-exception-strategy>
 
-    <data-mapper:config name="JSON_To_Xml_PORProjectDataServiceFindRequest_" transformationGraphPath="json_to_xml_porprojectdataservicefindrequest_.grf" doc:name="JSON_To_Xml_PORProjectDataServiceFindRequest_"/>
-    <data-mapper:config name="Xml_PORProjectDataServiceFindResponse__To_JSON" transformationGraphPath="xml_porprojectdataservicefindresponse__to_json.grf" doc:name="Xml_PORProjectDataServiceFindResponse__To_JSON"/>
-    <data-mapper:config name="JSON_To_Xml_SnPORequestServiceReadRequest_" transformationGraphPath="json_to_xml_snporequestservicereadrequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceReadRequest_"/>
-
-    <data-mapper:config name="JSON_To_Xml_SnPORequestServiceCreateRequest_" transformationGraphPath="json_to_xml_snporequestservicecreaterequest_.grf" doc:name="JSON_To_Xml_SnPORequestServiceCreateRequest_"/>
-    <data-mapper:config name="Pojo_To_JSON" transformationGraphPath="pojo_to_json.grf" doc:name="Pojo_To_JSON"/>
-
-    <data-mapper:config name="Xml_SnPORequestServiceReadResponse__To_XML" transformationGraphPath="xml_snporequestservicereadresponse__to_xml.grf" doc:name="Xml_SnPORequestServiceReadResponse__To_XML"/>
-
-    <data-mapper:config name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" transformationGraphPath="xml_snporequestservicereadresponse__to_xml_snporequestserviceupdaterequest_.grf" doc:name="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_"/>
-    <spring:beans>
-        <spring:bean id="Bean" name="EmailBody" class="com.bhnetwork.integration.component.EmailBody" scope="prototype"  />
-    </spring:beans>
-    <db:generic-config name="Generic_Database_Configuration" url="${dax.database.url};user=${dax.database.user};password=${dax.database.password}" driverClassName="net.sourceforge.jtds.jdbc.Driver" doc:name="Generic Database Configuration"/>
-    <data-mapper:config name="List_Map__To_JSON" transformationGraphPath="list_map__to_json.grf" doc:name="List_Map__To_JSON"/>
-    <flow name="quartz-ordertype" doc:name="quartz-ordertype">
+    <flow name="quartz-sync-metadata" doc:name="quartz-sync-metadata">
         <poll doc:name="Poll">
             <schedulers:cron-scheduler expression="${quartz.sync-dax-sn.cron}"/>
             <flow-ref name="sync-dax-sn" doc:name="sync dax-sn" />
         </poll>
-        <logger message="Successfully Updated" level="INFO" doc:name="Sync Successful" />
+        <set-payload value="{&quot;status&quot;:&quot;OK&quot;}" doc:name="Set OK"/>
+        <logger message="Metadata Sync Successful" level="INFO" doc:name="Metadata Sync Successful"/>
+
         <exception-strategy ref="global-main-exception-strategy" doc:name="Reference Exception Strategy" />
     </flow>
     <sub-flow name="sync-dax-sn" doc:name="sync-dax-sn">
         <flow-ref name="sync-vendor" doc:name="sync vendor" />
         <flow-ref name="sync-ordertype" doc:name="sync ordertype" /> 
-        <!-- <flow-ref name="sync-projectdata" doc:name="sync projectdata" /> -->
+        <flow-ref name="sync-dimension" doc:name="sync dimension" />
     </sub-flow>
     <sub-flow name="sync-vendor" doc:name="sync-vendor">
         <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
@@ -171,20 +177,21 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="OrderType: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
     </sub-flow>
-    <sub-flow name="sync-projectdata" doc:name="sync-projectdata">
-        <set-payload value="{&quot;DataSourceName&quot;:&quot;ProjTable&quot;,&quot;FieldName&quot;:&quot;ProjId&quot;,&quot;Operator&quot;:&quot;NotEqual&quot;,&quot;Value1&quot;:&quot; &quot;,&quot;Value2&quot;:&quot;?&quot;}" doc:name="Query Parameters in JSON"/>
-        <data-mapper:transform config-ref="JSON_To_Xml_PORProjectDataServiceFindRequest_" doc:name="JSON To Xml&lt;PORProjectDataServiceFindRequest&gt;"/>
+    <sub-flow name="sync-dimension" doc:name="sync-dimension">
+        <set-payload value="{&quot;DataSourceName&quot;:&quot;Dimension&quot;,&quot;FieldName&quot;:&quot;DimensionCode&quot;,&quot;Operator&quot;:&quot;Equal&quot;,&quot;Value1&quot;:&quot;ProjectId&quot;}" doc:name="Query Parameters in JSON"/>
+        <data-mapper:transform config-ref="JSON_To_Xml_DimensionsServiceFindRequest_" doc:name="JSON To Xml&lt;DimensionsServiceFindRequest&gt;"/>
+
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
         <set-session-variable variableName="integrationStep" value="dax.read.dimensions (IF10)" doc:name="integrationStep = dax.read.dimensions"/>
         <set-variable variableName="if10request" value="#[payload]" doc:name="if10request"/>
         <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
             <processor-chain doc:name="Processor Chain">
                 <set-payload value="#[flowVars.if10request]" doc:name="if10request (For replay)"/>
-                <ws:consumer config-ref="ProjectData_Web_Service_Consumer" operation="find" doc:name="ProjectData Web Service Consumer"/>
+                <ws:consumer config-ref="Dimension_Web_Service_Consumer" operation="find" doc:name="Dimension Web Service Consumer"/>
             </processor-chain>
         </until-successful>
-        <data-mapper:transform config-ref="Xml_PORProjectDataServiceFindResponse__To_JSON" doc:name="Xml&lt;PORProjectDataServiceFindResponse&gt; To JSON"/>
-        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
+        <logger message="TODO SN" level="INFO" doc:name="TODO SN"/>
+        <!-- <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
         <logger message="ProjectData: Records to insert in SN #[(payload.records).size()]" level="INFO" doc:name="Records to insert in SN" />
         <json:object-to-json-transformer doc:name="Object to JSON" />
         <set-session-variable variableName="integrationStep" value="sn.post.dimensions (IF11)" doc:name="integrationStep = sn.post.dimensions"/>
@@ -196,7 +203,7 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
             </processor-chain>
         </until-successful>
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object" />
-        <logger message="ProjectData: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" />
+        <logger message="ProjectData: Records inserted in SN #[(payload.records).size()]" level="INFO" doc:name="Records inserted in SN" /> -->
     </sub-flow>
     <flow name="ptp-createupdatepo-main" doc:name="ptp-createupdatepo-main">
         <http:inbound-endpoint connector-ref="http_inbound" address="http://${http.host}:${http.port}" doc:name="HTTP"/>

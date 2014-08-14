@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="DimensionsService" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:tns="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_DimensionsService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:NegotiateAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http"/>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services/Imports">
+      <xsd:import schemaLocation="dimensionsservice.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/services"/>
+      <xsd:import schemaLocation="dimensionsservice_1_2_3_4_5.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+      <xsd:import schemaLocation="dimensionsservice_1_2_3_4_5_6.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="dimensionsservice_1.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria"/>
+      <xsd:import schemaLocation="dimensionsservice_1_2_3_4_5_6_7.xsd"/>
+      <xsd:import schemaLocation="dimensionsservice_1_2.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Dimensions"/>
+      <xsd:import schemaLocation="dimensionsservice_1_2_3.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      <xsd:import schemaLocation="dimensionsservice_1_2_3_4.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKey"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="DimensionsServiceFindRequest">
+    <wsdl:part name="parameters" element="tns:DimensionsServiceFindRequest"/>
+  </wsdl:message>
+  <wsdl:message name="DimensionsServiceFindResponse">
+    <wsdl:part name="parameters" element="tns:DimensionsServiceFindResponse"/>
+  </wsdl:message>
+  <wsdl:message name="DimensionsService_find_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q1:AifFault" xmlns:q1="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="DimensionsServiceFindKeysRequest">
+    <wsdl:part name="parameters" element="tns:DimensionsServiceFindKeysRequest"/>
+  </wsdl:message>
+  <wsdl:message name="DimensionsServiceFindKeysResponse">
+    <wsdl:part name="parameters" element="tns:DimensionsServiceFindKeysResponse"/>
+  </wsdl:message>
+  <wsdl:message name="DimensionsService_findKeys_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q2:AifFault" xmlns:q2="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="DimensionsServiceCreateRequest">
+    <wsdl:part name="parameters" element="tns:DimensionsServiceCreateRequest"/>
+  </wsdl:message>
+  <wsdl:message name="DimensionsServiceCreateResponse">
+    <wsdl:part name="parameters" element="tns:DimensionsServiceCreateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="DimensionsService_create_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q3:AifFault" xmlns:q3="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="DimensionsServiceReadRequest">
+    <wsdl:part name="parameters" element="tns:DimensionsServiceReadRequest"/>
+  </wsdl:message>
+  <wsdl:message name="DimensionsServiceReadResponse">
+    <wsdl:part name="parameters" element="tns:DimensionsServiceReadResponse"/>
+  </wsdl:message>
+  <wsdl:message name="DimensionsService_read_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q4:AifFault" xmlns:q4="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:portType name="DimensionsService">
+    <wsdl:operation name="find">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/find" name="DimensionsServiceFindRequest" message="tns:DimensionsServiceFindRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/findResponse" name="DimensionsServiceFindResponse" message="tns:DimensionsServiceFindResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/findAifFaultFault" name="AifFaultFault" message="tns:DimensionsService_find_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="findKeys">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/findKeys" name="DimensionsServiceFindKeysRequest" message="tns:DimensionsServiceFindKeysRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/findKeysResponse" name="DimensionsServiceFindKeysResponse" message="tns:DimensionsServiceFindKeysResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/findKeysAifFaultFault" name="AifFaultFault" message="tns:DimensionsService_findKeys_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/create" name="DimensionsServiceCreateRequest" message="tns:DimensionsServiceCreateRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/createResponse" name="DimensionsServiceCreateResponse" message="tns:DimensionsServiceCreateResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/createAifFaultFault" name="AifFaultFault" message="tns:DimensionsService_create_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="read">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/read" name="DimensionsServiceReadRequest" message="tns:DimensionsServiceReadRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/readResponse" name="DimensionsServiceReadResponse" message="tns:DimensionsServiceReadResponse"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/readAifFaultFault" name="AifFaultFault" message="tns:DimensionsService_read_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_DimensionsService" type="tns:DimensionsService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_DimensionsService_policy"/>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="find">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/find" style="document"/>
+      <wsdl:input name="DimensionsServiceFindRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DimensionsServiceFindResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findKeys">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/findKeys" style="document"/>
+      <wsdl:input name="DimensionsServiceFindKeysRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DimensionsServiceFindKeysResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/create" style="document"/>
+      <wsdl:input name="DimensionsServiceCreateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DimensionsServiceCreateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="read">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/DimensionsService/read" style="document"/>
+      <wsdl:input name="DimensionsServiceReadRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DimensionsServiceReadResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AifFaultFault">
+        <soap:fault name="AifFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DimensionsService">
+    <wsdl:port name="BasicHttpBinding_DimensionsService" binding="tns:BasicHttpBinding_DimensionsService">
+      <soap:address location="http://vsclapdaxq04w.devqa.local/MicrosoftDynamicsAXAif50/dimensionsservice.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

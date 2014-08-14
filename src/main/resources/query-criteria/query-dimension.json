@@ -1,0 +1,6 @@
+{
+   "DataSourceName":"Dimension",
+   "FieldName":"DimensionCode",
+   "Operator":"Equal",
+   "Value1":"ProjectId"
+}

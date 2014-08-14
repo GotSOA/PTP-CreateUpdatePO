@@ -1,18 +1,17 @@
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:quer="http://schemas.microsoft.com/dynamics/2006/02/documents/QueryCriteria">
    <soapenv:Header/>
    <soapenv:Body>
-      <ser:VendTableServiceFindRequest>
+      <ser:DimensionsServiceFindRequest>
          <!--Optional:-->
          <quer:QueryCriteria>
             <quer:CriteriaElement>
-               <quer:DataSourceName>VendTable</quer:DataSourceName>
-               <quer:FieldName>VendGroup</quer:FieldName>
+               <quer:DataSourceName>Dimension</quer:DataSourceName>
+               <quer:FieldName>DimensionCode</quer:FieldName>
                <quer:Operator>Equal</quer:Operator>
-               <quer:Value1>Trade</quer:Value1>
-               <!--Optional:-->
-             
+               <quer:Value1>ProjectId</quer:Value1>
+               
             </quer:CriteriaElement>
          </quer:QueryCriteria>
-      </ser:VendTableServiceFindRequest>
+      </ser:DimensionsServiceFindRequest>
    </soapenv:Body>
 </soapenv:Envelope>

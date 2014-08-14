@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/documents/Dimensions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/dynamics/2008/01/documents/Dimensions">
+  <xs:element name="Dimensions" type="AxdDimensions"/>
+  <xs:complexType name="AxdDimensions">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DocPurpose" nillable="true" type="AxdEnum_XMLDocPurpose"/>
+      <xs:element minOccurs="0" name="SenderId" nillable="true" type="AxdExtType_dataAreaId"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Dimension" type="AxdEntity_Dimension"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AxdEnum_XMLDocPurpose">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Product:Product</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Original"/>
+      <xs:enumeration value="Duplicate"/>
+      <xs:enumeration value="Proforma"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_dataAreaId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Company:ID for an area of data</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdEnum_AxdEntityAction">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">AxdEntityAction:AxdEntityAction</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="create"/>
+      <xs:enumeration value="update"/>
+      <xs:enumeration value="replace"/>
+      <xs:enumeration value="delete"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AxdEntity_Dimension">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_DocumentHash" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="BoldTypeface" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="Closed" nillable="true" type="AxdExtType_NoYesId"/>
+      <xs:element minOccurs="0" name="Column" nillable="true" type="AxdExtType_Column"/>
+      <xs:element minOccurs="0" name="CompanyGroup" nillable="true" type="AxdExtType_DimensionExt"/>
+      <xs:element minOccurs="0" name="COSBlockAllocation" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="COSBlockDistribution" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="COSBlockPostCost" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="COSBlockPostWork" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="AxdExtType_Description"/>
+      <xs:element minOccurs="1" name="DimensionCode" type="AxdExtType_DimensionCode"/>
+      <xs:element minOccurs="0" name="InCharge" nillable="true" type="AxdExtType_EmplId"/>
+      <xs:element minOccurs="0" name="Italic" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="LineExceed" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="LineSub" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="1" name="Num" type="AxdExtType_SysDim"/>
+      <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
+      <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
+      <xs:element minOccurs="0" name="ReverseSign" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="UnderlineNumerals" nillable="true" type="AxdEnum_NoYes"/>
+      <xs:element minOccurs="0" name="UnderLineTxt" nillable="true" type="AxdEnum_NoYes"/>
+    </xs:sequence>
+    <xs:attribute fixed="entity" name="class" use="required"/>
+    <xs:attribute name="action" type="AxdEnum_AxdEntityAction"/>
+  </xs:complexType>
+  <xs:simpleType name="AxdEnum_NoYes">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">:</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_NoYesId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">:</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="No"/>
+      <xs:enumeration value="Yes"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Column">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Column:Column ID.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Integer"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdType_Integer">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="-2147483648"/>
+      <xs:maxInclusive value="2147483647"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_DimensionExt">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Group dimension:Group dimension, which may be used when consolidating.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_Description">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Description:Brief description of transaction.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_DimensionCode">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Dimension:Select one of the defined dimensions.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Channel"/>
+      <xs:enumeration value="Department"/>
+      <xs:enumeration value="Product"/>
+      <xs:enumeration value="PartnerActivityCode"/>
+      <xs:enumeration value="RegionCode"/>
+      <xs:enumeration value="ProjectId"/>
+      <xs:enumeration value="Affiliate"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_EmplId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Employee:Employee number.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_SysDim">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Number:Base data type of company accounts dimensions other than the first.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_recId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Record-ID:Unique ID for the record in the database</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Int64"/>
+  </xs:simpleType>
+  <xs:simpleType name="AxdType_Int64">
+    <xs:restriction base="xs:long">
+      <xs:minInclusive value="-9223372036854775808"/>
+      <xs:maxInclusive value="9223372036854775807"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_recVersion">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Record Version:Version of the record in the database</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="AxdType_Integer"/>
+  </xs:simpleType>
+</xs:schema>
