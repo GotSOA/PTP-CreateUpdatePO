@@ -49,6 +49,7 @@
       <xs:element minOccurs="0" name="ClosedOpen" nillable="true" type="AxdEnum_PORClosedOpen"/>
       <xs:element minOccurs="0" name="Currency" nillable="true" type="AxdUnion_AxdExtType_CustCurrencyCode_AxdType_ExtCodeValue"/>
       <xs:element minOccurs="0" name="PorId" nillable="true" type="AxdExtType_PORequestId"/>
+      <xs:element minOccurs="0" name="PurchId" nillable="true" type="AxdExtType_PurchId"/>
       <xs:element minOccurs="0" name="RecId" nillable="true" type="AxdExtType_recId"/>
       <xs:element minOccurs="0" name="RecVersion" nillable="true" type="AxdExtType_recVersion"/>
       <xs:element minOccurs="0" name="RequestorName" nillable="true" type="AxdExtType_Name"/>
@@ -229,6 +230,15 @@
   <xs:simpleType name="AxdExtType_PORequestId">
     <xs:annotation>
       <xs:documentation xml:lang="EN-US">:</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AxdExtType_PurchId">
+    <xs:annotation>
+      <xs:documentation xml:lang="EN-US">Purchase order:Identification of the purchase.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:minLength value="0"/>

@@ -2,18 +2,18 @@
 <xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/dynamics/2008/01/services">
   <xs:import schemaLocation="snporequestservice_1.xsd" namespace="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
   <xs:import schemaLocation="snporequestservice_1_2_3.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest"/>
-  <xs:element name="SnPORequestServiceUpdateRequest">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" ref="q1:EntityKeyList" xmlns:q1="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
-        <xs:element minOccurs="0" ref="q2:SnPORequest" xmlns:q2="http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="SnPORequestServiceDeleteRequest">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="q3:EntityKeyList" xmlns:q3="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+        <xs:element minOccurs="0" ref="q1:EntityKeyList" xmlns:q1="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SnPORequestServiceUpdateRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="q2:EntityKeyList" xmlns:q2="http://schemas.microsoft.com/dynamics/2006/02/documents/EntityKeyList"/>
+        <xs:element minOccurs="0" ref="q3:SnPORequest" xmlns:q3="http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

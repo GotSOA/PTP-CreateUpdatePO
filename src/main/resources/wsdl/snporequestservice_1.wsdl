@@ -18,18 +18,18 @@
       <xsd:import schemaLocation="snporequestservice_1_2_3.xsd" namespace="http://schemas.microsoft.com/dynamics/2008/01/documents/SnPORequest"/>
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="SnPORequestServiceUpdateRequest">
-    <wsdl:part name="parameters" element="tns:SnPORequestServiceUpdateRequest"/>
-  </wsdl:message>
-  <wsdl:message name="SnPORequestService_update_OutputMessage"/>
-  <wsdl:message name="SnPORequestService_update_AifFaultFault_FaultMessage">
-    <wsdl:part name="detail" element="q1:AifFault" xmlns:q1="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
-  </wsdl:message>
   <wsdl:message name="SnPORequestServiceDeleteRequest">
     <wsdl:part name="parameters" element="tns:SnPORequestServiceDeleteRequest"/>
   </wsdl:message>
   <wsdl:message name="SnPORequestService_delete_OutputMessage"/>
   <wsdl:message name="SnPORequestService_delete_AifFaultFault_FaultMessage">
+    <wsdl:part name="detail" element="q1:AifFault" xmlns:q1="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
+  </wsdl:message>
+  <wsdl:message name="SnPORequestServiceUpdateRequest">
+    <wsdl:part name="parameters" element="tns:SnPORequestServiceUpdateRequest"/>
+  </wsdl:message>
+  <wsdl:message name="SnPORequestService_update_OutputMessage"/>
+  <wsdl:message name="SnPORequestService_update_AifFaultFault_FaultMessage">
     <wsdl:part name="detail" element="q2:AifFault" xmlns:q2="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
   </wsdl:message>
   <wsdl:message name="SnPORequestServiceCreateRequest">
@@ -51,15 +51,15 @@
     <wsdl:part name="detail" element="q4:AifFault" xmlns:q4="http://schemas.microsoft.com/dynamics/2008/01/documents/Fault"/>
   </wsdl:message>
   <wsdl:portType name="SnPORequestService">
-    <wsdl:operation name="update">
-      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/update" name="SnPORequestServiceUpdateRequest" message="tns:SnPORequestServiceUpdateRequest"/>
-      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/updateResponse" message="tns:SnPORequestService_update_OutputMessage"/>
-      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/updateAifFaultFault" name="AifFaultFault" message="tns:SnPORequestService_update_AifFaultFault_FaultMessage"/>
-    </wsdl:operation>
     <wsdl:operation name="delete">
       <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/delete" name="SnPORequestServiceDeleteRequest" message="tns:SnPORequestServiceDeleteRequest"/>
       <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/deleteResponse" message="tns:SnPORequestService_delete_OutputMessage"/>
       <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/deleteAifFaultFault" name="AifFaultFault" message="tns:SnPORequestService_delete_AifFaultFault_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/update" name="SnPORequestServiceUpdateRequest" message="tns:SnPORequestServiceUpdateRequest"/>
+      <wsdl:output wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/updateResponse" message="tns:SnPORequestService_update_OutputMessage"/>
+      <wsdl:fault wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/updateAifFaultFault" name="AifFaultFault" message="tns:SnPORequestService_update_AifFaultFault_FaultMessage"/>
     </wsdl:operation>
     <wsdl:operation name="create">
       <wsdl:input wsaw:Action="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/create" name="SnPORequestServiceCreateRequest" message="tns:SnPORequestServiceCreateRequest"/>
@@ -75,9 +75,9 @@
   <wsdl:binding name="BasicHttpBinding_SnPORequestService" type="tns:SnPORequestService">
     <wsp:PolicyReference URI="#BasicHttpBinding_SnPORequestService_policy"/>
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="update">
-      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/update" style="document"/>
-      <wsdl:input name="SnPORequestServiceUpdateRequest">
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/delete" style="document"/>
+      <wsdl:input name="SnPORequestServiceDeleteRequest">
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output>
@@ -87,9 +87,9 @@
         <soap:fault name="AifFaultFault" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="delete">
-      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/delete" style="document"/>
-      <wsdl:input name="SnPORequestServiceDeleteRequest">
+    <wsdl:operation name="update">
+      <soap:operation soapAction="http://schemas.microsoft.com/dynamics/2008/01/services/SnPORequestService/update" style="document"/>
+      <wsdl:input name="SnPORequestServiceUpdateRequest">
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output>
