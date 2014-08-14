@@ -256,9 +256,11 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
         </until-successful>
     </sub-flow>
     <sub-flow name="if5-flow" doc:name="if5-flow">
-        <byte-array-to-object-transformer doc:name="Byte Array to Object"/>
+        <json:json-to-object-transformer doc:name="JSON to Object"/>
+
         <logger message="if4response #[payload]" level="INFO" doc:name="if4response"/>
-        <set-variable variableName="if4response" value="#[payload]" doc:name="if4response"/>
+        <set-variable variableName="state" value="#[json:records[0]/state]" doc:name="state"/>
+
         <data-mapper:transform config-ref="JSON_To_Xml_SnPORequestServiceReadRequest_" doc:name="JSON To Xml&lt;SnPORequestServiceReadRequest&gt;"/>
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
         <set-session-variable variableName="integrationStep" value="dax.read.snpor (IF5.1)" doc:name="integrationStep = dax.read.snpor"/>
@@ -269,7 +271,11 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
                 <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="read" doc:name="SnPor Read Web Service Consumer"/>
             </processor-chain>
         </until-successful>
-        <data-mapper:transform config-ref="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" doc:name="Xml&lt;SnPORequestServiceReadResponse&gt; To Xml&lt;SnPORequestServiceUpdateRequest&gt;"/>
+        <data-mapper:transform config-ref="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" doc:name="Xml&lt;SnPORequestServiceReadResponse&gt; To Xml&lt;SnPORequestServiceUpdateRequest&gt;">
+            <data-mapper:input-arguments>
+                <data-mapper:input-argument key="state">#[flowVars.state]</data-mapper:input-argument>
+            </data-mapper:input-arguments>
+        </data-mapper:transform>
         <set-session-variable variableName="integrationStep" value="dax.update.snpor (IF5.2)" doc:name="integrationStep = dax.update.snpor"/>
         <set-variable variableName="if5updaterequest" value="#[payload]" doc:name="if5updaterequest"/>
         <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
