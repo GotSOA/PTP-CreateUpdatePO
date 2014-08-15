@@ -1471,9 +1471,9 @@
    <soapenv:Header/>
    <soapenv:Body>
       <ser:porDataSync>
-         <poNumber>PO78-778</poNumber>
+         <poNumber>PO-1018382</poNumber>
          <porId>POR100340</porId>
-         <vendorId>V101372</vendorId>
+         <vendorId>V672011</vendorId>
       </ser:porDataSync>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.bhnetwork.com/PORDataSyncService/porDataSync"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="BasicHttpBinding_DimensionsService" type="wsdl" bindingName="{http://schemas.microsoft.com/dynamics/2008/01/services}BasicHttpBinding_DimensionsService" soapVersion="1_1" anonymous="optional" definition="http://vsclapdaxq04w.devqa.local/MicrosoftDynamicsAXAif50/dimensionsservice.svc?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://vsclapdaxq04w.devqa.local/MicrosoftDynamicsAXAif50/dimensionsservice.svc?wsdl"><con:part><con:url>http://vsclapdaxq04w.devqa.local/MicrosoftDynamicsAXAif50/dimensionsservice.svc?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="DimensionsService" targetNamespace="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:tns="http://schemas.microsoft.com/dynamics/2008/01/services" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
