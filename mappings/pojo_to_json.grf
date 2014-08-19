@@ -3,7 +3,8 @@
 <Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Output" id="6cd1f80f-4382-42e6-b66f-6e67adb437d9">
 <Record fieldDelimiter="," name="object" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
 <Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
-<Field __index="0" __sourcePath="{}/object/u_x005fpo_x005fnumber" containerType="SINGLE" label="u_po_number" name="u_po_number" type="string"/>
+<Field __index="0" __sourcePath="{}/object/u_x005fvendoraccountid" containerType="SINGLE" label="u_vendoraccountid" name="u_vendoraccountid" type="string"/>
+<Field __index="1" __sourcePath="{}/object/u_x005fpo_x005fnumber" containerType="SINGLE" label="u_po_number" name="u_po_number" type="string"/>
 </Record>
 </Metadata>
 <Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="f89acb21-e9b5-47ae-ab93-ce84f0a04ad5">
@@ -51,11 +52,13 @@
 //START -> DO NOT REMOVE
 output.__id = input.__id;
 //END -> DO NOT REMOVE
-output.u_po_number = input.poNumber;]]></attr>
+output.u_po_number = input.poNumber;
+output.u_vendoraccountid = input.vendorId;]]></attr>
 </Node>
 <Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="JSON WRITER" guiX="900" guiY="20" id="JSON_WRITER0" type="JSON_WRITER">
 <attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <object xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" clover:inPort="0">
+  <clover:element clover:name="u_vendoraccountid">$0.u_vendoraccountid</clover:element>
   <clover:element clover:name="u_po_number">$0.u_po_number</clover:element>
 </object>]]></attr>
 <attr name="_data_format"><![CDATA[JSON]]></attr>
