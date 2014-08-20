@@ -52,7 +52,7 @@ output.__parent_id = input.__id;
 output.u_vendoraccountid = input.AccountNum;
 output.u_address = input.Address;
 output.u_name = input.Name;
-output.u_stoppedstatus = (input.Blocked == 0) ? 'No' : input.Blocked==1 ? 'Yes' : 'All';]]></attr>
+output.u_stoppedstatus = input.Blocked;]]></attr>
 </Node>
 <Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="JSON WRITER" guiX="900" guiY="20" id="JSON_WRITER0" type="JSON_WRITER">
 <attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
