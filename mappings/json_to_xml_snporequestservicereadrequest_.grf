@@ -112,14 +112,14 @@
 <Field __index="86" __sourcePath="{}/object/records/u_x005fother_x005fchange" containerType="SINGLE" label="u_other_change" name="u_other_change" type="string"/>
 <Field __index="87" __sourcePath="{}/object/records/u_x005fother_x005fdescription" containerType="SINGLE" label="u_other_description" name="u_other_description" type="string"/>
 <Field __index="88" __sourcePath="{}/object/records/u_x005fpo_x005famount_x005frequested" containerType="SINGLE" label="u_po_amount_requested" name="u_po_amount_requested" type="string"/>
-<Field __index="89" __sourcePath="{}/object/records/u_x005fpo_x005fnumber" containerType="SINGLE" label="u_po_number" name="u_po_number" type="string"/>
-<Field __index="90" __sourcePath="{}/object/records/u_x005fpo_x005forder_x005ftype" containerType="SINGLE" label="u_po_order_type" name="u_po_order_type" type="string"/>
-<Field __index="91" __sourcePath="{}/object/records/u_x005fprice" containerType="SINGLE" label="u_price" name="u_price" type="string"/>
-<Field __index="92" __sourcePath="{}/object/records/u_x005fprocurement_x005fcomments" containerType="SINGLE" label="u_procurement_comments" name="u_procurement_comments" type="string"/>
-<Field __index="93" __sourcePath="{}/object/records/u_x005fprofessional_x005fservices" containerType="SINGLE" label="u_professional_services" name="u_professional_services" type="string"/>
-<Field __index="94" __sourcePath="{}/object/records/u_x005fproject" containerType="SINGLE" label="u_project" name="u_project" type="string"/>
-<Field __index="95" __sourcePath="{}/object/records/u_x005fproject_x005fowner" containerType="SINGLE" label="u_project_owner" name="u_project_owner" type="string"/>
-<Field __index="96" __sourcePath="{}/object/records/u_x005fprojectid" containerType="SINGLE" label="u_projectid" name="u_projectid" type="string"/>
+<Field __index="89" __sourcePath="{}/object/records/u_x005fpo_x005forder_x005ftype" containerType="SINGLE" label="u_po_order_type" name="u_po_order_type" type="string"/>
+<Field __index="90" __sourcePath="{}/object/records/u_x005fprice" containerType="SINGLE" label="u_price" name="u_price" type="string"/>
+<Field __index="91" __sourcePath="{}/object/records/u_x005fprocurement_x005fcomments" containerType="SINGLE" label="u_procurement_comments" name="u_procurement_comments" type="string"/>
+<Field __index="92" __sourcePath="{}/object/records/u_x005fprofessional_x005fservices" containerType="SINGLE" label="u_professional_services" name="u_professional_services" type="string"/>
+<Field __index="93" __sourcePath="{}/object/records/u_x005fproject" containerType="SINGLE" label="u_project" name="u_project" type="string"/>
+<Field __index="94" __sourcePath="{}/object/records/u_x005fproject_x005fowner" containerType="SINGLE" label="u_project_owner" name="u_project_owner" type="string"/>
+<Field __index="95" __sourcePath="{}/object/records/u_x005fprojectid" containerType="SINGLE" label="u_projectid" name="u_projectid" type="string"/>
+<Field __index="96" __sourcePath="{}/object/records/u_x005fpurchase_x005forder" containerType="SINGLE" label="u_purchase_order" name="u_purchase_order" type="string"/>
 <Field __index="97" __sourcePath="{}/object/records/u_x005fquantity" containerType="SINGLE" label="u_quantity" name="u_quantity" type="string"/>
 <Field __index="98" __sourcePath="{}/object/records/u_x005freason_x005ffor_x005frequested_x005fchange" containerType="SINGLE" label="u_reason_for_requested_change" name="u_reason_for_requested_change" type="string"/>
 <Field __index="99" __sourcePath="{}/object/records/u_x005frequest_x005ftype" containerType="SINGLE" label="u_request_type" name="u_request_type" type="string"/>
@@ -133,26 +133,27 @@
 <Field __index="107" __sourcePath="{}/object/records/u_x005fresource_x005ftitle" containerType="SINGLE" label="u_resource_title" name="u_resource_title" type="string"/>
 <Field __index="108" __sourcePath="{}/object/records/u_x005fsoftware" containerType="SINGLE" label="u_software" name="u_software" type="string"/>
 <Field __index="109" __sourcePath="{}/object/records/u_x005fsoftware_x005fdelivery_x005fmethod" containerType="SINGLE" label="u_software_delivery_method" name="u_software_delivery_method" type="string"/>
-<Field __index="110" __sourcePath="{}/object/records/u_x005ftotal_x005fpo_x005famount_x005frequested" containerType="SINGLE" label="u_total_po_amount_requested" name="u_total_po_amount_requested" type="string"/>
-<Field __index="111" __sourcePath="{}/object/records/u_x005ftraining" containerType="SINGLE" label="u_training" name="u_training" type="string"/>
-<Field __index="112" __sourcePath="{}/object/records/u_x005fupdated_x005ftotal_x005fpo_x005famount_x005frequ" containerType="SINGLE" label="u_updated_total_po_amount_requ" name="u_updated_total_po_amount_requ" type="string"/>
-<Field __index="113" __sourcePath="{}/object/records/u_x005fvendor" containerType="SINGLE" label="u_vendor" name="u_vendor" type="string"/>
-<Field __index="114" __sourcePath="{}/object/records/u_x005fvendor_x005faddress" containerType="SINGLE" label="u_vendor_address" name="u_vendor_address" type="string"/>
-<Field __index="115" __sourcePath="{}/object/records/u_x005fvendor_x005fcontact_x005femail" containerType="SINGLE" label="u_vendor_contact_email" name="u_vendor_contact_email" type="string"/>
-<Field __index="116" __sourcePath="{}/object/records/u_x005fvendor_x005fcontact_x005fname" containerType="SINGLE" label="u_vendor_contact_name" name="u_vendor_contact_name" type="string"/>
-<Field __index="117" __sourcePath="{}/object/records/u_x005fvendor_x005fcontact_x005fphone" containerType="SINGLE" label="u_vendor_contact_phone" name="u_vendor_contact_phone" type="string"/>
-<Field __index="118" __sourcePath="{}/object/records/u_x005fvendoraccountid" containerType="SINGLE" label="u_vendoraccountid" name="u_vendoraccountid" type="string"/>
-<Field __index="119" __sourcePath="{}/object/records/u_x005fwhat_x005fchanges_x005fto_x005fcost_x005fcenter" containerType="SINGLE" label="u_what_changes_to_cost_center" name="u_what_changes_to_cost_center" type="string"/>
-<Field __index="120" __sourcePath="{}/object/records/u_x005fwhat_x005fother_x005fchanges" containerType="SINGLE" label="u_what_other_changes" name="u_what_other_changes" type="string"/>
-<Field __index="121" __sourcePath="{}/object/records/upon_x005fapproval" containerType="SINGLE" label="upon_approval" name="upon_approval" type="string"/>
-<Field __index="122" __sourcePath="{}/object/records/upon_x005freject" containerType="SINGLE" label="upon_reject" name="upon_reject" type="string"/>
-<Field __index="123" __sourcePath="{}/object/records/urgency" containerType="SINGLE" label="urgency" name="urgency" type="string"/>
-<Field __index="124" __sourcePath="{}/object/records/user_x005finput" containerType="SINGLE" label="user_input" name="user_input" type="string"/>
-<Field __index="125" __sourcePath="{}/object/records/variables" containerType="SINGLE" label="variables" name="variables" type="string"/>
-<Field __index="126" __sourcePath="{}/object/records/watch_x005flist" containerType="SINGLE" label="watch_list" name="watch_list" type="string"/>
-<Field __index="127" __sourcePath="{}/object/records/work_x005fend" containerType="SINGLE" label="work_end" name="work_end" type="string"/>
-<Field __index="128" __sourcePath="{}/object/records/work_x005fnotes" containerType="SINGLE" label="work_notes" name="work_notes" type="string"/>
-<Field __index="129" __sourcePath="{}/object/records/work_x005fstart" containerType="SINGLE" label="work_start" name="work_start" type="string"/>
+<Field __index="110" __sourcePath="{}/object/records/u_x005ftestponumber" containerType="SINGLE" label="u_testponumber" name="u_testponumber" type="string"/>
+<Field __index="111" __sourcePath="{}/object/records/u_x005ftotal_x005fpo_x005famount_x005frequested" containerType="SINGLE" label="u_total_po_amount_requested" name="u_total_po_amount_requested" type="string"/>
+<Field __index="112" __sourcePath="{}/object/records/u_x005ftraining" containerType="SINGLE" label="u_training" name="u_training" type="string"/>
+<Field __index="113" __sourcePath="{}/object/records/u_x005fupdated_x005ftotal_x005fpo_x005famount_x005frequ" containerType="SINGLE" label="u_updated_total_po_amount_requ" name="u_updated_total_po_amount_requ" type="string"/>
+<Field __index="114" __sourcePath="{}/object/records/u_x005fvendor" containerType="SINGLE" label="u_vendor" name="u_vendor" type="string"/>
+<Field __index="115" __sourcePath="{}/object/records/u_x005fvendor_x005faddress" containerType="SINGLE" label="u_vendor_address" name="u_vendor_address" type="string"/>
+<Field __index="116" __sourcePath="{}/object/records/u_x005fvendor_x005fcontact_x005femail" containerType="SINGLE" label="u_vendor_contact_email" name="u_vendor_contact_email" type="string"/>
+<Field __index="117" __sourcePath="{}/object/records/u_x005fvendor_x005fcontact_x005fname" containerType="SINGLE" label="u_vendor_contact_name" name="u_vendor_contact_name" type="string"/>
+<Field __index="118" __sourcePath="{}/object/records/u_x005fvendor_x005fcontact_x005fphone" containerType="SINGLE" label="u_vendor_contact_phone" name="u_vendor_contact_phone" type="string"/>
+<Field __index="119" __sourcePath="{}/object/records/u_x005fvendoraccountid" containerType="SINGLE" label="u_vendoraccountid" name="u_vendoraccountid" type="string"/>
+<Field __index="120" __sourcePath="{}/object/records/u_x005fwhat_x005fchanges_x005fto_x005fcost_x005fcenter" containerType="SINGLE" label="u_what_changes_to_cost_center" name="u_what_changes_to_cost_center" type="string"/>
+<Field __index="121" __sourcePath="{}/object/records/u_x005fwhat_x005fother_x005fchanges" containerType="SINGLE" label="u_what_other_changes" name="u_what_other_changes" type="string"/>
+<Field __index="122" __sourcePath="{}/object/records/upon_x005fapproval" containerType="SINGLE" label="upon_approval" name="upon_approval" type="string"/>
+<Field __index="123" __sourcePath="{}/object/records/upon_x005freject" containerType="SINGLE" label="upon_reject" name="upon_reject" type="string"/>
+<Field __index="124" __sourcePath="{}/object/records/urgency" containerType="SINGLE" label="urgency" name="urgency" type="string"/>
+<Field __index="125" __sourcePath="{}/object/records/user_x005finput" containerType="SINGLE" label="user_input" name="user_input" type="string"/>
+<Field __index="126" __sourcePath="{}/object/records/variables" containerType="SINGLE" label="variables" name="variables" type="string"/>
+<Field __index="127" __sourcePath="{}/object/records/watch_x005flist" containerType="SINGLE" label="watch_list" name="watch_list" type="string"/>
+<Field __index="128" __sourcePath="{}/object/records/work_x005fend" containerType="SINGLE" label="work_end" name="work_end" type="string"/>
+<Field __index="129" __sourcePath="{}/object/records/work_x005fnotes" containerType="SINGLE" label="work_notes" name="work_notes" type="string"/>
+<Field __index="130" __sourcePath="{}/object/records/work_x005fstart" containerType="SINGLE" label="work_start" name="work_start" type="string"/>
 </Record>
 </Metadata>
 <Metadata __filteredMetadata="false" __index="0" __referenceCounter="1" __sourcePath="{http://schemas.microsoft.com/dynamics/2008/01/services=ns0}/ns0:SnPORequestServiceReadRequest" _dataStructure="OBJECT" _id="__id" _type="Output" id="a9ae26e5-4aa8-46d9-a019-9e6a092dd65c">
@@ -293,7 +294,6 @@ output.Value = input.number;]]></attr>
       <Mapping cloverField="u_other_change" trim="true" xpath="u_x005fother_x005fchange"/>
       <Mapping cloverField="u_other_description" trim="true" xpath="u_x005fother_x005fdescription"/>
       <Mapping cloverField="u_po_amount_requested" trim="true" xpath="u_x005fpo_x005famount_x005frequested"/>
-      <Mapping cloverField="u_po_number" trim="true" xpath="u_x005fpo_x005fnumber"/>
       <Mapping cloverField="u_po_order_type" trim="true" xpath="u_x005fpo_x005forder_x005ftype"/>
       <Mapping cloverField="u_price" trim="true" xpath="u_x005fprice"/>
       <Mapping cloverField="u_procurement_comments" trim="true" xpath="u_x005fprocurement_x005fcomments"/>
@@ -301,6 +301,7 @@ output.Value = input.number;]]></attr>
       <Mapping cloverField="u_project" trim="true" xpath="u_x005fproject"/>
       <Mapping cloverField="u_project_owner" trim="true" xpath="u_x005fproject_x005fowner"/>
       <Mapping cloverField="u_projectid" trim="true" xpath="u_x005fprojectid"/>
+      <Mapping cloverField="u_purchase_order" trim="true" xpath="u_x005fpurchase_x005forder"/>
       <Mapping cloverField="u_quantity" trim="true" xpath="u_x005fquantity"/>
       <Mapping cloverField="u_reason_for_requested_change" trim="true" xpath="u_x005freason_x005ffor_x005frequested_x005fchange"/>
       <Mapping cloverField="u_request_type" trim="true" xpath="u_x005frequest_x005ftype"/>
@@ -314,6 +315,7 @@ output.Value = input.number;]]></attr>
       <Mapping cloverField="u_resource_title" trim="true" xpath="u_x005fresource_x005ftitle"/>
       <Mapping cloverField="u_software" trim="true" xpath="u_x005fsoftware"/>
       <Mapping cloverField="u_software_delivery_method" trim="true" xpath="u_x005fsoftware_x005fdelivery_x005fmethod"/>
+      <Mapping cloverField="u_testponumber" trim="true" xpath="u_x005ftestponumber"/>
       <Mapping cloverField="u_total_po_amount_requested" trim="true" xpath="u_x005ftotal_x005fpo_x005famount_x005frequested"/>
       <Mapping cloverField="u_training" trim="true" xpath="u_x005ftraining"/>
       <Mapping cloverField="u_updated_total_po_amount_requ" trim="true" xpath="u_x005fupdated_x005ftotal_x005fpo_x005famount_x005frequ"/>
