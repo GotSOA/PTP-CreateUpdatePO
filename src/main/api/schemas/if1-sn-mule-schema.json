@@ -3,6 +3,10 @@
    "$schema":"http://json-schema.org/draft-04/schema",
    "required":true,
    "properties":{
+      "u_vendoraccountid":{
+         "type":"string",
+         "required":true
+       },
       "u_request_type":{
          "type":"string",
          "required":true
@@ -15,7 +19,7 @@
          "type":"string",
          "required":true
        },
-       "u_approver1":{
+       "u_approved_by":{
          "type":"string",
          "required":true
        },
@@ -24,10 +28,6 @@
          "required":true
        },
        "u_requested_for":{
-         "type":"string",
-         "required":true
-       },
-       "u_vendor":{
          "type":"string",
          "required":true
        }

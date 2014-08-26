@@ -5,15 +5,17 @@
 <Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
 <Field __index="0" __sourcePath="{}/object/u_x005fvendoraccountid" containerType="SINGLE" label="u_vendoraccountid" name="u_vendoraccountid" type="string"/>
 <Field __index="1" __sourcePath="{}/object/u_x005fpurchase_x005forder" containerType="SINGLE" label="u_purchase_order" name="u_purchase_order" type="string"/>
+<Field __index="2" __sourcePath="{}/object/u_x005fbuyer" containerType="SINGLE" label="u_buyer" name="u_buyer" type="string"/>
 </Record>
 </Metadata>
 <Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="f89acb21-e9b5-47ae-ab93-ce84f0a04ad5">
 <Record fieldDelimiter="," name="PORDataSyncServiceResponse" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
 <Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
-<Field __index="0" __sourcePath="{}/object/porDataSyncServiceRequest/poNumber" containerType="SINGLE" label="poNumber" name="poNumber" type="string"/>
-<Field __index="1" __sourcePath="{}/object/porDataSyncServiceRequest/porId" containerType="SINGLE" label="porId" name="porId" type="string"/>
-<Field __index="2" __sourcePath="{}/object/porDataSyncServiceRequest/vendorId" containerType="SINGLE" label="vendorId" name="vendorId" type="string"/>
-<Field __index="3" __sourcePath="{}/object/status" containerType="SINGLE" label="status" name="status" type="string"/>
+<Field __index="0" __sourcePath="{}/object/porDataSyncServiceRequest/buyer" containerType="SINGLE" label="buyer" name="buyer" type="string"/>
+<Field __index="1" __sourcePath="{}/object/porDataSyncServiceRequest/poNumber" containerType="SINGLE" label="poNumber" name="poNumber" type="string"/>
+<Field __index="2" __sourcePath="{}/object/porDataSyncServiceRequest/porId" containerType="SINGLE" label="porId" name="porId" type="string"/>
+<Field __index="3" __sourcePath="{}/object/porDataSyncServiceRequest/vendorId" containerType="SINGLE" label="vendorId" name="vendorId" type="string"/>
+<Field __index="4" __sourcePath="{}/object/status" containerType="SINGLE" label="status" name="status" type="string"/>
 </Record>
 </Metadata>
 <Dictionary>
@@ -25,6 +27,7 @@
 <Node enabled="enabled" fileURL="dict:inputPayload" guiName="Pojo READER" guiX="20" guiY="20" id="BEAN_READER0" type="BEAN_READER">
 <attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Context outPort="0" sequenceField="__id" xpath=".">
+  <Mapping cloverField="buyer" trim="true" xpath="porDataSyncServiceRequest/buyer"/>
   <Mapping cloverField="poNumber" trim="true" xpath="porDataSyncServiceRequest/poNumber"/>
   <Mapping cloverField="porId" trim="true" xpath="porDataSyncServiceRequest/porId"/>
   <Mapping cloverField="vendorId" trim="true" xpath="porDataSyncServiceRequest/vendorId"/>
@@ -35,6 +38,7 @@
 <attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?><schema-object>
   <typed-object-ref type-ref="com.bhnetwork.service.PORDataSyncServiceResponse"/>
   <typed-object type="com.bhnetwork.service.PORDataSyncServiceRequest">
+    <typed-object-ref name="buyer" type-ref="java.lang.String"/>
     <typed-object-ref name="poNumber" type-ref="java.lang.String"/>
     <typed-object-ref name="porId" type-ref="java.lang.String"/>
     <typed-object-ref name="vendorId" type-ref="java.lang.String"/>
@@ -53,13 +57,15 @@
 output.__id = input.__id;
 //END -> DO NOT REMOVE
 output.u_vendoraccountid = input.vendorId;
-output.u_purchase_order = input.poNumber;]]></attr>
+output.u_purchase_order = input.poNumber;
+output.u_buyer = input.buyer;]]></attr>
 </Node>
 <Node cacheInMemory="true" charset="UTF-8" enabled="enabled" fileURL="dict:outputPayload" guiName="JSON WRITER" guiX="900" guiY="20" id="JSON_WRITER0" type="JSON_WRITER">
 <attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <object xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" clover:inPort="0">
   <clover:element clover:name="u_vendoraccountid">$0.u_vendoraccountid</clover:element>
   <clover:element clover:name="u_purchase_order">$0.u_purchase_order</clover:element>
+  <clover:element clover:name="u_buyer">$0.u_buyer</clover:element>
 </object>]]></attr>
 <attr name="_data_format"><![CDATA[JSON]]></attr>
 <attr name="jsonSchemaURL"><![CDATA[./src/test/resources/sample-requests/if4request.json]]></attr>

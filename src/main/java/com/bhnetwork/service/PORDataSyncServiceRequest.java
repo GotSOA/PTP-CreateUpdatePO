@@ -9,7 +9,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "porDataSyncServiceRequest", propOrder = {
     "poNumber",
     "porId",
-    "vendorId"
+    "vendorId",
+    "buyer"
 })
 public class PORDataSyncServiceRequest {
 	
@@ -19,6 +20,8 @@ public class PORDataSyncServiceRequest {
 	private String porId;
 	@XmlElement(required=true)
 	private String vendorId;
+	@XmlElement(required=true)
+	private String buyer;
 	
 	public String getPoNumber() {
 		return poNumber;
@@ -42,6 +45,14 @@ public class PORDataSyncServiceRequest {
 
 	public void setVendorId(String vendorId) {
 		this.vendorId = vendorId;
+	}
+
+	public String getBuyer() {
+		return buyer;
+	}
+
+	public void setBuyer(String buyer) {
+		this.buyer = buyer;
 	}
 		
 }

@@ -2,9 +2,10 @@
    <soap:Body>
       <ns2:porDataSyncResponse xmlns:ns2="http://service.bhnetwork.com/">
          <porDataSyncServiceRequest>
-            <poNumber>PO78-778</poNumber>
-            <porId>POR100340</porId>
-            <vendorId>V101372</vendorId>
+            <poNumber>PO-1018382</poNumber>
+            <porId>POR100601</porId>
+            <vendorId>V672011</vendorId>
+            <buyer>John Doe</buyer>
          </porDataSyncServiceRequest>
          <status>ACK</status>
       </ns2:porDataSyncResponse>
