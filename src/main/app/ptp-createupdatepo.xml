@@ -213,6 +213,8 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
     </flow>
     <flow name="post:/ptp-createupdatepo:ptp-createupdatepo-config" doc:name="post:/ptp-createupdatepo:ptp-createupdatepo-config">
         <async doc:name="Async">
+			<logger message="IF1: Received #[json:u_request_type] PO REQUEST #[json:number] from SN" level="INFO" doc:name="IF1 (INFO)"/>
+			<logger message="IF1: COMPLETE REQUEST #[payload] " level="DEBUG" doc:name="IF1 (DEBUG)"/>
             <flow-ref name="if2-flow" doc:name="IF2 Flow"/>
         </async>
         <set-payload value="{&quot;status&quot;:&quot;ACK&quot;}" doc:name="Send ACK"/>
@@ -228,7 +230,7 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
                 <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="create" doc:name="SnPor Create Web Service Consumer"/>
             </processor-chain>
         </until-successful>
-        <logger message="IF2 Completed" level="INFO" doc:name="IF2 Completed"/>
+        <logger message="IF2: PO NEW/UPDATE Successfull" level="INFO" doc:name="IF2 Completed"/>
         <exception-strategy ref="global-main-exception-strategy" doc:name="Reference Exception Strategy" />
     </flow>
     <flow name="if3-if4-if5-flow" doc:name="if3-if4-if5-flow">
@@ -236,6 +238,7 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
         	<cxf:jaxws-service doc:name="CXF" serviceClass="com.bhnetwork.service.PORDataSyncService" validationEnabled="true"/>
         </http:inbound-endpoint>
         <component class="com.bhnetwork.service.PORDataSyncServiceImpl" doc:name="PORDataSyncService"/>
+        <logger message="IF3: Received PO DataSync/Update from DAX" level="INFO" doc:name="IF3 (INFO)"/>
         <async doc:name="Async">
             <flow-ref name="if4-flow" doc:name="IF4"/>
             <flow-ref name="if5-flow" doc:name="IF5"/>
@@ -246,7 +249,7 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
         <set-variable variableName="porId" value="#[payload.porDataSyncServiceRequest.porId]" doc:name="porId"/>
         <data-mapper:transform config-ref="Pojo_To_JSON" doc:name="Pojo To JSON"/>
         <byte-array-to-object-transformer doc:name="Byte Array to Object"/>
-        <logger message="if4request #[payload]" level="INFO" doc:name="if4request"/>
+        <logger message="IF4: PO DataSync/Update with SN #[payload]" level="INFO" doc:name="if4request"/>
         <set-session-variable variableName="integrationStep" value="sn.update.snpor (IF4)" doc:name="integrationStep = sn.update.snpor"/>
         <set-variable variableName="if4updaterequest" value="#[payload]" doc:name="if4updaterequest"/>
         <until-successful maxRetries="${maxRetries}" secondsBetweenRetries="${secondsBetweenRetries}" synchronous="true" doc:name="Until Successful">
@@ -258,10 +261,9 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
     </sub-flow>
     <sub-flow name="if5-flow" doc:name="if5-flow">
         <json:json-to-object-transformer doc:name="JSON to Object"/>
-
-        <logger message="if4response #[payload]" level="INFO" doc:name="if4response"/>
+		<logger message="IF4: PO DataSync/Update Response from SN state=#[json:records[0]/state]" level="INFO" doc:name="if4response (INFO)"/>
+		<logger message="IF4: COMPLETE RESPONSE #[payload]" level="DEBUG" doc:name="if4response (DEBUG)"/>
         <set-variable variableName="state" value="#[json:records[0]/state]" doc:name="state"/>
-
         <data-mapper:transform config-ref="JSON_To_Xml_SnPORequestServiceReadRequest_" doc:name="JSON To Xml&lt;SnPORequestServiceReadRequest&gt;"/>
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
         <set-session-variable variableName="integrationStep" value="dax.read.snpor (IF5.1)" doc:name="integrationStep = dax.read.snpor"/>
@@ -285,8 +287,6 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
                 <ws:consumer config-ref="SnPor_Web_Service_Consumer" operation="update" doc:name="SnPor Update Web Service Consumer"/>
             </processor-chain>
         </until-successful>
-
-        
         <logger message="IF5 Completed" level="INFO" doc:name="IF5 Completed"/>
     </sub-flow>
 
