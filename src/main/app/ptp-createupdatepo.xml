@@ -263,7 +263,7 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
         <json:json-to-object-transformer doc:name="JSON to Object"/>
 		<logger message="IF4: PO DataSync/Update Response from SN state=#[json:records[0]/state]" level="INFO" doc:name="if4response (INFO)"/>
 		<logger message="IF4: COMPLETE RESPONSE #[payload]" level="DEBUG" doc:name="if4response (DEBUG)"/>
-        <set-variable variableName="state" value="#[json:records[0]/state]" doc:name="state"/>
+
         <data-mapper:transform config-ref="JSON_To_Xml_SnPORequestServiceReadRequest_" doc:name="JSON To Xml&lt;SnPORequestServiceReadRequest&gt;"/>
         <expression-component doc:name="NTLM credentials"><![CDATA[flowVars['username']='${dax.username}'; flowVars['password']='${dax.password}'; flowVars['domain']='${dax.domain}'; flowVars['realm']='${dax.realm}' ;]]></expression-component>
         <set-session-variable variableName="integrationStep" value="dax.read.snpor (IF5.1)" doc:name="integrationStep = dax.read.snpor"/>
@@ -276,7 +276,7 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
         </until-successful>
         <data-mapper:transform config-ref="Xml_SnPORequestServiceReadResponse__To_Xml_SnPORequestServiceUpdateRequest_" doc:name="Xml&lt;SnPORequestServiceReadResponse&gt; To Xml&lt;SnPORequestServiceUpdateRequest&gt;">
             <data-mapper:input-arguments>
-                <data-mapper:input-argument key="state">#[flowVars.state]</data-mapper:input-argument>
+
             </data-mapper:input-arguments>
         </data-mapper:transform>
         <set-session-variable variableName="integrationStep" value="dax.update.snpor (IF5.2)" doc:name="integrationStep = dax.update.snpor"/>

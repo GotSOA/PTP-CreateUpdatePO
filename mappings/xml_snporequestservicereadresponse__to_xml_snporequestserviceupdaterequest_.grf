@@ -81,7 +81,6 @@
 <Dictionary>
 <Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
 <Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
-<Entry dictval.__javaType="java.lang.String" id="DictionaryEntry2" input="true" name="state" output="false" type="string"/>
 </Dictionary>
 </Global>
 <Phase number="0">
@@ -156,7 +155,7 @@ output.timezone = input.timezone;
 output.text = input.text;
 output.ApprovalSource = input.ApprovalSource;
 output.ApproverName = input.ApproverName;
-output.ClosedOpen = (inputArguments.state == '3') ? 'Closed' : 'Open';
+output.ClosedOpen = 'Closed';
 output.Currency = input.Currency;
 output.PorId = input.PorId;
 output.RecId = input.RecId;
